@@ -1,2 +1,3 @@
 # node-red-contrib-mjml
-Node für NodeRED to create emails with MJML language
+
+Node for NodeRED to create emails with MJML language
