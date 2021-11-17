@@ -1,0 +1,8 @@
+/*
+
+!/.gitignore
+!/index.js
+!/LICENSE
+!/mjml.*
+!/package.json
+!/yarn.lock

@@ -1,0 +1,22 @@
+{
+	"name": "node-red-contrib-mjml",
+	"version": "1.0.0",
+	"description": "Node for NodeRED to create emails with MJML language",
+	"main": "index.js",
+	"type": "module",
+	"repository": "git@github.com:vergissberlin/node-red-contrib-mjml.git",
+	"author": "André Lademann <vergissberlin@googlemail.com>",
+	"license": "MIT",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"mjml": "^4.10.4"
+	},
+	"node-red": {
+		"nodes": {
+			"mjml": "mjmljs"
+		}
+	}
+}
