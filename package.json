@@ -1,7 +1,7 @@
 {
     "name": "@vergissberlin/node-red-contrib-mjml",
     "description": "Node for NodeRED to create prefessional emails with MJML language",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "homepage": "https://www.npmjs.com/package/@vergissberlin/node-red-contrib-mjml",
     "repository": "https://github.com/vergissberlin/node-red-contrib-mjml",
     "bugs": {
