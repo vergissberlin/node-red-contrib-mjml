@@ -7,7 +7,7 @@ Node for NodeRED to create emails with MJML language. It provides a NodeRED node
 Change directory to your NodeRED installation and issue:
 
 ```shell
-npm install node-red-contrib-mjml
+npm install @vergissberlin/node-red-contrib-mjml
 ```
 
 or

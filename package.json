@@ -1,5 +1,5 @@
 {
-    "name": "node-red-contrib-mjml",
+    "name": "@vergissberlin/node-red-contrib-mjml",
     "version": "1.1.0",
     "description": "Node for NodeRED to create emails with MJML language",
     "repository": "https://github.com/vergissberlin/node-red-contrib-mjml#readme",
