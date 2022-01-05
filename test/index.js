@@ -1,27 +1,27 @@
-import mjml2html from 'mjml'
+const mjml2html = require("mjml");
 
 const options = {
- //   filePath: './src/index.mjml',
     beautify: true,
     minify: true,
     validationLevel: 'strict'
 }
- 
+
 /*
   Compile an mjml string
 */
 const htmlOutput = mjml2html(`
-  <mjml>
+<mjml>
+    <mj-head>
+        <mj-title>Test</mj-title>
+    </mj-head>
     <mj-body>
-      <mj-section>
-        <mj-column>
-          <mj-text>
-            Hello World!
-          </mj-text>
-        </mj-column>
-      </mj-section>
+        <mj-section>
+            <mj-column>
+                <mj-text>Test</mj-text>
+            </mj-column>
+        </mj-section>
     </mj-body>
-  </mjml>
+</mjml>
 `, options)
 
 

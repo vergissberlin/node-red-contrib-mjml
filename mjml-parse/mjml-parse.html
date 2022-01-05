@@ -1,26 +1,26 @@
 <script type="text/javascript">
-    RED.nodes.registerType('mjml', {
-        category: 'function',
-        color: '#a6bbcf',
+    RED.nodes.registerType('mjml-parse', {
+        category: 'parser',
+        color: '#f46d4c',
         defaults: {
             name: {value: ""}
         },
         inputs: 1,
         outputs: 1,
-        icon: "file.png",
+        icon: "mjml.svg",
         label: function () {
-            return this.name || "mjml";
+            return this.name || "mjml-parse";
         }
     });
 </script>
 
-<script type="text/html" data-template-name="mjml">
+<script type="text/html" data-template-name="mjml-parse">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
 
-<script type="text/html" data-help-name="mjml">
-    <p>A simple node that converts the message payloads with MJML syntax into HTML</p>
+<script type="text/html" data-help-name="mjml-parse">
+    <p>A simple node that converts the message payloads with mjml-parse syntax into HTML</p>
 </script>

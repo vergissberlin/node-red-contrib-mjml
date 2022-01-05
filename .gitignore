@@ -1,8 +1,10 @@
 /*
 
+!/docs/
+!/mjml-parse/
+!/test/
+
 !/.gitignore
-!/index.js
 !/LICENSE
-!/mjml.*
 !/package.json
 !/yarn.lock
