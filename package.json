@@ -19,7 +19,9 @@
         "test:before": "npm i node-red --no-save",
         "test": "mocha  --timeout 2000 \"test/**/*_spec.js\"",
         "dev": "node_modules/.bin/node-red -f ./test/fixtures/flows.json",
-        "update": "./node_modules/.bin/ncu -u && yarn"
+        "update": "./node_modules/.bin/ncu -u && yarn",
+        "release:patch": "yarn version --patch && git push && git push --tags",
+        "release:minor": "yarn version --minor && git push && git push --tags"
     },
     "dependencies": {
         "mjml": "^4.11.0"
