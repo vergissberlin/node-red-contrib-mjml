@@ -13,8 +13,13 @@ npm install @vergissberlin/node-red-contrib-mjml
 or
 
 ```shell
-yarn install @vergissberlin/node-red-contrib-mjml
+yarn add @vergissberlin/node-red-contrib-mjml
 ```
+
+or
+
+go to your pallet settings in your NodeRED admin ui and search for "mjml".
+
 
 ## Getting Started
 
