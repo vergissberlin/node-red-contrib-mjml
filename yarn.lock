@@ -2369,9 +2369,10 @@ mjml-wrapper@4.11.0:
     mjml-core "4.11.0"
     mjml-section "4.11.0"
 
-mjml@^4.11.0:
+mjml@4.11.0:
   version "4.11.0"
   resolved "https://registry.yarnpkg.com/mjml/-/mjml-4.11.0.tgz#8aa411ccf61e283949fa8ab7acb62a2ed9d74477"
+  integrity sha512-kYuCAds/8F7m7xNEs3TFkrc0jxnNYIkexQIUNByPLQJFoFRltpgXLSdoyreGAniQtDGITPE+p8FIocLUBKsOHg==
   dependencies:
     "@babel/runtime" "^7.14.6"
     mjml-cli "4.11.0"
@@ -2524,9 +2525,10 @@ node-red-admin@^2.2.1:
   optionalDependencies:
     bcrypt "5.0.1"
 
-node-red-node-test-helper@^0.2.7:
+node-red-node-test-helper@0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/node-red-node-test-helper/-/node-red-node-test-helper-0.2.7.tgz#37c08221aa3acdedaa0c7e50ee3d2a22a8f252d3"
+  integrity sha512-OanSQ1hrsigHVtMjL/cuhtjxhTdRBXxd3IALJC9eg0WOHRF75ZI7RYhFWqqOsvQ++BwmNj8ki1S49D8cZyZTWA==
   dependencies:
     body-parser "1.19.0"
     express "4.17.1"
@@ -2538,9 +2540,10 @@ node-red-node-test-helper@^0.2.7:
     stoppable "1.1.0"
     supertest "4.0.2"
 
-node-red@^2.1.4:
+node-red@2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/node-red/-/node-red-2.1.4.tgz#5ba342153bb922a6f508977a03c44295ca63558a"
+  integrity sha512-ScpFFE0G+NlxFWrHnMcIkaF8gW+6jwK7n5qRGId66fCTICYnBGkOxXBvV3Q45H+4iQUro5aIRj737Gu7shjsJw==
   dependencies:
     "@node-red/editor-api" "2.1.4"
     "@node-red/nodes" "2.1.4"
@@ -2589,9 +2592,10 @@ npm-bundled@^1.1.1:
   dependencies:
     npm-normalize-package-bin "^1.0.1"
 
-npm-check-updates@^12.1.0:
+npm-check-updates@12.1.0:
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-12.1.0.tgz#bf316bc35f90817880df9de175f2d69755eb9ff5"
+  integrity sha512-9GtSetBvcth7MuL+0MpOmWgdfiEgZcWRfnvoYnNZxbZpleHZCT0Z3HnbsL6/EAT2M+ye7FTZ+YjmDmZptt7Rkg==
   dependencies:
     chalk "^4.1.2"
     cint "^8.2.1"

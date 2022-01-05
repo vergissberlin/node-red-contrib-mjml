@@ -24,12 +24,12 @@
         "release:minor": "yarn version --minor && git push && git push --tags"
     },
     "dependencies": {
-        "mjml": "^4.11.0"
+        "mjml": "4.11.0"
     },
     "devDependencies": {
-        "node-red": "^2.1.4",
-        "node-red-node-test-helper": "^0.2.7",
-        "npm-check-updates": "^12.1.0"
+        "node-red": "2.1.4",
+        "node-red-node-test-helper": "0.2.7",
+        "npm-check-updates": "12.1.0"
     },
     "node-red": {
         "version": ">=2.0.0",
