@@ -33,5 +33,6 @@
         "nodes": {
             "mjml-parse": "mjml-parse/mjml-parse.js"
         }
-    }
+    },
+    "version": "0.0.1"
 }
