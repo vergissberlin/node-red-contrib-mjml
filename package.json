@@ -1,8 +1,8 @@
 {
     "name": "@vergissberlin/node-red-contrib-mjml",
-    "version": "1.1.0",
-    "description": "Node for NodeRED to create emails with MJML language",
-    "repository": "https://github.com/vergissberlin/node-red-contrib-mjml#readme",
+    "description": "Node for NodeRED to create prefessional emails with MJML language",
+    "homepage": "https://www.npmjs.com/package/@vergissberlin/node-red-contrib-mjml",
+    "repository": "https://github.com/vergissberlin/node-red-contrib-mjml",
     "bugs": {
         "url": "https://github.com/vergissberlin/node-red-contrib-mjml/issues"
     },
@@ -18,7 +18,7 @@
         "test:before": "npm i node-red --no-save",
         "test": "mocha  --timeout 2000 \"test/**/*_spec.js\"",
         "dev": "node_modules/.bin/node-red -f ./test/fixtures/flows.json",
-        "update": "./node_modules/.bin/ncu -u && npm install"
+        "update": "./node_modules/.bin/ncu -u && yarn"
     },
     "dependencies": {
         "mjml": "^4.11.0"
