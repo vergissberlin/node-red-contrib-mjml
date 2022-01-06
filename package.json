@@ -34,8 +34,9 @@
         "test": "mocha  --timeout 2000 \"test/**/*_spec.js\"",
         "dev": "node_modules/.bin/node-red -f ./test/fixtures/flows.json",
         "update": "./node_modules/.bin/ncu -u && yarn",
-        "release:patch": "yarn version --patch && git push && git push --tags",
-        "release:minor": "yarn version --minor && git push && git push --tags"
+        "release:patch": "yarn version --patch && git push && git push --tags && yarn release:create",
+        "release:minor": "yarn version --minor && git push && git push --tags && yarn release:create",
+        "release:create": "echo '\nCreate new Release: https://github.com/vergissberlin/node-red-contrib-mjml/releases/new'"
     },
     "dependencies": {
         "mjml": "4.11.0"
