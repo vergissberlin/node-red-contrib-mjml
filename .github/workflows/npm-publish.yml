@@ -4,6 +4,7 @@ on:
     types: [created]
 jobs:
   test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,7 +15,8 @@ jobs:
       - run: yarn
       - run: yarn test
   build:
-    name: test
+    name: Build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
