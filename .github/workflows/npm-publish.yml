@@ -15,7 +15,7 @@ jobs:
       - run: yarn
       - run: yarn test
   build:
-    name: Build
+    name: Build and publish
     needs: test
     runs-on: ubuntu-latest
     steps:
