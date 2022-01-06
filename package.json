@@ -3,6 +3,7 @@
     "description": "Node for NodeRED to create prefessional emails with MJML language",
     "version": "1.1.7",
     "homepage": "https://www.npmjs.com/package/@vergissberlin/node-red-contrib-mjml",
+    "funding": "https://www.paypal.com/paypalme/vergissberlin",
     "repository": "https://github.com/vergissberlin/node-red-contrib-mjml",
     "bugs": {
         "url": "https://github.com/vergissberlin/node-red-contrib-mjml/issues"
@@ -14,7 +15,20 @@
         "mjml-parse"
     ],
     "author": "André Lademann <vergissberlin@googlemail.com>",
+    "contributors": [
+        {
+            "name": "André Lademann",
+            "email": "vergissberlin@gmail.com",
+            "url": "https://github.com/vergissberlin"
+        }
+    ],
     "license": "MIT",
+    "files": [
+        "mjml-parse",
+        "LICENSE",
+        "package.json",
+        "README.md"
+    ],
     "scripts": {
         "test:before": "npm i node-red --no-save",
         "test": "mocha  --timeout 2000 \"test/**/*_spec.js\"",
