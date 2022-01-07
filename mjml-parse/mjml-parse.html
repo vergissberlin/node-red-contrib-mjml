@@ -21,6 +21,29 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="mjml-parse">
-    <p>A simple node that converts the message payloads with mjml-parse syntax into HTML</p>
+<script type="text/markdown" data-help-name="mjml-parse">
+A simple node that converts the message payloads with mjml-parse syntax into HTML.
+
+### Inputs
+
+: payload (string) :  the payload of the message in mlml markup.
+
+### Outputs
+
+
+1. Standard output
+: payload (string) : Parsed MJML to HTML to use it in emails.
+
+2. Standard error
+: payload (string) : the standard error of the command.
+
+### Details
+
+`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+
+
+### References
+
+- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
+- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
 </script>
