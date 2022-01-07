@@ -1,13 +1,15 @@
 {
-    "majmlParse": {
-        "label": {
-            "name": "Name"
-
+    "mjmlParse": {
+        "name": {
+            "label": "Name",
+            "placeholder": "Anzeigename des Knotens"
         },
         "message": {
             "status": {
-                "error": "Error",
-                "success": "Success"
+                "error": "Die Eingabenachricht ist keine Zeichenkette.\nBitte überprüfen Sie Ihre Eingaben.",
+                "success": "Erfolgreich",
+                "warning": "Warnung",
+                "ok": "OK"
             }
         }
     }

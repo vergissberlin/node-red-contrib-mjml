@@ -1,11 +1,12 @@
 {
-    "majmlParse": {
-        "label": {
-            "name": "Name"
+    "mjmlParse": {
+        "name": {
+            "label": "Name",
+            "placeholder": "Name of the node"
         },
         "message": {
             "status": {
-                "error": "Error",
+                "error": "The input message is not a string.",
                 "success": "Success"
             }
         }
