@@ -1,0 +1,25 @@
+<script type="text/markdown" data-help-name="mjml-parse">
+Ein einfacher Knoten, der die Nutzdaten von Nachrichten mit der MJML-Syntax in HTML umwandelt.
+
+### Eingaben
+
+payload (string): die Nutzlast der Nachricht in MJML-Markup.
+
+### Ausgaben
+
+1. Standard-Ausgabe
+payload (string) : Parsed MJML zu HTML, um es in E-Mails zu verwenden.
+
+2. Standard-Fehler
+payload (string) : der Standardfehler des Befehls.
+
+### Details
+
+`msg.payload` wird zum Parsen von MJML in HTML verwendet. Sie sollten eine Standardvorlage mit HTML-Syntaxhervorhebung verwenden, um die Nutzlast zu übertragen.
+
+
+### Referenzen
+
+- [Hier](https://mjml.io/templates) finden Sie einige Beispiele für responsive E-Mail-Vorlagen,
+- und [hier](https://documentation.mjml.io/) finden Sie die Dokumentation von MJML.
+</script>

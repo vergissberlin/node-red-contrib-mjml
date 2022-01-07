@@ -1,0 +1,13 @@
+{
+    "majmlParse": {
+        "label": {
+            "name": "Name"
+        },
+        "message": {
+            "status": {
+                "error": "Error",
+                "success": "Success"
+            }
+        }
+    }
+}
