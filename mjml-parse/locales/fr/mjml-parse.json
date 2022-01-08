@@ -1,0 +1,16 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "nom",
+            "placeholder": "nom d'affichage du nœud"
+        },
+        "message": {
+            "status": {
+                "error": "Le message d'entrée n'est pas une chaîne de caractères.\nVeuillez vérifier vos entrées.",
+                "success": "Succès",
+                "warning": "Avertissement",
+                "ok": "OK"
+            }
+        }
+    }
+}
