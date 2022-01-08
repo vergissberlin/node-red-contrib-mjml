@@ -11,16 +11,7 @@ Change directory to your NodeRED installation and issue:
 npm install @vergissberlin/node-red-contrib-mjml
 ```
 
-or
-
-```shell
-yarn add @vergissberlin/node-red-contrib-mjml
-```
-
-or
-
-go to your pallet settings in your NodeRED admin ui and search for "mjml".
-
+**OR** go to your pallet settings in your NodeRED admin ui and search for "mjml".
 
 ## Getting Started
 
@@ -42,7 +33,9 @@ In this section, you're going to learn how to code a basic email template using 
         </mj-raw>
         <mj-section background-color="#f0f0f0">
             <mj-column>
-                <mj-text font-style="italic" font-size="20px" color="#626262">My Company</mj-text>
+                <mj-text font-style="italic" font-size="20px" color="#626262">
+                    My Company
+                </mj-text>
             </mj-column>
         </mj-section>
         <mj-raw>
@@ -50,9 +43,12 @@ In this section, you're going to learn how to code a basic email template using 
         </mj-raw>
         <mj-section
                 background-url="http://1.bp.blogspot.com/-TPrfhxbYpDY/Uh3Refzk02I/AAAAAAAALw8/5sUJ0UUGYuw/s1600/New+York+in+The+1960's+-+70's+(2).jpg"
-                background-size="cover" background-repeat="no-repeat">
+                background-size="cover" 
+                background-repeat="no-repeat">
             <mj-column width="600px">
-                <mj-text align="center" color="#fff" font-size="40px" font-family="Helvetica Neue">Slogan here</mj-text>
+                <mj-text align="center" color="#fff" font-size="40px" font-family="Helvetica Neue">
+                    Slogan here
+                </mj-text>
                 <mj-button background-color="#F63A4D" href="#">Promotion</mj-button>
             </mj-column>
         </mj-section>
@@ -64,8 +60,10 @@ In this section, you're going to learn how to code a basic email template using 
                 <mj-text font-style="italic" font-size="20px" font-family="Helvetica Neue" color="#626262">My Awesome
                     Text
                 </mj-text>
-                <mj-text color="#525252">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget
-                    magna efficitur, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed
+                <mj-text color="#525252">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Proin rutrum enim eget magna efficitur, eu semper augue semper. 
+                    Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed
                     finibus lectus, sit amet suscipit nibh. Proin nec commodo purus.
                     Sed eget nulla elit. Nulla aliquet mollis faucibus.
                 </mj-text>
@@ -87,12 +85,12 @@ In this section, you're going to learn how to code a basic email template using 
                 <!-- right paragraph -->
             </mj-raw>
             <mj-column>
-                <mj-text font-style="italic" font-size="20px" font-family="Helvetica Neue" color="#626262">Find amazing
-                    places
+                <mj-text font-style="italic" font-size="20px" font-family="Helvetica Neue" color="#626262">
+                    Find amazing places
                 </mj-text>
-                <mj-text color="#525252">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget
-                    magna efficitur, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed
-                    finibus lectus.
+                <mj-text color="#525252">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget
+                    magna efficitur, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus.
                 </mj-text>
             </mj-column>
         </mj-section>
