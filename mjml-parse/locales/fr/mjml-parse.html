@@ -1,0 +1,27 @@
+<script type="text/markdown" data-help-name="mjml-parse">
+![MJML](https://documentation.mjml.io/images/logo.png)
+
+Un nœud simple qui convertit les données utiles des messages en HTML à l'aide de la syntaxe MJML.
+
+### Entrées
+
+payload (chaîne) : la charge utile du message en balisage MJML.
+
+### Sorties
+
+1. sortie standard
+payload (string) : analyse MJML en HTML pour l'utiliser dans les e-mails.
+
+2. erreur standard
+payload (string) : l'erreur standard de la commande.
+
+### Détails
+
+`msg.payload` est utilisé pour analyser le MJML en HTML. Vous devriez utiliser un modèle standard avec mise en évidence de la syntaxe HTML pour transmettre la charge utile.
+
+
+### Références
+
+- [Ici](https://mjml.io/templates) vous trouverez quelques exemples de modèles d'e-mails responsive,
+- et [ici](https://documentation.mjml.io/) vous trouverez la documentation de MJML.
+</script>
