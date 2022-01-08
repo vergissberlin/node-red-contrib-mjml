@@ -1,0 +1,27 @@
+<script type="text/markdown" data-help-name="mjml-parse">
+![MJML](https://documentation.mjml.io/images/logo.png)
+
+Prosty węzeł, który konwertuje dane użytkownika wiadomości na HTML używając składni MJML.
+
+### Wejścia
+
+payload (łańcuch): treść wiadomości w znaczniku MJML.
+
+### Wyjścia
+
+1. standardowe wyjście
+ładunek (łańcuch): Parsuje MJML do HTML w celu użycia w emailu.
+
+2. błąd standardowy
+payload (string): standardowy błąd polecenia.
+
+### Szczegóły
+
+Polecenie `msg.payload` jest używane do parsowania MJML do HTML. Powinieneś użyć standardowego szablonu z podświetlaniem składni HTML do przekazania ładunku.
+
+
+### Referencje
+
+- [Tutaj](https://mjml.io/templates) dostarcza kilka przykładów responsywnych szablonów email,
+- a [tutaj](https://documentation.mjml.io/) można znaleźć dokumentację MJML.
+</script>

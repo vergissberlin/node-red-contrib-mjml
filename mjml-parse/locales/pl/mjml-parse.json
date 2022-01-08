@@ -1,0 +1,14 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "Name",
+            "placeholder": "Nazwa węzła"
+        },
+        "message": {
+            "status": {
+                "error": "Komunikat wejściowy nie jest ciągiem znaków",
+                "success": "Success"
+            }
+        }
+    }
+}
