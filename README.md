@@ -28,7 +28,6 @@ for getting working with the MJML node.
 In this section, you're going to learn how to code a basic email template using MJML.
 
 ```xml
-
 <mjml>
     <mj-body>
         <mj-raw>

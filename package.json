@@ -26,6 +26,7 @@
     "files": [
         "examples",
         "mjml-parse",
+        "mjml-template",
         "LICENSE",
         "package.json",
         "README.md"
@@ -52,7 +53,8 @@
     "node-red": {
         "version": ">=2.0.0",
         "nodes": {
-            "mjml-parse": "mjml-parse/mjml-parse.js"
+            "mjml-parse": "mjml-parse/mjml-parse.js",
+            "mjml-template": "mjml-template/mjml-template.js"
         }
     }
 }
