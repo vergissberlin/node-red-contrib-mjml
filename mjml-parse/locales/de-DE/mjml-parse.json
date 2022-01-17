@@ -7,9 +7,7 @@
         "message": {
             "status": {
                 "error": "Die Eingabenachricht ist keine Zeichenkette.\nBitte überprüfen Sie Ihre Eingaben.",
-                "success": "Erfolgreich",
-                "warning": "Warnung",
-                "ok": "OK"
+                "success": "Erfolgreich"
             }
         }
     }
