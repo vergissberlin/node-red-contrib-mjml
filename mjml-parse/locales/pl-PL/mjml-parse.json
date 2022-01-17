@@ -1,13 +1,13 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Nazwa",
+            "placeholder": "Nazwa węzła"
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Komunikat wejściowy nie jest ciągiem.",
+                "success": "Sukces"
             }
         }
     }
