@@ -1,13 +1,13 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "名前",
+            "placeholder": "ノード名"
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "入力メッセージは文字列ではありません。",
+                "success": "成功"
             }
         }
     }
