@@ -6,6 +6,7 @@
 !/mjml-parse/
 !/test/
 
+!/.crowdin.yml
 !/.gitignore
 !/LICENSE
 !/package.json
