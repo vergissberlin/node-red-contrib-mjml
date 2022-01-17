@@ -1,0 +1,14 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "الاسم",
+            "placeholder": "اسم العقدة"
+        },
+        "message": {
+            "status": {
+                "error": "رسالة الإدخال ليست سلسلة.",
+                "success": "نجاح"
+            }
+        }
+    }
+}
