@@ -1,0 +1,14 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "Navn",
+            "placeholder": "Navn på indholdselementet"
+        },
+        "message": {
+            "status": {
+                "error": "Inputbeskeden er ikke en streng.",
+                "success": "Succes"
+            }
+        }
+    }
+}
