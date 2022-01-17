@@ -1,13 +1,13 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Όνομα",
+            "placeholder": "Όνομα του κόμβου"
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Το μήνυμα εισόδου δεν είναι συμβολοσειρά.",
+                "success": "Επιτυχία"
             }
         }
     }
