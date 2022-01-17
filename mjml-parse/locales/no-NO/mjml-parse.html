@@ -1,0 +1,27 @@
+<script type="text/markdown" data-help-name="mjml-parse">
+![MJML](https://documentation.mjml.io/images/logo.png)
+
+A simple node that converts the user data of messages into HTML using the MJML syntax.
+
+### Inputs
+
+payload (string): the payload of the message in MJML markup.
+
+### Outputs
+
+1. standard output
+payload (string) : Parses MJML to HTML for use in email.
+
+2. standard error
+payload (string) : the standard error of the command.
+
+### Details
+
+`msg.payload` is used to parse MJML into HTML. You should use a standard template with HTML syntax highlighting to transmit the payload.
+
+
+### References
+
+- [Here](https://mjml.io/templates) provides some examples of responsive email templates,
+- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+</script>
