@@ -16,6 +16,13 @@ npm install @vergissberlin/node-red-contrib-mjml
 
 **OR** go to your pallet settings in your NodeRED admin ui and search for "mjml".
 
+## Nodes
+
+| Node | Icon |Description |
+|:---|:---|:---|
+| `mjml-parse` | <img src="docs/images/mjml-parse.svg" width="144" alt="MJML parse node"> | Outputs the HTML from the MJML template. |
+| `mjml-template` | <img src="docs/images/mjml-template.svg" width="144" alt="MJML template node"> | Outputs the HTML from the MJML template. |
+
 ## Getting Started
 
 In this repo there is `example-flow.json`. You can import that into a NodeRED workspace and it will provide a template
@@ -63,10 +70,10 @@ In this section, you're going to learn how to code a basic email template using 
                     Text
                 </mj-text>
                 <mj-text color="#525252">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Proin rutrum enim eget magna efficitur, eu semper augue semper. 
-                    Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed
-                    finibus lectus, sit amet suscipit nibh. Proin nec commodo purus.
+                    Lorem ipsum dolor sit amet, consectetur elit. 
+                    Proin rutrum enim eget magna, eu augue semper. 
+                    Aliquam erat. Cras id dui lectus. Vestibulum sed
+                    finibus lectus, sit amet nibh. Proin nec purus.
                     Sed eget nulla elit. Nulla aliquet mollis faucibus.
                 </mj-text>
                 <mj-button background-color="#F45E43" href="#">Learn more</mj-button>
@@ -91,8 +98,10 @@ In this section, you're going to learn how to code a basic email template using 
                     Find amazing places
                 </mj-text>
                 <mj-text color="#525252">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget
-                    magna efficitur, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus.
+                    Lorem ipsum dolor sit amet,
+                    consectetur adipiscing elit. 
+                    Proin rutrum enim eget magna efficitur, 
+                    eu semper augue semper. 
                 </mj-text>
             </mj-column>
         </mj-section>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+
+<body>
+    <script >
+   var data = JSON.stringify({
+        "mjml": "<mjml>  <mj-body>    <mj-section>      <mj-column>        <mj-divider border-color=\"#F45E43\"></mj-divider>        <mj-text font-size=\"20px\" color=\"#F45E43\" font-family=\"helvetica\">Hello World</mj-text>      </mj-column>    </mj-section>  </mj-body></mjml>"
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            console.log(this.responseText);
+        }
+    });
+
+    xhr.open("POST", "https://apimjml.herokuapp.com/v1/render");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
+
+    xhr.send(data);
+    </script>
+    dirk
+</body>
+
+</html>
