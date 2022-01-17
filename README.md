@@ -1,4 +1,5 @@
-# node-red-contrib-mjml
+# node-red-contrib-mjml 
+[![Crowdin](https://badges.crowdin.net/node-red-contrib-mjml/localized.svg)](https://crowdin.com/project/node-red-contrib-mjml)
 
 Node for NodeRED to create emails with MJML language. It provides a NodeRED node to parse your template and output HTML.
 
