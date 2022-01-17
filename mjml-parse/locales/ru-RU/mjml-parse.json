@@ -1,13 +1,13 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Наименование",
+            "placeholder": "Название узла"
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Введенное сообщение не является строкой.",
+                "success": "Успешно"
             }
         }
     }
