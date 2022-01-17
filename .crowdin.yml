@@ -1,0 +1,3 @@
+files:
+  - source: /mjml-parse/locales/en-US/*
+    translation: /mjml-parse/locales/%locale%/%file_name%.%file_extension%
