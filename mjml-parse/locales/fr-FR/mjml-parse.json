@@ -2,7 +2,7 @@
     "mjmlParse": {
         "name": {
             "label": "Nom",
-            "placeholder": "Nom du noeud"
+            "placeholder": "Nom du nœud"
         },
         "message": {
             "status": {
