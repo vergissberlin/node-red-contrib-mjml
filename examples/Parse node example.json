@@ -51,7 +51,6 @@
         "tls": true,
         "name": "vergissberlin@gmail.com",
         "dname": "",
-        "credentials": {},
         "x": 750,
         "y": 180,
         "wires": []
@@ -74,5 +73,15 @@
                 "cf075446fbf34636"
             ]
         ]
+    },
+    {
+        "id": "b502a3e62738068a",
+        "type": "comment",
+        "z": "1dddca959d7756f0",
+        "name": "MJML parsing",
+        "info": "## Howto\n\n1. Create dynamic content\n2. Use the template node to mix your dynamic content and MJML syntax\n3. Let the MJML parse node convert the template to HTML\n4. Send yoour HTMl with the email node",
+        "x": 150,
+        "y": 120,
+        "wires": []
     }
 ]
