@@ -1,0 +1,14 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "Ім'я",
+            "placeholder": "Назва вузла"
+        },
+        "message": {
+            "status": {
+                "error": "Введене повідомлення не є рядком.",
+                "success": "Успіх"
+            }
+        }
+    }
+}
