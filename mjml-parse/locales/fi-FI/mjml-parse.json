@@ -1,0 +1,14 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "Nimi",
+            "placeholder": "Solmun nimi (node)"
+        },
+        "message": {
+            "status": {
+                "error": "Syöteviesti ei ole merkkijono.",
+                "success": "Onnistui"
+            }
+        }
+    }
+}
