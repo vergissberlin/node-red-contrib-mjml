@@ -1,0 +1,14 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "Nume",
+            "placeholder": "Numele nodului"
+        },
+        "message": {
+            "status": {
+                "error": "Mesajul introdus nu este un șir.",
+                "success": "Succes"
+            }
+        }
+    }
+}
