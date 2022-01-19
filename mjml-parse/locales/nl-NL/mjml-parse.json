@@ -1,0 +1,14 @@
+{
+    "mjmlParse": {
+        "name": {
+            "label": "naam",
+            "placeholder": "Naam van de node"
+        },
+        "message": {
+            "status": {
+                "error": "Het invoerbericht is geen tekenreeks.",
+                "success": "Geslaagd"
+            }
+        }
+    }
+}
