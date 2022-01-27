@@ -1,5 +1,8 @@
 # node-red-contrib-mjml 
+[![NPM monthly downloads](https://img.shields.io/npm/dm/@vergissberlin/node-red-contrib-mjml.svg)](https://www.npmjs.com/package/@vergissberlin/node-red-contrib-mjml)
 [![Crowdin](https://badges.crowdin.net/node-red-contrib-mjml/localized.svg)](https://crowdin.com/project/node-red-contrib-mjml)
+[![GitHub issues](https://img.shields.io/github/issues/vergissberlin/node-red-contrib-mjml)](https://github.com/vergissberlin/node-red-contrib-mjml/issues)
+[![GitHub license](https://img.shields.io/github/license/vergissberlin/node-red-contrib-mjml)](https://github.com/vergissberlin/node-red-contrib-mjml/blob/main/LICENSE)
 
 Node for NodeRED to create emails with MJML language. It provides a NodeRED node to parse your template and output HTML.
 
