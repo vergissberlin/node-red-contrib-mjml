@@ -11,3 +11,6 @@
 !/LICENSE
 !/package.json
 !/yarn.lock
+
+*.json.backup
+
