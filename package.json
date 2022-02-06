@@ -5,6 +5,9 @@
     "homepage": "https://www.npmjs.com/package/@vergissberlin/node-red-contrib-mjml",
     "funding": "https://www.paypal.com/paypalme/vergissberlin",
     "repository": "https://github.com/vergissberlin/node-red-contrib-mjml",
+    "engines": {
+       "node": ">=16.0.0"
+    },
     "bugs": {
         "url": "https://github.com/vergissberlin/node-red-contrib-mjml/issues"
     },
