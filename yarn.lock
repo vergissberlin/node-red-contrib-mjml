@@ -2948,15 +2948,15 @@ node-red-admin@^2.2.3:
   optionalDependencies:
     bcrypt "5.0.1"
 
-node-red-node-email@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/node-red-node-email/-/node-red-node-email-1.14.0.tgz#e3ef5dc4a30f4ef72bc1a69b8d5490611c34dd93"
-  integrity sha512-1Jicf5I4OlFCGJpC6DGM5c5mw5OH/MXbo5SCLOryjdZXHtvCawEFk8tvzchw6ljOQcajcQgD5ZIneSg4vWFAGw==
+node-red-node-email@1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/node-red-node-email/-/node-red-node-email-1.15.1.tgz#6d377f74115e6b3102ec3023478ff42262d6d79e"
+  integrity sha512-9gmy/Oec2DKjAcM2SB66+hwIhVgCs7Aj9GldNC6R+O31MyApKrcz/Qylk7hJXMYpanKPZWn2UBxDkMXMECBXPA==
   dependencies:
     imap "^0.8.19"
     mailparser "^3.4.0"
-    nodemailer "^6.7.2"
-    smtp-server "^3.9.0"
+    nodemailer "^6.7.3"
+    smtp-server "^3.10.0"
 
 node-red-node-test-helper@0.2.7:
   version "0.2.7"
@@ -2992,20 +2992,20 @@ node-red@2.2.2:
   optionalDependencies:
     bcrypt "5.0.1"
 
-nodemailer@6.6.1:
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.1.tgz#2a05fbf205b897d71bf43884167b5d4d3bd01b99"
-  integrity sha512-1xzFN3gqv+/qJ6YRyxBxfTYstLNt0FCtZaFRvf4Sg9wxNGWbwFmGXVpfSi6ThGK6aRxAo+KjHtYSW8NvCsNSAg==
-
 nodemailer@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.0.tgz#86614722c4e0c33d1b5b02aecb90d6d629932b0d"
   integrity sha512-AtiTVUFHLiiDnMQ43zi0YgkzHOEWUkhDgPlBXrsDzJiJvB29Alo4OKxHQ0ugF3gRqRQIneCLtZU3yiUo7pItZw==
 
-nodemailer@^6.7.2:
-  version "6.7.2"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.2.tgz#44b2ad5f7ed71b7067f7a21c4fedabaec62b85e0"
-  integrity sha512-Dz7zVwlef4k5R71fdmxwR8Q39fiboGbu3xgswkzGwczUfjp873rVxt1O46+Fh0j1ORnAC6L9+heI8uUpO6DT7Q==
+nodemailer@6.7.3:
+  version "6.7.3"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.3.tgz#b73f9a81b9c8fa8acb4ea14b608f5e725ea8e018"
+  integrity sha512-KUdDsspqx89sD4UUyUKzdlUOper3hRkDVkrKh/89G+d9WKsU5ox51NWS4tB1XR5dPUdR4SP0E3molyEfOvSa3g==
+
+nodemailer@^6.7.3:
+  version "6.7.5"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.5.tgz#b30b1566f5fa2249f7bd49ced4c58bec6b25915e"
+  integrity sha512-6VtMpwhsrixq1HDYSBBHvW0GwiWawE75dS3oal48VqRhUvKJNnKnJo2RI/bCVQubj1vgrgscMNW4DHaD6xtMCg==
 
 nopt@5.0.0, nopt@^5.0.0:
   version "5.0.0"
@@ -3955,14 +3955,14 @@ smart-buffer@^4.2.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
   integrity sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==
 
-smtp-server@^3.9.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/smtp-server/-/smtp-server-3.9.0.tgz#5fdf39f25911f1607f6d3c0b82dae2891761078c"
-  integrity sha512-CHws5GkHjfIikue6vSdp3uRnmW85l0JJQibVwDs7S5aIUppXJA9Y60XcdxcaCLXmAnd8V8wbtav5KY92nCZeag==
+smtp-server@^3.10.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/smtp-server/-/smtp-server-3.11.0.tgz#8820c191124fab37a8f16c8325a7f1fd38092c4f"
+  integrity sha512-j/W6mEKeMNKuiM9oCAAjm87agPEN1O3IU4cFLT4ZOCyyq3UXN7HiIXF+q7izxJcYSar15B/JaSxcijoPCR8Tag==
   dependencies:
     base32.js "0.1.0"
     ipv6-normalize "1.0.1"
-    nodemailer "6.6.1"
+    nodemailer "6.7.3"
 
 socks-proxy-agent@^6.1.1:
   version "6.2.0"
