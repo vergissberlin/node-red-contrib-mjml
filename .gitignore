@@ -4,6 +4,7 @@
 !/docs/
 !/examples/
 !/mjml-parse/
+!/mjml-template/
 !/test/
 
 !/.crowdin.yml
