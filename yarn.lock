@@ -318,11 +318,6 @@
   dependencies:
     "@types/node" "*"
 
-"@ungap/promise-all-settled@1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@ungap/promise-all-settled/-/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
-  integrity sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==
-
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1538,7 +1533,18 @@ glob-parent@^5.1.2, glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
-glob@7.2.0, glob@^7.1.1, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@^7.2.0:
+glob@8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-8.1.0.tgz#d388f656593ef708ee3e34640fdfb99a9fd1c33e"
+  integrity sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^5.0.1"
+    once "^1.3.0"
+
+glob@^7.1.1, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.0.tgz#d15535af7732e02e948f4c41628bd910293f6023"
   dependencies:
@@ -2740,12 +2746,11 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
 
-mocha@10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-10.0.0.tgz#205447d8993ec755335c4b13deba3d3a13c4def9"
-  integrity sha512-0Wl+elVUD43Y0BqPZBzZt8Tnkw9CMUdNYnUsTfOM1vuhJVZL+kiesFYsqwBkEEuEixaiPe5ZQdqDgX2jddhmoA==
+mocha@10.4.0:
+  version "10.4.0"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-10.4.0.tgz#ed03db96ee9cfc6d20c56f8e2af07b961dbae261"
+  integrity sha512-eqhGB8JKapEYcC4ytX/xrzKforgEc3j1pGlAXVy3eRwrtAy5/nIfT1SvgGzfN0XZZxeLq0aQWkOUAmqIJiv+bA==
   dependencies:
-    "@ungap/promise-all-settled" "1.1.2"
     ansi-colors "4.1.1"
     browser-stdout "1.3.1"
     chokidar "3.5.3"
@@ -2753,13 +2758,12 @@ mocha@10.0.0:
     diff "5.0.0"
     escape-string-regexp "4.0.0"
     find-up "5.0.0"
-    glob "7.2.0"
+    glob "8.1.0"
     he "1.2.0"
     js-yaml "4.1.0"
     log-symbols "4.1.0"
     minimatch "5.0.1"
     ms "2.1.3"
-    nanoid "3.3.3"
     serialize-javascript "6.0.0"
     strip-json-comments "3.1.1"
     supports-color "8.1.1"
@@ -2851,11 +2855,6 @@ mustache@4.2.0, mustache@^4.2.0:
 mute-stream@~0.0.4:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
-
-nanoid@3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.3.tgz#fd8e8b7aa761fe807dba2d1b98fb7241bb724a25"
-  integrity sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==
 
 nearley@^2.20.1:
   version "2.20.1"
