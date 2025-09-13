@@ -43,14 +43,14 @@
         "release:create": "echo '\nCreate new Release: https://github.com/vergissberlin/node-red-contrib-mjml/releases/new'"
     },
     "dependencies": {
-        "mjml": "4.12.0"
+        "mjml": "4.15.3"
     },
     "devDependencies": {
-        "mocha": "10.8.2",
-        "node-red": "2.2.2",
-        "node-red-node-email": "1.18.4",
-        "node-red-node-test-helper": "0.2.7",
-        "npm-check-updates": "12.5.12"
+        "mocha": "11.7.2",
+        "node-red": "4.1.0",
+        "node-red-node-email": "4.0.0",
+        "node-red-node-test-helper": "0.3.5",
+        "npm-check-updates": "18.1.1"
     },
     "node-red": {
         "version": ">=2.0.0",
