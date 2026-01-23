@@ -49,7 +49,7 @@
         "mocha": "10.8.2",
         "node-red": "2.2.2",
         "node-red-node-email": "1.18.4",
-        "node-red-node-test-helper": "0.2.7",
+        "node-red-node-test-helper": "0.3.6",
         "npm-check-updates": "12.5.12"
     },
     "node-red": {
