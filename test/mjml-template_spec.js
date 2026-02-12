@@ -1,9 +1,9 @@
 const helper = require("node-red-node-test-helper");
-const MjmlParseNode = require("../mjml-parse/mjml-parse.js");
+const MjmlParseNode = require("../mjml-template/mjml-template.js");
 const fs = require("fs");
 const path = require("path");
 
-describe('mjml-parse Node', function () {
+describe('mjml-template Node', function () {
     let testMjml, testHtml;
 
     before(async function () {
@@ -19,7 +19,7 @@ describe('mjml-parse Node', function () {
     });
 
     it('should be loaded', function (done) {
-        var flow = [{id: "n1", type: "mjml-parse", name: "test name"}];
+        var flow = [{id: "n1", type: "mjml-template", name: "test name"}];
         helper.load(MjmlParseNode, flow, function () {
             var n1 = helper.getNode("n1");
             n1.should.have.property('name', 'test name');
@@ -27,9 +27,13 @@ describe('mjml-parse Node', function () {
         });
     });
 
-    it('should convert MJML payload to HTML', function (done) {
-        this.skip()
-        var flow = [{id: "n1", type: "mjml-parse", name: "test name", wires: [["n2"]]},
+    it('should syntax highlight MJML syntax in the content tab', function (done) {
+        this.skip();
+    });
+
+    it('should convert MJML body content to HTML for the output', function (done) {
+        this.skip();
+        var flow = [{id: "n1", type: "mjml-template", name: "test name", wires: [["n2"]]},
         {id: "n2", type: "helper"}];
 
         helper.load(MjmlParseNode, flow, function () {
@@ -48,6 +52,14 @@ describe('mjml-parse Node', function () {
         });
     });
 
+    it('should render a preview in the second tab', function (done) {
+        this.skip();
+    });
+
+    it('should parse {{msg.payload}} the get dynamic content', function (done) {
+        this.skip();
+    });
+
     it('should render a message on syntax errors', function (done) {
         this.skip();
     });
@@ -55,6 +67,5 @@ describe('mjml-parse Node', function () {
     it('should set status on node for MJML to HTML process.', function (done) {
         this.skip();
     });
-
 
 });

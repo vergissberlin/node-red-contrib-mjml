@@ -1,0 +1,242 @@
+<script type="text/javascript">
+    RED.nodes.registerType('mjml-template', {
+        category: 'function',
+        color: '#f46d4c',
+        defaults: {
+            name: {value: ""},
+            func: {value: "\nreturn msg;"},
+            outputs: {value: 1},
+            noerr: {value: 0, required: true, validate: function (v) {return !v;}},
+            body: {value: ""},
+            preview: {value: ""}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "mjml.svg",
+        label: function () {
+            return this.name || "mjml-template";
+        },
+        labelStyle: function () {
+            return this.name ? "node_label_italic" : "";
+        },
+
+        oneditprepare: function () {
+            var that = this;
+            var tabs = RED.tabs.create({
+                id: "mjmlTemplate-tabs",
+                onchange: function (tab) {
+                    $("#mjmlTemplate-tabs-body").children().hide();
+                    $("#" + tab.id).show();
+                }
+            });
+            tabs.addTab({
+                id: "mjmlTemplate-tab-body",
+                label: that._("mjmlTemplate.body.tab")
+            });
+            tabs.addTab({
+                id: "mjmlTemplate-tab-preview",
+                label: that._("mjmlTemplate.preview.tab")
+            });
+            tabs.activateTab("mjmlTemplate-tab-body");
+
+            $("#node-input-outputs").spinner({
+                min: 0,
+                change: function (event, ui) {
+                    var value = this.value;
+                    if (!value.match(/^\d+$/)) {value = 1;}
+                    else if (value < this.min) {value = this.min;}
+                    if (value !== this.value) {$(this).spinner("value", value);}
+                }
+            });
+
+            var buildEditor = function (id, value, defaultValue) {
+                var editor = RED.editor.createEditor({
+                    id: id,
+                    mode: 'ace/mode/nrjavascript',
+                    value: value || defaultValue || "",
+                    globals: {
+                        msg: true,
+                        context: true,
+                        RED: true,
+                        util: true,
+                        flow: true,
+                        global: true,
+                        console: true,
+                        Buffer: true,
+                        setTimeout: true,
+                        clearTimeout: true,
+                        setInterval: true,
+                        clearInterval: true
+                    }
+                });
+                if (defaultValue && value === "") {
+                    editor.moveCursorTo(defaultValue.split("\n").length - 1, 0);
+                }
+                return editor;
+            }
+            this.bodyEditor = buildEditor('node-input-body-editor', $("#node-input-body").val(), RED._("node-red:function.text.body"))
+
+            RED.library.create({
+                url: "functions", // where to get the data from
+                type: "function", // the type of object the library is for
+                editor: this.editor, // the field name the main text body goes to
+                mode: "ace/mode/nrjavascript",
+                fields: [
+                    'name', 'outputs',
+                    {
+                        name: 'body',
+                        get: function () {
+                            return that.bodyEditor.getValue();
+                        },
+                        set: function (v) {
+                            that.bodyEditor.setValue(v, -1);
+                        }
+                    }
+                ],
+                ext: "js"
+            });
+            this.editor.focus();
+
+            var expandButtonClickHandler = function (editor) {
+                return function (e) {
+                    e.preventDefault();
+                    var value = editor.getValue();
+                    RED.editor.editJavaScript({
+                        value: value,
+                        width: "Infbodyy",
+                        cursor: editor.getCursorPosition(),
+                        mode: "ace/mode/nrjavascript",
+                        complete: function (v, cursor) {
+                            editor.setValue(v, -1);
+                            editor.gotoLine(cursor.row + 1, cursor.column, false);
+                            setTimeout(function () {
+                                editor.focus();
+                            }, 300);
+                        }
+                    })
+                }
+            }
+            $("#node-body-expand-js").on("click", expandButtonClickHandler(this.bodyEditor));
+            $("#node-preview-expand-js").on("click", expandButtonClickHandler(this.editor));
+
+            RED.popover.tooltip($("#node-body-expand-js"), RED._("node-red:common.label.expand"));
+            RED.popover.tooltip($("#node-preview-expand-js"), RED._("node-red:common.label.expand"));
+        },
+
+        oneditsave: function () {
+            var node = this;
+            var noerr = 0;
+            $("#node-input-noerr").val(0);
+
+            var disposeEditor = function (editorName, targetName, defaultValue) {
+                var editor = node[editorName];
+                var annot = editor.getSession().getAnnotations();
+                for (var k = 0; k < annot.length; k++) {
+                    if (annot[k].type === "error") {
+                        noerr += annot.length;
+                        break;
+                    }
+                }
+                var val = editor.getValue();
+                if (defaultValue) {
+                    if (val.trim() == defaultValue.trim()) {
+                        val = "";
+                    }
+                }
+                editor.destroy();
+                delete node[editorName];
+                $("#" + targetName).val(val);
+            }
+            disposeEditor("editor", "node-input-func");
+            disposeEditor("bodyEditor", "node-input-body");
+            disposeEditor("previewEditor", "node-input-preview");
+
+            $("#node-input-noerr").val(noerr);
+            this.noerr = noerr;
+
+        },
+
+        oneditcancel: function () {
+            var node = this;
+
+            node.editor.destroy();
+            delete node.editor;
+
+            node.bodyEditor.destroy();
+            delete node.bodyEditor;
+
+            node.previewEditor.destroy();
+            delete node.previewEditor;
+        },
+
+        oneditresize: function (size) {
+            var rows = $("#dialog-form>div:not(.node-text-editor-row)");
+            var height = $("#dialog-form").height();
+            for (var i = 0; i < rows.length; i++) {
+                height -= $(rows[i]).outerHeight(true);
+            }
+            var editorRow = $("#dialog-form>div.node-text-editor-row");
+            height -= (templateInt(editorRow.css("marginTop")) + templateInt(editorRow.css("marginBottom")));
+            $(".node-text-editor").css("height", height + "px");
+            this.editor.resize();
+
+            var height = size.height;
+            $("#node-input-body-editor").css("height", (height - 105) + "px");
+
+            this.bodyEditor.resize();
+            this.editor.resize();
+            this.previewEditor.resize();
+        }
+
+    });
+</script>
+
+<script type="text/html" data-template-name="mjml-template">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="mjmlTemplate.name.label"></span></label>
+        <div style="display: inline-block; width: calc(100% - 105px)">
+            <input type="text" id="node-input-name" data-i18n="[placeholder]mjmlTemplate.name.placeholder">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <ul style="min-width: 600px; margin-bottom: 20px;" id="mjmlTemplate-tabs"></ul>
+    </div>
+
+    <div id="mjmlTemplate-tabs-content" style="min-height: calc(100% - 95px);">
+        
+        <div id="mjmlTemplate-tab-body" style="display:none">
+            <div class="form-row" style="margin-bottom: 0px;">
+                <input type="hidden" id="node-input-body" autofocus="autofocus">
+            </div>
+
+            <div class="form-row node-text-editor-row" style="position:relative">
+                <div style="position: absolute; right:0; bottom: calc(100% + 3px);"><button id="node-body-expand-js"
+                        class="red-ui-button red-ui-button-small"><i class="fa fa-expand"></i></button></div>
+                <div 
+                    style="height: 250px; min-height:150px; margin-top: 30px;" 
+                    class="node-text-editor"
+                    id="node-input-body-editor"></div>
+            </div>
+        </div>
+
+        <div id="mjmltemplate-tab-preview" style="display:none">
+            <div class="form-row" style="margin-bottom: 0px;">
+                <input type="hidden" id="node-input-preview" autofocus="autofocus">
+            </div>
+            <div class="form-row node-text-editor-row" style="position:relative">
+                <div style="position: absolute; right:0; bottom: calc(100% + 3px);">
+                    <button id="node-preview-expand-js"
+                        class="red-ui-button red-ui-button-small">
+                        <i class="fa fa-expand"></i>
+                    </button>
+                </div>
+                <div 
+                    style="height: 250px; min-height:150px; margin-top: 30px;" 
+                    class="node-text-editor"
+                    id="node-input-preview-editor"></div>
+            </div>
+        </div>
+    
+    </div>
+</script>

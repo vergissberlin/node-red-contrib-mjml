@@ -1,0 +1,20 @@
+{
+    "mjmlTemplate": {
+        "name": {
+            "label": "Name",
+            "placeholder": "Name of the node"
+        },
+        "body": {
+            "tab": "Body"
+        },
+        "preview": {
+            "tab": "Preview"
+        },
+        "message": {
+            "status": {
+                "error": "The input message is not a string.",
+                "success": "Success"
+            }
+        }
+    }
+}
