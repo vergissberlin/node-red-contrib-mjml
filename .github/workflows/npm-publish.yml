@@ -1,3 +1,5 @@
+# Publishes to npm when a GitHub release is created (e.g. by merging the release-please PR).
+# Set NPM_TOKEN in repository secrets (npm token with publish access).
 name: Publish Package to npmjs
 on:
   release:
