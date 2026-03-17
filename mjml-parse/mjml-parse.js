@@ -4,7 +4,8 @@ module.exports = function (RED) {
     const options = {
         minify: false,
         keepComments: false,
-        validationLevel: 'soft'
+        validationLevel: 'soft',
+        ignoreIncludes: true  // Mitigate CVE-2020-12827 (mj-include path traversal)
     }
 
     function MjmlParseNode(config) {
