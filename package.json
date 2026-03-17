@@ -57,5 +57,8 @@
         "nodes": {
             "mjml-parse": "mjml-parse/mjml-parse.js"
         }
+    },
+    "resolutions": {
+        "cheerio": "1.0.0-rc.12"
     }
 }
