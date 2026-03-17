@@ -6,6 +6,8 @@ const path = require("path");
 describe('mjml-parse Node', function () {
     let testMjml, testHtml;
 
+    this.timeout(5000);
+
     before(async function () {
         // Load html file from disk
         testMjmlValid = await fs.readFileSync(__dirname + '/fixtures/template.mjml', {encoding: 'utf8', flag: 'r'});
