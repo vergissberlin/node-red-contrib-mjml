@@ -47,7 +47,7 @@
     },
     "devDependencies": {
         "mocha": "11.7.5",
-        "node-red": "2.2.2",
+        "node-red": "2.2.3",
         "node-red-node-email": "5.2.1",
         "node-red-node-test-helper": "0.3.6",
         "npm-check-updates": "19.6.5"
