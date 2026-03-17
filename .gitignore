@@ -10,7 +10,7 @@
 !/.gitignore
 !/LICENSE
 !/package.json
-!/yarn.lock
+!/pnpm-lock.yaml
 
 *.json.backup
 
