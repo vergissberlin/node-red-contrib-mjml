@@ -1,0 +1,6 @@
+packages:
+  - '.'
+
+# Allow bcrypt to run its native build (used by node-red for credentials)
+allowBuilds:
+  bcrypt: true

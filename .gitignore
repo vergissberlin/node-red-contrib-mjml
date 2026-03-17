@@ -1,16 +1,9 @@
-/*
+# pnpm
+.pnpm-store/
 
-!/.github/
-!/docs/
-!/examples/
-!/mjml-parse/
-!/test/
+# node_modules
+node_modules/
 
-!/.crowdin.yml
-!/.gitignore
-!/LICENSE
-!/package.json
-!/pnpm-lock.yaml
-
-*.json.backup
+# dist
+dist/
 

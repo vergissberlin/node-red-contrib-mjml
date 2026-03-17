@@ -1,4 +1,5 @@
 # node-red-contrib-mjml
+
 [![NPM monthly downloads](https://img.shields.io/npm/dm/@vergissberlin/node-red-contrib-mjml.svg)](https://www.npmjs.com/package/@vergissberlin/node-red-contrib-mjml)
 [![Crowdin](https://badges.crowdin.net/node-red-contrib-mjml/localized.svg)](https://crowdin.com/project/node-red-contrib-mjml)
 [![GitHub issues](https://img.shields.io/github/issues/vergissberlin/node-red-contrib-mjml)](https://github.com/vergissberlin/node-red-contrib-mjml/issues)
@@ -28,7 +29,6 @@ for getting working with the MJML node.
 In this section, you're going to learn how to code a basic email template using MJML.
 
 ```xml
-
 <mjml>
     <mj-body>
         <mj-raw>
@@ -137,11 +137,4 @@ The node `mjml-parse` is a NodeRED node that parses your MJML template and outpu
 - [MJML live editor](https://mjml.io/try-it-live)
 - [MJML vscode extension](https://marketplace.visualstudio.com/items?itemName=mjmlio.vscode-mjml)
 
-## Releasing
-
-Releases are automated with [Release Please](https://github.com/googleapis/release-please). Use [Conventional Commits](https://www.conventionalcommits.org/) on `main`; Release Please will open and update a release PR. Merging that PR creates the GitHub release and triggers npm publish.
-
-**Required repository secrets (or env):**
-
-- **`REPO_TOKEN`** – Optional. GitHub token for Release Please (e.g. a PAT with `repo`). If unset, the default `GITHUB_TOKEN` is used.
-- **`NPM_TOKEN`** – Required for publishing. npm access token with permission to publish `@vergissberlin/node-red-contrib-mjml`.
+For release process and contribution details, see [CONTRIBUTING.md](CONTRIBUTING.md).
