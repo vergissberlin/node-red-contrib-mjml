@@ -25,8 +25,8 @@ importers:
         specifier: 11.7.5
         version: 11.7.5
       node-red:
-        specifier: 2.2.2
-        version: 2.2.2(encoding@0.1.13)
+        specifier: 2.2.3
+        version: 2.2.3(encoding@0.1.13)
       node-red-node-email:
         specifier: 5.2.1
         version: 5.2.1
@@ -58,23 +58,23 @@ packages:
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
     engines: {node: ^14.21.3 || >=16}
 
-  '@node-red/editor-api@2.2.2':
-    resolution: {integrity: sha512-5PUXtMCjsKevCiz8OjHqAckctOv/zzPcssH4yzTxMYEN4JtTng5lFfZzTFWZC/UnCGQMgwe/0e4iGHbMbN1pqg==}
+  '@node-red/editor-api@2.2.3':
+    resolution: {integrity: sha512-lSqxKyf5FfODGCPQoJVr3m6oHxwIWhOQ6q1fIIxkL5JGQLJ3X/F5Du/hkgNUIr5W670S+WW+rYdx109ifiz1ng==}
 
-  '@node-red/editor-client@2.2.2':
-    resolution: {integrity: sha512-DivbfvVfoh4sRKHmOGucE9kV8MWwGczbxsJfaEVedCtVt9ZDX40N61+FzPVlf2FGDi8q21cIRV7klV1GWhDFxw==}
+  '@node-red/editor-client@2.2.3':
+    resolution: {integrity: sha512-rkxx1VDE4IRiWj9u1f3yxdrt4JUP4mBtPLaLOZfPn7gPvXPJAmzA6MTzeetLWFAopxUCuH4+xsrfl5sOh1RFwQ==}
 
-  '@node-red/nodes@2.2.2':
-    resolution: {integrity: sha512-RJ8yR90e/tF0KIiS7ZDe8+q0Zk9uJQZDNUcheEeJKWXfIf3WcMo+5KhQ5HJfy8UedmPXzNLRX75FuTXwcd+NKA==}
+  '@node-red/nodes@2.2.3':
+    resolution: {integrity: sha512-LRaoYQgWYGT3vDfHV+xHi33w7n9KDbNe9u77mNkLAna/PHq2IVViFWtBLm4uxhrYMYs7NNr7r+3NnVyhLGQlAQ==}
 
-  '@node-red/registry@2.2.2':
-    resolution: {integrity: sha512-zszKLaR2XpBE4wG4o8cwe+dtOvqlG/Cl0iRXg1wpJ9zC96WIPRq+UqAkVkZm6uRuNhW5ZjKk8f77Wh1+v6QBAw==}
+  '@node-red/registry@2.2.3':
+    resolution: {integrity: sha512-fR//QJhqDGfq91lg9onknb13xhTXMCSTQRdR1FbvhgR5g0uS4fl7ZcKTBhWkp7OzUZ+pRInuuc6JeBZTaeLKQg==}
 
-  '@node-red/runtime@2.2.2':
-    resolution: {integrity: sha512-PW+HGDmY7Q5nXx+zPVpbFaFpn59EyPLb2QYYL1T5MarCQpUfIaL44NMhSG//n0+vkGZBLi9T6ltapWgEYW4x9g==}
+  '@node-red/runtime@2.2.3':
+    resolution: {integrity: sha512-NQrrhpg4daIdxkqET4n20az1sV5V5OvSpfkemKZbuXuicrPy4sGZ1OZ309v4QVbky97RgVrs7iv2Z1IRBXV8og==}
 
-  '@node-red/util@2.2.2':
-    resolution: {integrity: sha512-tUGLGj3fTgOjWwhp9uK6M+LUb3rxIrU61DbA0fVpANCEeqk5UNJpje4vOag9dWmJS7hn/ONcDK7dslHLyOQUIQ==}
+  '@node-red/util@2.2.3':
+    resolution: {integrity: sha512-N/3US+wwa3mVm3jkSV/QPfVIRdQjaXyChgRPm9UAZbls6TrxJFfZxZefQt4xNKoDYQkHoFNN65Q29RtV0GfbbA==}
 
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
@@ -1360,8 +1360,8 @@ packages:
     resolution: {integrity: sha512-zLmHw6CPcrMvH2SNNKZ0shgD2adbp8W0Kwa86l/lSYWyCOgPnbFSK+IBB7qoEY91zytgSM6RNwVcwITihTkBGA==}
     engines: {node: '>=14'}
 
-  node-red@2.2.2:
-    resolution: {integrity: sha512-DAx4v9/W2MEBb/tHNO94bmjeELdAg7CVZlPJX+UBH1RsmXB0q/3ZYW1Zi55NVMVN/0sBBO1g+dI/L0NWCG8s9A==}
+  node-red@2.2.3:
+    resolution: {integrity: sha512-sfOsWONOF5TyNApXv6AkLzwfxq+C+3lyUrXRvyuQxWt1dSGvfg417dbEx4WW0kxwREGZ47TKtLejnoTPnV5adQ==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -2050,7 +2050,7 @@ snapshots:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.3.5
+      semver: 7.7.4
       tar: 6.2.1
     transitivePeerDependencies:
       - encoding
@@ -2059,10 +2059,10 @@ snapshots:
 
   '@noble/hashes@1.8.0': {}
 
-  '@node-red/editor-api@2.2.2(encoding@0.1.13)':
+  '@node-red/editor-api@2.2.3(encoding@0.1.13)':
     dependencies:
-      '@node-red/editor-client': 2.2.2
-      '@node-red/util': 2.2.2
+      '@node-red/editor-client': 2.2.3
+      '@node-red/util': 2.2.3
       bcryptjs: 2.4.3
       body-parser: 1.19.1
       clone: 2.1.2
@@ -2086,9 +2086,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@node-red/editor-client@2.2.2': {}
+  '@node-red/editor-client@2.2.3': {}
 
-  '@node-red/nodes@2.2.2':
+  '@node-red/nodes@2.2.3':
     dependencies:
       acorn: 8.7.0
       acorn-walk: 8.2.0
@@ -2126,19 +2126,19 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@node-red/registry@2.2.2':
+  '@node-red/registry@2.2.3':
     dependencies:
-      '@node-red/util': 2.2.2
+      '@node-red/util': 2.2.3
       clone: 2.1.2
       fs-extra: 10.0.0
       semver: 7.3.5
       tar: 6.1.11
       uglify-js: 3.15.1
 
-  '@node-red/runtime@2.2.2':
+  '@node-red/runtime@2.2.3':
     dependencies:
-      '@node-red/registry': 2.2.2
-      '@node-red/util': 2.2.2
+      '@node-red/registry': 2.2.3
+      '@node-red/util': 2.2.3
       async-mutex: 0.3.2
       clone: 2.1.2
       express: 4.17.2
@@ -2147,7 +2147,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@node-red/util@2.2.2':
+  '@node-red/util@2.2.3':
     dependencies:
       fs-extra: 10.0.0
       i18next: 21.6.11
@@ -3840,12 +3840,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  node-red@2.2.2(encoding@0.1.13):
+  node-red@2.2.3(encoding@0.1.13):
     dependencies:
-      '@node-red/editor-api': 2.2.2(encoding@0.1.13)
-      '@node-red/nodes': 2.2.2
-      '@node-red/runtime': 2.2.2
-      '@node-red/util': 2.2.2
+      '@node-red/editor-api': 2.2.3(encoding@0.1.13)
+      '@node-red/nodes': 2.2.3
+      '@node-red/runtime': 2.2.3
+      '@node-red/util': 2.2.3
       basic-auth: 2.0.1
       bcryptjs: 2.4.3
       express: 4.17.2
