@@ -12,6 +12,13 @@
                 "invalid": "MJML 模板不是有效的 XML。"
             }
         },
+        "preview": {
+            "label": "HTML 预览",
+            "empty": "预览为空。开始输入 MJML 以渲染 HTML。",
+            "loading": "正在渲染预览...",
+            "ready": "预览已更新。",
+            "error": "预览渲染失败："
+        },
         "message": {
             "status": {
                 "error": "输入消息不是字符串。",

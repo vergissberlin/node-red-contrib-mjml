@@ -137,6 +137,9 @@ The `mjml-parse` node now includes an MJML editor in the node configuration dial
 - XML syntax highlighting with inline XML well-formedness validation
 - MJML tag and attribute autocomplete (catalog derived from the VS Code MJML grammar)
 - Mustache placeholders (for example `{{payload}}`, `{{topic}}`, `{{flow.myValue}}`, `{{global.myValue}}`, `{{env.MY_KEY}}`) similar to the Node-RED Template node
+- Live HTML preview in the Node-RED right sidebar (Info/Debug area) rendered by a Node-RED admin endpoint
+
+![MJML editor](docs/editor.png)
 
 Template source priority at runtime:
 
@@ -145,6 +148,11 @@ Template source priority at runtime:
 3. `msg.payload`
 
 MJML semantic validation is still handled by the MJML compiler during runtime.
+
+Preview notes:
+
+- The preview compiles the current editor content on the server side and updates while you type.
+- The preview uses MJML compilation only and does not evaluate flow context values or Mustache placeholders.
 
 Autocomplete source reference:
 

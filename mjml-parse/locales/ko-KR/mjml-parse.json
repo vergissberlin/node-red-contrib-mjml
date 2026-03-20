@@ -12,6 +12,13 @@
                 "invalid": "MJML 템플릿은 유효한 XML이 아닙니다."
             }
         },
+        "preview": {
+            "label": "HTML 미리보기",
+            "empty": "미리보기가 비어 있습니다. HTML을 렌더링하려면 MJML 입력을 시작하세요.",
+            "loading": "미리보기를 렌더링하는 중...",
+            "ready": "미리보기가 업데이트되었습니다.",
+            "error": "미리보기 렌더링 실패:"
+        },
         "message": {
             "status": {
                 "error": "입력 메시지가 문자열이 아닙니다.",

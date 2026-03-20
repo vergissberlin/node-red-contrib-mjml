@@ -12,6 +12,13 @@
                 "invalid": "Șablonul MJML nu este XML valid."
             }
         },
+        "preview": {
+            "label": "Previzualizare HTML",
+            "empty": "Previzualizarea este goală. Începeți să scrieți MJML pentru a reda HTML.",
+            "loading": "Se redă previzualizarea...",
+            "ready": "Previzualizare actualizată.",
+            "error": "Redarea previzualizării a eșuat:"
+        },
         "message": {
             "status": {
                 "error": "Mesajul de intrare nu este un șir.",

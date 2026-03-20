@@ -12,6 +12,13 @@
                 "invalid": "La plantilla MJML no és XML vàlida."
             }
         },
+        "preview": {
+            "label": "Previsualització HTML",
+            "empty": "La previsualització és buida. Comença a escriure MJML per renderitzar HTML.",
+            "loading": "Renderitzant la previsualització...",
+            "ready": "Previsualització actualitzada.",
+            "error": "Ha fallat el renderitzat de la previsualització:"
+        },
         "message": {
             "status": {
                 "error": "El missatge d'entrada no és una cadena.",

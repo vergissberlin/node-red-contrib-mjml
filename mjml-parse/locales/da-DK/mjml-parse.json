@@ -12,6 +12,13 @@
                 "invalid": "MJML-skabelonen er ikke gyldig XML."
             }
         },
+        "preview": {
+            "label": "HTML-forhåndsvisning",
+            "empty": "Forhåndsvisningen er tom. Begynd at skrive MJML for at gengive HTML.",
+            "loading": "Gengiver forhåndsvisning...",
+            "ready": "Forhåndsvisning opdateret.",
+            "error": "Gengivelse af forhåndsvisning mislykkedes:"
+        },
         "message": {
             "status": {
                 "error": "Indtastningsmeddelelsen er ikke en streng.",

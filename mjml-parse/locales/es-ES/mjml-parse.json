@@ -12,6 +12,13 @@
                 "invalid": "La plantilla MJML no es XML válido."
             }
         },
+        "preview": {
+            "label": "Vista previa HTML",
+            "empty": "La vista previa está vacía. Empieza a escribir MJML para renderizar HTML.",
+            "loading": "Renderizando vista previa...",
+            "ready": "Vista previa actualizada.",
+            "error": "Error al renderizar la vista previa:"
+        },
         "message": {
             "status": {
                 "error": "El mensaje de entrada no es una cadena.",

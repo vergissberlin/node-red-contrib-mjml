@@ -12,6 +12,13 @@
                 "invalid": "MJML şablonu geçerli XML değil."
             }
         },
+        "preview": {
+            "label": "HTML önizleme",
+            "empty": "Önizleme boş. HTML oluşturmak için MJML yazmaya başlayın.",
+            "loading": "Önizleme oluşturuluyor...",
+            "ready": "Önizleme güncellendi.",
+            "error": "Önizleme oluşturma başarısız oldu:"
+        },
         "message": {
             "status": {
                 "error": "Giriş mesajı bir dize değil.",

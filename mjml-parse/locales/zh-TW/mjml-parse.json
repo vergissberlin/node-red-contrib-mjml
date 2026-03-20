@@ -12,6 +12,13 @@
                 "invalid": "MJML 模板不是有效的 XML。"
             }
         },
+        "preview": {
+            "label": "HTML 預覽",
+            "empty": "預覽為空。開始輸入 MJML 以渲染 HTML。",
+            "loading": "正在渲染預覽...",
+            "ready": "預覽已更新。",
+            "error": "預覽渲染失敗："
+        },
         "message": {
             "status": {
                 "error": "輸入訊息不是字串。",

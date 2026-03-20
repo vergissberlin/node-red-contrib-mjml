@@ -12,6 +12,13 @@
                 "invalid": "Il modello MJML non è un XML valido."
             }
         },
+        "preview": {
+            "label": "Anteprima HTML",
+            "empty": "L'anteprima è vuota. Inizia a digitare MJML per renderizzare HTML.",
+            "loading": "Rendering dell'anteprima...",
+            "ready": "Anteprima aggiornata.",
+            "error": "Rendering dell'anteprima non riuscito:"
+        },
         "message": {
             "status": {
                 "error": "Il messaggio di input non è una stringa.",

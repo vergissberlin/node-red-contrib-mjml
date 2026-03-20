@@ -12,6 +12,13 @@
                 "invalid": "Mẫu MJML không phải là XML hợp lệ."
             }
         },
+        "preview": {
+            "label": "Xem trước HTML",
+            "empty": "Bản xem trước đang trống. Bắt đầu nhập MJML để render HTML.",
+            "loading": "Đang render bản xem trước...",
+            "ready": "Đã cập nhật bản xem trước.",
+            "error": "Render bản xem trước thất bại:"
+        },
         "message": {
             "status": {
                 "error": "Thông báo đầu vào không phải là một chuỗi.",

@@ -12,6 +12,13 @@
                 "invalid": "Šablona MJML není platný XML."
             }
         },
+        "preview": {
+            "label": "Náhled HTML",
+            "empty": "Náhled je prázdný. Začněte psát MJML pro vykreslení HTML.",
+            "loading": "Vykresluje se náhled...",
+            "ready": "Náhled aktualizován.",
+            "error": "Vykreslení náhledu selhalo:"
+        },
         "message": {
             "status": {
                 "error": "Vstupní zpráva není řetězec.",

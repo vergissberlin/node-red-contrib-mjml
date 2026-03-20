@@ -12,6 +12,13 @@
                 "invalid": "MJML-malli ei ole kelvollinen XML."
             }
         },
+        "preview": {
+            "label": "HTML-esikatselu",
+            "empty": "Esikatselu on tyhjä. Aloita MJML:n kirjoittaminen HTML:n renderöimiseksi.",
+            "loading": "Renderöidään esikatselua...",
+            "ready": "Esikatselu päivitetty.",
+            "error": "Esikatselun renderöinti epäonnistui:"
+        },
         "message": {
             "status": {
                 "error": "Syöteviesti ei ole merkkijono.",

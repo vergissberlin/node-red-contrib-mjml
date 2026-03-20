@@ -12,6 +12,13 @@
                 "invalid": "MJML-sjabloon is geen geldige XML."
             }
         },
+        "preview": {
+            "label": "HTML-voorbeeld",
+            "empty": "Voorbeeld is leeg. Begin met MJML typen om HTML te renderen.",
+            "loading": "Voorbeeld renderen...",
+            "ready": "Voorbeeld bijgewerkt.",
+            "error": "Renderen van voorbeeld mislukt:"
+        },
         "message": {
             "status": {
                 "error": "Het invoerbericht is geen tekenreeks.",

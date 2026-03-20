@@ -12,6 +12,13 @@
                 "invalid": "Die MJML-Vorlage ist kein gültiges XML."
             }
         },
+        "preview": {
+            "label": "HTML-Vorschau",
+            "empty": "Die Vorschau ist leer. Beginne mit MJML, um HTML zu rendern.",
+            "loading": "Vorschau wird gerendert...",
+            "ready": "Vorschau aktualisiert.",
+            "error": "Vorschau konnte nicht gerendert werden:"
+        },
         "message": {
             "status": {
                 "error": "Die Eingabenachricht ist keine Zeichenfolge.",

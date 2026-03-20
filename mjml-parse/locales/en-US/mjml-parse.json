@@ -12,6 +12,13 @@
                 "invalid": "MJML template is not valid XML."
             }
         },
+        "preview": {
+            "label": "HTML preview",
+            "empty": "Preview is empty. Start typing MJML to render HTML.",
+            "loading": "Rendering preview...",
+            "ready": "Preview updated.",
+            "error": "Preview rendering failed:"
+        },
         "message": {
             "status": {
                 "error": "The input message is not a string.",

@@ -12,6 +12,13 @@
                 "invalid": "Le modèle MJML n'est pas un XML valide."
             }
         },
+        "preview": {
+            "label": "Aperçu HTML",
+            "empty": "L'aperçu est vide. Commencez à saisir du MJML pour générer le HTML.",
+            "loading": "Rendu de l'aperçu...",
+            "ready": "Aperçu mis à jour.",
+            "error": "Échec du rendu de l'aperçu :"
+        },
         "message": {
             "status": {
                 "error": "Le message d'entrée n'est pas une chaîne.",

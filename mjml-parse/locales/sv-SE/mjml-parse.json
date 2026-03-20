@@ -12,6 +12,13 @@
                 "invalid": "MJML-mallen är inte giltig XML."
             }
         },
+        "preview": {
+            "label": "HTML-förhandsvisning",
+            "empty": "Förhandsvisningen är tom. Börja skriva MJML för att rendera HTML.",
+            "loading": "Renderar förhandsvisning...",
+            "ready": "Förhandsvisning uppdaterad.",
+            "error": "Kunde inte rendera förhandsvisningen:"
+        },
         "message": {
             "status": {
                 "error": "Inmatningsmeddelandet är inte en sträng.",

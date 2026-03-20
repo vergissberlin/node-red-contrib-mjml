@@ -12,6 +12,13 @@
                 "invalid": "MJML-sjabloon is nie geldige XML nie."
             }
         },
+        "preview": {
+            "label": "HTML-voorskou",
+            "empty": "Voorskou is leeg. Begin MJML tik om HTML te render.",
+            "loading": "Voorskou word gerender...",
+            "ready": "Voorskou opgedateer.",
+            "error": "Kon nie voorskou render nie:"
+        },
         "message": {
             "status": {
                 "error": "Die invoerboodskap is nie 'n string nie.",

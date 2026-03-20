@@ -7,7 +7,48 @@ module.exports = function (RED) {
         keepComments: false,
         validationLevel: 'soft',
         ignoreIncludes: true  // Mitigate CVE-2020-12827 (mj-include path traversal)
-    }
+    };
+
+    RED.httpAdmin.post('/mjml-parse/preview', function (req, res) {
+        const template = req && req.body && typeof req.body.template === 'string' ? req.body.template : '';
+
+        if (!template.trim()) {
+            res.status(400).json({
+                ok: false,
+                html: '',
+                errors: ['Template is empty.']
+            });
+            return;
+        }
+
+        try {
+            const result = mjml2html(template, options);
+            const hasErrors = Array.isArray(result.errors) && result.errors.length > 0;
+            const normalizedErrors = hasErrors
+                ? result.errors.map(function (error) {
+                    if (typeof error === 'string') {
+                        return error;
+                    }
+                    if (error && error.formattedMessage) {
+                        return error.formattedMessage;
+                    }
+                    return JSON.stringify(error);
+                })
+                : [];
+
+            res.status(hasErrors ? 400 : 200).json({
+                ok: !hasErrors,
+                html: result.html || '',
+                errors: normalizedErrors
+            });
+        } catch (error) {
+            res.status(500).json({
+                ok: false,
+                html: '',
+                errors: [error && error.message ? error.message : 'Preview rendering failed.']
+            });
+        }
+    });
 
     function MjmlParseNode(config) {
         RED.nodes.createNode(this, config);
@@ -60,4 +101,4 @@ module.exports = function (RED) {
         });
     }
     RED.nodes.registerType('mjml-parse', MjmlParseNode);
-}
+};

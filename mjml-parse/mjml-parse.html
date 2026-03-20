@@ -16,9 +16,20 @@
             var node = this;
             var stateId = RED.editor.generateViewStateId("node", this, "template");
             var tagsEndpoint = "resources/@vergissberlin/node-red-contrib-mjml/mjml-parse/resources/mjml-tags.json";
+            var adminRoot = (RED.settings.httpAdminRoot || "/").replace(/\/?$/, "/");
+            var previewEndpoint = adminRoot + "mjml-parse/preview";
             var fallbackTags = ["mjml", "mj-head", "mj-body", "mj-section", "mj-column", "mj-text", "mj-image", "mj-button"];
             var fallbackAttributes = ["id", "css-class", "background-color", "color", "font-family", "font-size", "align", "padding", "href", "src"];
             var validationTimer = null;
+            var previewTimer = null;
+            var previewRequestId = 0;
+            var previewAbortController = null;
+            var sidebarPreviewTabId = "mjml-parse-preview";
+            var sidebarPreviewContentId = "mjml-parse-sidebar-preview-content";
+            var popupPreviewWindow = null;
+            var supportsSidebarPreview = false;
+            node._mjmlPreviewAbortController = null;
+            node._mjmlPreviewTimer = null;
 
             node.editor = RED.editor.createEditor({
                 id: 'node-input-template-editor',
@@ -27,10 +38,20 @@
                 value: $("#node-input-template").val()
             });
 
-            node.editor.setOptions({
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true
-            });
+            if (!node.editor || typeof node.editor.getValue !== "function") {
+                $("#node-mjml-preview-status").text("Editor initialization failed.").css("color", "#c62828");
+                return;
+            }
+
+            if (typeof node.editor.setOptions === "function") {
+                node.editor.setOptions({
+                    enableBasicAutocompletion: true,
+                    enableLiveAutocompletion: true
+                });
+            } else if (typeof node.editor.setOption === "function") {
+                node.editor.setOption("enableBasicAutocompletion", true);
+                node.editor.setOption("enableLiveAutocompletion", true);
+            }
 
             function parseLineColumn(message) {
                 var match = /line\s+(\d+).*column\s+(\d+)/i.exec(message);
@@ -85,6 +106,156 @@
                 validationTimer = setTimeout(validateXml, 300);
             }
 
+            function setPreviewStatus(key, color, details) {
+                var fallbackTexts = {
+                    "mjmlParse.preview.label": "HTML preview",
+                    "mjmlParse.preview.empty": "Preview is empty. Start typing MJML to render HTML.",
+                    "mjmlParse.preview.loading": "Rendering preview...",
+                    "mjmlParse.preview.ready": "Preview updated.",
+                    "mjmlParse.preview.error": "Preview rendering failed:"
+                };
+                var statusText = RED._(key);
+                if (!statusText || statusText === key) {
+                    statusText = fallbackTexts[key] || key;
+                }
+                if (details) {
+                    statusText += " " + details;
+                }
+                $("#node-mjml-preview-status").text(statusText).css("color", color || "");
+            }
+
+            function ensureSidebarPreviewTab() {
+                if (!RED.sidebar || typeof RED.sidebar.addTab !== "function") {
+                    return false;
+                }
+                if ($("#" + sidebarPreviewContentId).length) {
+                    return true;
+                }
+                try {
+                    RED.sidebar.addTab({
+                        id: sidebarPreviewTabId,
+                        label: RED._("mjmlParse.preview.label"),
+                        name: RED._("mjmlParse.preview.label"),
+                        iconClass: "fa fa-eye",
+                        content: $("<div>", {
+                            id: sidebarPreviewContentId,
+                            style: "padding:8px; height:100%; overflow:auto; background:#fff;"
+                        })
+                    });
+                    return true;
+                } catch (error) {
+                    return $("#" + sidebarPreviewContentId).length > 0;
+                }
+            }
+
+            function ensurePopupPreviewWindow() {
+                if (popupPreviewWindow && !popupPreviewWindow.closed) {
+                    return popupPreviewWindow;
+                }
+                popupPreviewWindow = window.open("", "mjml-parse-preview-window");
+                if (!popupPreviewWindow) {
+                    return null;
+                }
+                popupPreviewWindow.document.title = RED._("mjmlParse.preview.label");
+                return popupPreviewWindow;
+            }
+
+            function setPopupPreviewHtml(html) {
+                var popup = ensurePopupPreviewWindow();
+                if (!popup) {
+                    return false;
+                }
+                var safeHtml = html || "";
+                popup.document.open();
+                popup.document.write(safeHtml);
+                popup.document.close();
+                popup.focus();
+                return true;
+            }
+
+            function setSidebarPreviewHtml(html) {
+                if (supportsSidebarPreview) {
+                    var previewElement = $("#" + sidebarPreviewContentId);
+                    if (previewElement.length) {
+                        previewElement.html(html || "");
+                        if (RED.sidebar && typeof RED.sidebar.show === "function") {
+                            RED.sidebar.show(sidebarPreviewTabId);
+                        }
+                        return;
+                    }
+                }
+                setPopupPreviewHtml(html || "");
+            }
+
+            function renderPreview() {
+                var editorValue = node.editor.getValue() || "";
+
+                if (!editorValue.trim()) {
+                    setSidebarPreviewHtml("");
+                    setPreviewStatus("mjmlParse.preview.empty", "");
+                    return;
+                }
+
+                if (previewAbortController) {
+                    previewAbortController.abort();
+                }
+
+                previewAbortController = new AbortController();
+                node._mjmlPreviewAbortController = previewAbortController;
+                previewRequestId += 1;
+                var requestId = previewRequestId;
+
+                setPreviewStatus("mjmlParse.preview.loading", "#666");
+
+                fetch(previewEndpoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ template: editorValue }),
+                    signal: previewAbortController.signal
+                })
+                    .then(function (response) {
+                        return response.json().then(function (payload) {
+                            return { response: response, payload: payload };
+                        });
+                    })
+                    .then(function (result) {
+                        if (requestId !== previewRequestId) {
+                            return;
+                        }
+
+                        var payload = result.payload || {};
+                        var errors = Array.isArray(payload.errors) ? payload.errors : [];
+                        if (payload.ok) {
+                            setSidebarPreviewHtml(payload.html || "");
+                            setPreviewStatus("mjmlParse.preview.ready", "#2e7d32");
+                            return;
+                        }
+
+                        setSidebarPreviewHtml("");
+                        setPreviewStatus("mjmlParse.preview.error", "#c62828", errors[0] || "");
+                    })
+                    .catch(function (error) {
+                        if (error && error.name === "AbortError") {
+                            return;
+                        }
+                        if (requestId !== previewRequestId) {
+                            return;
+                        }
+                        setSidebarPreviewHtml("");
+                        setPreviewStatus("mjmlParse.preview.error", "#c62828", (error && error.message) || "");
+                    });
+            }
+
+            function schedulePreview() {
+                if (previewTimer) {
+                    clearTimeout(previewTimer);
+                }
+                previewTimer = setTimeout(renderPreview, 500);
+                node._mjmlPreviewTimer = previewTimer;
+            }
+
             function attachCompleter(tags, attributes) {
                 var langTools = ace.require("ace/ext/language_tools");
                 if (!langTools) {
@@ -136,8 +307,13 @@
                 })
                 .catch(function () { attachCompleter(fallbackTags, fallbackAttributes); });
 
-            node.editor.getSession().on("change", scheduleValidation);
+            node.editor.getSession().on("change", function () {
+                scheduleValidation();
+                schedulePreview();
+            });
+            supportsSidebarPreview = ensureSidebarPreviewTab();
             scheduleValidation();
+            schedulePreview();
 
             RED.popover.tooltip($("#node-template-expand-editor"), RED._("node-red:common.label.expand"));
             $("#node-template-expand-editor").on("click", function (e) {
@@ -162,10 +338,34 @@
         },
         oneditsave: function () {
             $("#node-input-template").val(this.editor.getValue());
+            if (this._mjmlPreviewTimer) {
+                clearTimeout(this._mjmlPreviewTimer);
+                this._mjmlPreviewTimer = null;
+            }
+            if (this._mjmlPreviewAbortController) {
+                this._mjmlPreviewAbortController.abort();
+                this._mjmlPreviewAbortController = null;
+            }
+            if (popupPreviewWindow && !popupPreviewWindow.closed) {
+                popupPreviewWindow.close();
+                popupPreviewWindow = null;
+            }
             this.editor.destroy();
             delete this.editor;
         },
         oneditcancel: function () {
+            if (this._mjmlPreviewTimer) {
+                clearTimeout(this._mjmlPreviewTimer);
+                this._mjmlPreviewTimer = null;
+            }
+            if (this._mjmlPreviewAbortController) {
+                this._mjmlPreviewAbortController.abort();
+                this._mjmlPreviewAbortController = null;
+            }
+            if (popupPreviewWindow && !popupPreviewWindow.closed) {
+                popupPreviewWindow.close();
+                popupPreviewWindow = null;
+            }
             this.editor.destroy();
             delete this.editor;
         },
@@ -177,6 +377,8 @@
             }
             var editorRow = $("#dialog-form>div.node-text-editor-row");
             height -= (parseInt(editorRow.css("marginTop"), 10) + parseInt(editorRow.css("marginBottom"), 10));
+            $("#node-mjml-editor-container").css("height", height + "px");
+            $("#node-mjml-editor-pane").css("height", height + "px");
             $("#node-input-template-editor").css("height", height + "px");
             if (this.editor) {
                 this.editor.resize();
@@ -193,14 +395,19 @@
     <div class="form-row node-text-editor-row">
         <label for="node-input-template"><i class="fa fa-code"></i> <span data-i18n="mjmlParse.template.label"></span></label>
         <input type="hidden" id="node-input-template">
-        <div style="position: relative; height: 320px;">
-            <div id="node-input-template-editor" style="position: absolute; inset: 0;"></div>
+        <div id="node-mjml-editor-container" style="height:420px;">
+            <div id="node-mjml-editor-pane" style="position:relative; height:100%;">
+                <div id="node-input-template-editor" style="position:absolute; inset:0;"></div>
+                <button id="node-template-expand-editor" class="editor-button editor-button-small" style="position:absolute; right:0; margin-right:4px; margin-top:4px; z-index:1;">
+                    <i class="fa fa-expand"></i>
+                </button>
+            </div>
         </div>
-        <button id="node-template-expand-editor" class="editor-button editor-button-small" style="position:absolute; right:0; margin-right:4px; margin-top:4px;">
-            <i class="fa fa-expand"></i>
-        </button>
     </div>
     <div class="form-row">
         <div id="node-mjml-xml-validation" class="form-tips" data-i18n="mjmlParse.template.validation.empty"></div>
+    </div>
+    <div class="form-row">
+        <div id="node-mjml-preview-status" class="form-tips" data-i18n="mjmlParse.preview.empty"></div>
     </div>
 </script>

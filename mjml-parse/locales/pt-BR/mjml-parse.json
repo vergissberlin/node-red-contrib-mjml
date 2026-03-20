@@ -12,6 +12,13 @@
                 "invalid": "O modelo MJML não é XML válido."
             }
         },
+        "preview": {
+            "label": "Pré-visualização HTML",
+            "empty": "A pré-visualização está vazia. Comece a digitar MJML para renderizar HTML.",
+            "loading": "Renderizando pré-visualização...",
+            "ready": "Pré-visualização atualizada.",
+            "error": "Falha ao renderizar a pré-visualização:"
+        },
         "message": {
             "status": {
                 "error": "A mensagem de entrada não é uma string.",

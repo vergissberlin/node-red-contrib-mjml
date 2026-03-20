@@ -12,6 +12,13 @@
                 "invalid": "MJML predložak nije važeći XML."
             }
         },
+        "preview": {
+            "label": "HTML pregled",
+            "empty": "Pregled je prazan. Počnite pisati MJML za renderiranje HTML-a.",
+            "loading": "Renderiranje pregleda...",
+            "ready": "Pregled je ažuriran.",
+            "error": "Renderiranje pregleda nije uspjelo:"
+        },
         "message": {
             "status": {
                 "error": "Ulazna poruka nije niz.",

@@ -12,6 +12,13 @@
                 "invalid": "MJML-malen er ikke gyldig XML."
             }
         },
+        "preview": {
+            "label": "HTML-forhåndsvisning",
+            "empty": "Forhåndsvisningen er tom. Begynn å skrive MJML for å rendre HTML.",
+            "loading": "Rendrer forhåndsvisning...",
+            "ready": "Forhåndsvisning oppdatert.",
+            "error": "Rendring av forhåndsvisning mislyktes:"
+        },
         "message": {
             "status": {
                 "error": "Inndatameldingen er ikke en streng.",

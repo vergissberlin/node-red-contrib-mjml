@@ -12,6 +12,13 @@
                 "invalid": "Szablon MJML nie jest prawidłowym formatem XML."
             }
         },
+        "preview": {
+            "label": "Podgląd HTML",
+            "empty": "Podgląd jest pusty. Zacznij wpisywać MJML, aby wyrenderować HTML.",
+            "loading": "Renderowanie podglądu...",
+            "ready": "Podgląd zaktualizowany.",
+            "error": "Renderowanie podglądu nie powiodło się:"
+        },
         "message": {
             "status": {
                 "error": "Komunikat wejściowy nie jest ciągiem.",

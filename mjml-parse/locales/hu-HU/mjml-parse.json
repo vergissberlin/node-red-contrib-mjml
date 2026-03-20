@@ -12,6 +12,13 @@
                 "invalid": "Az MJML-sablon nem érvényes XML."
             }
         },
+        "preview": {
+            "label": "HTML előnézet",
+            "empty": "Az előnézet üres. Kezdje el írni az MJML-t a HTML rendereléséhez.",
+            "loading": "Előnézet renderelése...",
+            "ready": "Előnézet frissítve.",
+            "error": "Az előnézet renderelése sikertelen:"
+        },
         "message": {
             "status": {
                 "error": "A bemeneti üzenet nem karakterlánc.",
