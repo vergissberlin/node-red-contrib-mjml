@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/vergissberlin/node-red-contrib-mjml/compare/v1.2.0...v1.3.0) (2026-03-20)
+
+
+### Features
+
+* enhance MJML preview functionality and update documentation ([bf963fe](https://github.com/vergissberlin/node-red-contrib-mjml/commit/bf963fe9f285771473269506b56d3dd937e70533))
+
+
+### Bug Fixes
+
+* update CONTRIBUTING.md and README.md to include translation guidelines ([072d9f4](https://github.com/vergissberlin/node-red-contrib-mjml/commit/072d9f435dcc2c86469f4c4710e87512cd054a86))
+
 ## [1.2.0](https://github.com/vergissberlin/node-red-contrib-mjml/compare/v1.1.19...v1.2.0) (2026-03-20)
 
 
