@@ -10,6 +10,9 @@
     { "type": "perf", "section": "Performance Improvements" },
     { "type": "refactor", "section": "Code Refactoring" },
     { "type": "docs", "section": "Documentation" },
-    { "type": "chore", "section": "Miscellaneous Chores", "hidden": true }
+    { "type": "chore", "section": "Miscellaneous Chores" },
+    { "type": "test", "section": "Tests" },
+    { "type": "ci", "section": "Continuous Integration" },
+    { "type": "build", "section": "Build System" }
   ]
 }

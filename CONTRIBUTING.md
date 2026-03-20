@@ -141,6 +141,14 @@ If your change adds or updates editor starter templates, run this checklist:
 
 Releases are handled by [Release Please](https://github.com/googleapis/release-please).
 
+### Conventional commits and release PRs
+
+Release Please **does not open a release PR** if it considers there are **no user-facing changelog notes** since the last release (`changelogEmpty` in the [base strategy](https://github.com/googleapis/release-please/blob/main/src/strategies/base.ts)). Commit types listed under `changelog-sections` with `"hidden": true` are **excluded** from the generated notes, so a release consisting **only** of those commits was previously skipped.
+
+[`release-please-config.json`](release-please-config.json) lists `docs`, `chore`, `test`, `ci`, and `build` as **visible** sections (no `hidden` flag) so that merges containing **only** those commit types still produce a **patch** release and a non-empty changelog.
+
+Use `feat:` / `fix:` when appropriate; patch bumps still apply for `docs:` / `chore:` per Release Please’s default [versioning strategy](https://github.com/googleapis/release-please/blob/main/src/versioning-strategies/default.ts).
+
 ### How it works
 
 1. Changes are merged to `main` using Conventional Commits.
