@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Név",
+            "placeholder": "A csomópont neve"
+        },
+        "template": {
+            "label": "MJML sablon",
+            "validation": {
+                "empty": "A csomópont az msg.payload fájlt használja, ha ez a szerkesztő üres.",
+                "valid": "Az MJML sablon jól formázott XML.",
+                "invalid": "Az MJML-sablon nem érvényes XML."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "A bemeneti üzenet nem karakterlánc.",
+                "success": "Siker"
             }
         }
     }

@@ -1,37 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-Ein Node, der MJML in responsives HTML für E-Mails kompiliert.
+Ein Knoten, der MJML in responsives HTML für E-Mails kompiliert.
 
-### Inputs
+### Eingaben
 
-: payload (string) : MJML-Markup, wenn keine Vorlage im Node-Editor gesetzt ist.
-: template (string) : optionale Laufzeit-MJML-Vorlage (wird nur genutzt, wenn die Editor-Vorlage leer ist).
+: payload (string) : MJML-Markup, wenn im Knoteneditor keine Vorlage konfiguriert ist.
+: template (string) : optionale Laufzeit-MJML-Vorlage (wird nur verwendet, wenn die Editor-Vorlage leer ist).
 
-### Outputs
+### Ausgänge
 
 
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
+1. Standardausgabe
+: payload (string) : MJML wurde in HTML geparst, um es in E-Mails zu verwenden.
 
-2. Standard error
-: payload (string) : the standard error of the command.
+2. Standardfehler
+: payload (string) : der Standardfehler des Befehls.
 
 ### Details
 
-Der Node kann Platzhalter mit Mustache-Syntax rendern (zum Beispiel `{{payload}}`), analog zum Core-Template-Node.
+Der Knoten kann Platzhalter mithilfe der Mustache-Syntax (z. B. `{{payload}}`) rendern, ähnlich wie der Kern-Template-Knoten.
 
 Priorität der Vorlagenquelle:
-1. Editor-Vorlage (im Node konfiguriert)
+1. Editor-Vorlage (konfiguriert im Knoten)
 2. `msg.template`
 3. `msg.payload`
 
-Der Editor prüft beim Tippen, ob das XML wohlgeformt ist. Die MJML-semantische Validierung passiert zur Laufzeit beim Kompilieren.
+Der Editor überprüft die Wohlgeformtheit von XML während der Eingabe. Die semantische Validierung von MJML erfolgt während der Laufzeitkompilierung.
 
 
-### References
+### Referenzen
 
-- [MJML templates](https://mjml.io/templates)
-- [MJML documentation](https://documentation.mjml.io/)
-- [Node-RED Template node](https://nodered.org/docs/nodes/core/template)
+- [MJML-Vorlagen](https://mjml.io/templates)
+- [MJML-Dokumentation](https://documentation.mjml.io/)
+- [Node-RED-Vorlagenknoten](https://nodered.org/docs/nodes/core/template)
 </script>

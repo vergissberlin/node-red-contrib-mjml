@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Име",
+            "placeholder": "Назив чвора"
+        },
+        "template": {
+            "label": "МЈМЛ шаблон",
+            "validation": {
+                "empty": "Чвор користи мсг.паилоад када је овај уређивач празан.",
+                "valid": "МЈМЛ шаблон је добро формиран КСМЛ.",
+                "invalid": "МЈМЛ шаблон није важећи КСМЛ."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Улазна порука није стринг.",
+                "success": "Успех"
             }
         }
     }

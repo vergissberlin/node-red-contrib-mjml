@@ -2,7 +2,15 @@
     "mjmlParse": {
         "name": {
             "label": "名前",
-            "placeholder": "ノード名"
+            "placeholder": "ノードの名前"
+        },
+        "template": {
+            "label": "MJMLテンプレート",
+            "validation": {
+                "empty": "このエディターが空の場合、ノードは msg.payload を使用します。",
+                "valid": "MJML テンプレートは整形式の XML です。",
+                "invalid": "MJML テンプレートは有効な XML ではありません。"
+            }
         },
         "message": {
             "status": {

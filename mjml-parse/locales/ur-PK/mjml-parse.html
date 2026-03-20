@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+ایک نوڈ جو ایم جے ایم ایل کو ای میلز کے لیے جوابی HTML میں مرتب کرتا ہے۔
 
-### Inputs
+### ان پٹ
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML مارک اپ جب نوڈ ایڈیٹر میں کوئی ٹیمپلیٹ کنفیگر نہ ہو۔
+: template (string) : اختیاری رن ٹائم MJML ٹیمپلیٹ (صرف اس وقت استعمال ہوتا ہے جب ایڈیٹر ٹیمپلیٹ خالی ہو)۔
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### آؤٹ پٹس
 
 
-### References
+1. معیاری پیداوار
+: payload (string) : ایم جے ایم ایل کو ای میلز میں استعمال کرنے کے لیے اسے HTML میں پارس کیا۔
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. معیاری غلطی
+: payload (string) : کمانڈ کی معیاری غلطی۔
+
+### تفصیلات
+
+نوڈ بنیادی ٹیمپلیٹ نوڈ کی طرح Mustache نحو (مثال کے طور پر `{{payload}}`) کا استعمال کرتے ہوئے پلیس ہولڈرز کو رینڈر کر سکتا ہے۔
+
+ٹیمپلیٹ سورس کی ترجیح:
+1. ایڈیٹر ٹیمپلیٹ (نوڈ میں تشکیل شدہ)
+2. `msg.template`
+3. `msg.payload`
+
+ایڈیٹر ٹائپ کرتے وقت XML کی اچھی تشکیل کی توثیق کرتا ہے۔ MJML سیمنٹک توثیق رن ٹائم کمپلیشن کے دوران ہوتی ہے۔
+
+
+### حوالہ جات
+
+- [ایم جے ایم ایل ٹیمپلیٹس](https://mjml.io/templates)
+- [ایم جے ایم ایل دستاویزات](https://documentation.mjml.io/)
+- [نوڈ-ریڈ ٹیمپلیٹ نوڈ](https://nodered.org/docs/nodes/core/template)
 </script>

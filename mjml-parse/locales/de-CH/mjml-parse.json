@@ -2,12 +2,20 @@
     "mjmlParse": {
         "name": {
             "label": "Name",
-            "placeholder": "Name of the node"
+            "placeholder": "Name des Knotens"
+        },
+        "template": {
+            "label": "MJML-Vorlage",
+            "validation": {
+                "empty": "Der Knoten verwendet msg.payload, wenn dieser Editor leer ist.",
+                "valid": "Die MJML-Vorlage ist wohlgeformtes XML.",
+                "invalid": "Die MJML-Vorlage ist kein gültiges XML."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Die Eingabenachricht ist keine Zeichenfolge.",
+                "success": "Erfolg"
             }
         }
     }

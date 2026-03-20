@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Імя",
+            "placeholder": "Імя вузла"
+        },
+        "template": {
+            "label": "Шаблон MJML",
+            "validation": {
+                "empty": "Вузел выкарыстоўвае msg.payload, калі гэты рэдактар ​​пусты.",
+                "valid": "Шаблон MJML - гэта добра сфарміраваны XML.",
+                "invalid": "Шаблон MJML не з'яўляецца сапраўдным XML."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Уваходнае паведамленне не з'яўляецца радком.",
+                "success": "Поспех"
             }
         }
     }

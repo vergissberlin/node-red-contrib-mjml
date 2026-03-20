@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "নাম",
+            "placeholder": "নোডের নাম"
+        },
+        "template": {
+            "label": "MJML টেমপ্লেট",
+            "validation": {
+                "empty": "এই সম্পাদক খালি থাকলে নোডটি msg.payload ব্যবহার করে।",
+                "valid": "MJML টেমপ্লেট সুগঠিত XML।",
+                "invalid": "MJML টেমপ্লেট বৈধ XML নয়।"
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "ইনপুট বার্তা একটি স্ট্রিং নয়।",
+                "success": "সফলতা"
             }
         }
     }

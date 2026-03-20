@@ -1,8 +1,16 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "الاسم",
+            "label": "اسم",
             "placeholder": "اسم العقدة"
+        },
+        "template": {
+            "label": "قالب إم جي إم إل",
+            "validation": {
+                "empty": "تستخدم العقدة msg.payload عندما يكون هذا المحرر فارغًا.",
+                "valid": "قالب MJML عبارة عن XML جيد التصميم.",
+                "invalid": "قالب MJML ليس XML صالحًا."
+            }
         },
         "message": {
             "status": {

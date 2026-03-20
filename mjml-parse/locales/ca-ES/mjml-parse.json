@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Nom",
+            "placeholder": "Nom del node"
+        },
+        "template": {
+            "label": "Plantilla MJML",
+            "validation": {
+                "empty": "El node utilitza msg.payload quan aquest editor està buit.",
+                "valid": "La plantilla MJML és XML ben format.",
+                "invalid": "La plantilla MJML no és XML vàlida."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "El missatge d'entrada no és una cadena.",
+                "success": "Èxit"
             }
         }
     }

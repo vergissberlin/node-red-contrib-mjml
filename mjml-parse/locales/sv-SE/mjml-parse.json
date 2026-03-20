@@ -2,12 +2,20 @@
     "mjmlParse": {
         "name": {
             "label": "Namn",
-            "placeholder": "Namnet på noden"
+            "placeholder": "Nodens namn"
+        },
+        "template": {
+            "label": "MJML mall",
+            "validation": {
+                "empty": "Noden använder msg.payload när denna editor är tom.",
+                "valid": "MJML-mall är välformad XML.",
+                "invalid": "MJML-mallen är inte giltig XML."
+            }
         },
         "message": {
             "status": {
                 "error": "Inmatningsmeddelandet är inte en sträng.",
-                "success": "Klart"
+                "success": "Framgång"
             }
         }
     }

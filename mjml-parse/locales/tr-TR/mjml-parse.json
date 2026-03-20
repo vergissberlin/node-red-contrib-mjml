@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "İsim",
+            "placeholder": "Düğümün adı"
+        },
+        "template": {
+            "label": "MJML şablonu",
+            "validation": {
+                "empty": "Düğüm, bu düzenleyici boş olduğunda msg.payload'ı kullanır.",
+                "valid": "MJML şablonu iyi biçimlendirilmiş XML'dir.",
+                "invalid": "MJML şablonu geçerli XML değil."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Giriş mesajı bir dize değil.",
+                "success": "Başarı"
             }
         }
     }

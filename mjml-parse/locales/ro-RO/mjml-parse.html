@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Un nod care compilează MJML în HTML receptiv pentru e-mailuri.
 
-### Inputs
+### Intrări
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Markup MJML atunci când nu este configurat niciun șablon în editorul de noduri.
+: template (string) : șablon MJML de rulare opțional (utilizat numai când șablonul editor este gol).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Ieșiri
 
 
-### References
+1. Ieșire standard
+: payload (string) : S-a analizat MJML în HTML pentru a-l folosi în e-mailuri.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Eroare standard
+: payload (string) : eroarea standard a comenzii.
+
+### Detalii
+
+Nodul poate reda substituenți folosind sintaxa Mustache (de exemplu `{{payload}}`), similar cu nodul de bază Template.
+
+Prioritatea sursei șablonului:
+1. Șablon de editor (configurat în nod)
+2. `msg.template`
+3. `msg.payload`
+
+Editorul validează bine formatul XML în timpul tastării. Validarea semantică MJML are loc în timpul compilării în timpul execuției.
+
+
+### Referințe
+
+- [Șabloane MJML](https://mjml.io/templates)
+- [documentație MJML](https://documentation.mjml.io/)
+- [Nod-ROȘU Nod șablon](https://nodered.org/docs/nodes/core/template)
 </script>

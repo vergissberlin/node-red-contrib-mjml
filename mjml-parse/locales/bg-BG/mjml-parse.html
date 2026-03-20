@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Възел, който компилира MJML в адаптивен HTML за имейли.
 
-### Inputs
+### Входове
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML маркиране, когато в редактора на възли не е конфигуриран шаблон.
+: template (string) : незадължителен шаблон за изпълнение на MJML (използва се само когато шаблонът на редактора е празен).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Изходи
 
 
-### References
+1. Стандартен изход
+: payload (string) : Анализира MJML в HTML, за да го използва в имейли.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Стандартна грешка
+: payload (string) : стандартната грешка на командата.
+
+### Подробности
+
+Възелът може да визуализира контейнери, използвайки синтаксис на Mustache (например `{{payload}}`), подобно на основния възел на шаблона.
+
+Приоритет на източника на шаблона:
+1. Шаблон на редактор (конфигуриран във възела)
+2. `msg.template`
+3. `msg.payload`
+
+Редакторът проверява правилното формиране на XML, докато пишете. MJML семантично валидиране се случва по време на компилация по време на изпълнение.
+
+
+### Референции
+
+- [MJML шаблони](https://mjml.io/templates)
+- [MJML документация](https://documentation.mjml.io/)
+- [Node-RED Шаблонен възел](https://nodered.org/docs/nodes/core/template)
 </script>

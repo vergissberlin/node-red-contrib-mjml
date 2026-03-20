@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+'n Nodus wat MJML saamstel in responsiewe HTML vir e-posse.
 
-### Inputs
+### Insette
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML-opmerk wanneer geen sjabloon in die nodusredigeerder opgestel is nie.
+: template (string) : opsionele runtime MJML sjabloon (slegs gebruik wanneer die redigeerder sjabloon leeg is).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Uitsette
 
 
-### References
+1. Standaard uitset
+: payload (string) : MJML na HTML ontleed om dit in e-posse te gebruik.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Standaard fout
+: payload (string) : die standaardfout van die opdrag.
+
+### Besonderhede
+
+Die nodus kan plekhouers weergee deur gebruik te maak van Moustache-sintaksis (byvoorbeeld `{{payload}}`), soortgelyk aan die kern Template-nodus.
+
+Sjabloonbronprioriteit:
+1. Redigeerder sjabloon (gekonfigureer in die nodus)
+2. `msg.template`
+3. `msg.payload`
+
+Die redigeerder bekragtig XML goed gevorm terwyl tik. MJML semantiese validering vind plaas tydens runtime samestelling.
+
+
+### Verwysings
+
+- [MJML sjablone](https://mjml.io/templates)
+- [MJML dokumentasie](https://documentation.mjml.io/)
+- [Node-RED Template node](https://nodered.org/docs/nodes/core/template)
 </script>

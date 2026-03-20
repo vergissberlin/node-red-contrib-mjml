@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Naam",
+            "placeholder": "Naam van die nodus"
+        },
+        "template": {
+            "label": "MJML sjabloon",
+            "validation": {
+                "empty": "Die nodus gebruik msg.payload wanneer hierdie redigeerder leeg is.",
+                "valid": "MJML sjabloon is goed gevormde XML.",
+                "invalid": "MJML-sjabloon is nie geldige XML nie."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Die invoerboodskap is nie 'n string nie.",
+                "success": "Sukses"
             }
         }
     }

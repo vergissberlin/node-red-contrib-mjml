@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Uzel, který kompiluje MJML do responzivního HTML pro e-maily.
 
-### Inputs
+### Vstupy
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Označení MJML, když v editoru uzlů není nakonfigurována žádná šablona.
+: template (string) : volitelná runtime šablona MJML (používá se pouze v případě, že je šablona editoru prázdná).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Výstupy
 
 
-### References
+1. Standardní výstup
+: payload (string) : Analyzoval MJML do HTML, aby bylo možné jej použít v e-mailech.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Standardní chyba
+: payload (string) : standardní chyba příkazu.
+
+### Podrobnosti
+
+Uzel může vykreslovat zástupné symboly pomocí syntaxe Mustache (například `{{payload}}`), podobně jako hlavní uzel Template.
+
+Priorita zdroje šablony:
+1. Šablona editoru (nakonfigurována v uzlu)
+2. `msg.template`
+3. `msg.payload`
+
+Editor ověřuje správnou formu XML při psaní. Sémantické ověření MJML probíhá během kompilace za běhu.
+
+
+### Reference
+
+- [MJML šablony](https://mjml.io/templates)
+- [dokumentace MJML](https://documentation.mjml.io/)
+- [Uzel-RED Uzel šablony](https://nodered.org/docs/nodes/core/template)
 </script>

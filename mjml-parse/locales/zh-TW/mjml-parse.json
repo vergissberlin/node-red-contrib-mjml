@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "姓名",
+            "placeholder": "節點名稱"
+        },
+        "template": {
+            "label": "MJML模板",
+            "validation": {
+                "empty": "當此編輯器為空時，節點使用 msg.payload。",
+                "valid": "MJML 範本是格式良好的 XML。",
+                "invalid": "MJML 模板不是有效的 XML。"
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "輸入訊息不是字串。",
+                "success": "成功"
             }
         }
     }

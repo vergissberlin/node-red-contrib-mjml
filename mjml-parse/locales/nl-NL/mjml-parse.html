@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Een knooppunt dat MJML compileert naar responsieve HTML voor e-mails.
 
-### Inputs
+### Ingangen
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML-opmaak wanneer er geen sjabloon is geconfigureerd in de knooppunteditor.
+: template (string) : optionele runtime MJML-sjabloon (alleen gebruikt als de editorsjabloon leeg is).
 
-### Outputs
+### Uitgangen
 
 
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
+1. Standaard uitvoer
+: payload (string) : Parseerde MJML naar HTML om het in e-mails te gebruiken.
 
-2. Standard error
-: payload (string) : the standard error of the command.
+2. Standaard fout
+: payload (string) : de standaardfout van het commando.
 
 ### Details
 
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+Het knooppunt kan tijdelijke aanduidingen weergeven met de Moustache-syntaxis (bijvoorbeeld `{{payload}}`), vergelijkbaar met het kernsjabloonknooppunt.
+
+Prioriteit sjabloonbron:
+1. Editor-sjabloon (geconfigureerd in het knooppunt)
+2. `msg.template`
+3. `msg.payload`
+
+De editor valideert de XML-goedgevormdheid tijdens het typen. Semantische MJML-validatie vindt plaats tijdens runtime-compilatie.
 
 
-### References
+### Referenties
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+- [MJML-sjablonen](https://mjml.io/templates)
+- [MJML-documentatie](https://documentation.mjml.io/)
+- [Knooppunt-RED Sjabloonknooppunt](https://nodered.org/docs/nodes/core/template)
 </script>

@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Un nœud qui compile MJML en HTML réactif pour les e-mails.
 
-### Inputs
+### Entrées
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Balisage MJML lorsqu'aucun modèle n'est configuré dans l'éditeur de nœuds.
+: template (string) : Modèle MJML d'exécution facultatif (utilisé uniquement lorsque le modèle d'éditeur est vide).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Sorties
 
 
-### References
+1. Sortie standard
+: payload (string) : Analyse de MJML en HTML pour l'utiliser dans les e-mails.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Erreur type
+: payload (string) : l'erreur standard de la commande.
+
+### Détails
+
+Le nœud peut restituer des espaces réservés en utilisant la syntaxe Moustache (par exemple `{{payload}}`), similaire au nœud principal du modèle.
+
+Priorité de la source du modèle :
+1. Modèle d'éditeur (configuré dans le nœud)
+2. `msg.template`
+3. `msg.payload`
+
+L'éditeur valide la bonne forme du XML lors de la saisie. La validation sémantique MJML a lieu lors de la compilation à l'exécution.
+
+
+### Références
+
+- [Modèles MJML](https://mjml.io/templates)
+- [Documentation MJML](https://documentation.mjml.io/)
+- [Nœud de modèle Node-RED](https://nodered.org/docs/nodes/core/template)
 </script>

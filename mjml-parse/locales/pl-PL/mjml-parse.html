@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Węzeł, który kompiluje MJML do responsywnego kodu HTML dla wiadomości e-mail.
 
-### Inputs
+### Wejścia
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Znaczniki MJML, gdy w edytorze węzłów nie skonfigurowano żadnego szablonu.
+: template (string) : opcjonalny szablon MJML środowiska wykonawczego (używany tylko wtedy, gdy szablon edytora jest pusty).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Wyjścia
 
 
-### References
+1. Standardowe wyjście
+: payload (string) : Przeanalizowano MJML do HTML, aby używać go w wiadomościach e-mail.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Standardowy błąd
+: payload (string) : standardowy błąd polecenia.
+
+### Bliższe dane
+
+Węzeł może renderować symbole zastępcze przy użyciu składni Wąsy (na przykład `{{payload}}`), podobnie jak węzeł podstawowy Szablon.
+
+Priorytet źródła szablonu:
+1. Szablon edytora (skonfigurowany w węźle)
+2. `msg.template`
+3. `msg.payload`
+
+Edytor sprawdza poprawność XML podczas pisania. Sprawdzanie semantyczne MJML odbywa się podczas kompilacji w czasie wykonywania.
+
+
+### Referencje
+
+- [Szablony MJML-a](https://mjml.io/templates)
+- [Dokumentacja MJML-a](https://documentation.mjml.io/)
+- [Węzeł-RED Węzeł szablonu](https://nodered.org/docs/nodes/core/template)
 </script>

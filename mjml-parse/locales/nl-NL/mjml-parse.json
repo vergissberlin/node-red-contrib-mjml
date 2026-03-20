@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "naam",
-            "placeholder": "Naam van de node"
+            "label": "Naam",
+            "placeholder": "Naam van het knooppunt"
+        },
+        "template": {
+            "label": "MJML-sjabloon",
+            "validation": {
+                "empty": "Het knooppunt gebruikt msg.payload als deze editor leeg is.",
+                "valid": "MJML-sjabloon is goed opgemaakte XML.",
+                "invalid": "MJML-sjabloon is geen geldige XML."
+            }
         },
         "message": {
             "status": {
                 "error": "Het invoerbericht is geen tekenreeks.",
-                "success": "Geslaagd"
+                "success": "Succes"
             }
         }
     }

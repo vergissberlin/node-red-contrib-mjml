@@ -1,27 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
-![MJML](https://documentation.mjml.io/images/logo.png)
+ ![MJML](https://documentation.mjml.io/images/logo.png)
 
-Prosty węzeł, który konwertuje dane użytkownika wiadomości na HTML używając składni MJML.
+Węzeł, który kompiluje MJML do responsywnego kodu HTML dla wiadomości e-mail.
 
 ### Wejścia
 
-payload (łańcuch): treść wiadomości w znaczniku MJML.
+: payload (string) : Znaczniki MJML, gdy w edytorze węzłów nie skonfigurowano żadnego szablonu.
+: template (string) : opcjonalny szablon MJML środowiska wykonawczego (używany tylko wtedy, gdy szablon edytora jest pusty).
 
 ### Wyjścia
 
-1. standardowe wyjście
-ładunek (łańcuch): Parsuje MJML do HTML w celu użycia w emailu.
 
-2. błąd standardowy
-payload (string): standardowy błąd polecenia.
+1. Standardowe wyjście
+: payload (string) : Przeanalizowano MJML do HTML, aby używać go w wiadomościach e-mail.
 
-### Szczegóły
+2. Standardowy błąd
+: payload (string) : standardowy błąd polecenia.
 
-Polecenie `msg.payload` jest używane do parsowania MJML do HTML. Powinieneś użyć standardowego szablonu z podświetlaniem składni HTML do przekazania ładunku.
+### Bliższe dane
+
+Węzeł może renderować symbole zastępcze przy użyciu składni Wąsy (na przykład `{{payload}}`), podobnie jak węzeł podstawowy Szablon.
+
+Priorytet źródła szablonu:
+1. Szablon edytora (skonfigurowany w węźle)
+2. `msg.template`
+3. `msg.payload`
+
+Edytor sprawdza poprawność XML podczas pisania. Sprawdzanie semantyczne MJML odbywa się podczas kompilacji w czasie wykonywania.
 
 
 ### Referencje
 
-- [Tutaj](https://mjml.io/templates) dostarcza kilka przykładów responsywnych szablonów email,
-- a [tutaj](https://documentation.mjml.io/) można znaleźć dokumentację MJML.
+- [Szablony MJML-a](https://mjml.io/templates)
+- [Dokumentacja MJML-a](https://documentation.mjml.io/)
+- [Węzeł-RED Węzeł szablonu](https://nodered.org/docs/nodes/core/template)
 </script>

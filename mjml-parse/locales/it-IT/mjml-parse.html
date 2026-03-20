@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Un nodo che compila MJML in HTML reattivo per le e-mail.
 
-### Inputs
+### Ingressi
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Markup MJML quando nessun modello è configurato nell'editor del nodo.
+: template (string) : modello MJML runtime opzionale (utilizzato solo quando il modello dell'editor è vuoto).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Uscite
 
 
-### References
+1. Uscita standard
+: payload (string) : Analizzato MJML in HTML per utilizzarlo nelle e-mail.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Errore standard
+: payload (string) : l'errore standard del comando.
+
+### Dettagli
+
+Il nodo può eseguire il rendering dei segnaposto utilizzando la sintassi Moustache (ad esempio `{{payload}}`), simile al nodo Template principale.
+
+Priorità origine modello:
+1. Modello editor (configurato nel nodo)
+2. `msg.template`
+3. `msg.payload`
+
+L'editor convalida la corretta formazione dell'XML durante la digitazione. La convalida semantica MJML avviene durante la compilazione del runtime.
+
+
+### Riferimenti
+
+- [Modelli MJML](https://mjml.io/templates)
+- [Documentazione MJML](https://documentation.mjml.io/)
+- [Nodo-RED Nodo modello](https://nodered.org/docs/nodes/core/template)
 </script>

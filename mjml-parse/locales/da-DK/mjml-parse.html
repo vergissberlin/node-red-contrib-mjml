@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+En node, der kompilerer MJML til responsiv HTML til e-mails.
 
-### Inputs
+### Indgange
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML-markering, når ingen skabelon er konfigureret i nodeeditoren.
+: template (string) : valgfri runtime MJML-skabelon (bruges kun, når editorskabelonen er tom).
 
-### Outputs
+### Udgange
 
 
 1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
+: payload (string) : Parset MJML til HTML for at bruge det i e-mails.
 
-2. Standard error
-: payload (string) : the standard error of the command.
+2. Standard fejl
+: payload (string) : kommandoens standardfejl.
 
-### Details
+### Detaljer
 
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+Noden kan gengive pladsholdere ved hjælp af Moustache-syntaks (for eksempel `{{payload}}`), svarende til kerneskabelonknuden.
+
+Skabelonkildeprioritet:
+1. Editor-skabelon (konfigureret i noden)
+2. `msg.template`
+3. `msg.payload`
+
+Editoren validerer XML-formen, mens du skriver. MJML semantisk validering sker under runtime kompilering.
 
 
-### References
+### Referencer
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+- [MJML skabeloner](https://mjml.io/templates)
+- [MJML dokumentation](https://documentation.mjml.io/)
+- [Node-RED skabelon node](https://nodered.org/docs/nodes/core/template)
 </script>

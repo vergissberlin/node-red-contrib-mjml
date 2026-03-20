@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Solmu, joka kokoaa MJML:n responsiiviseksi HTML-koodiksi sähköposteja varten.
 
-### Inputs
+### Tulot
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML-merkintä, kun solmueditorissa ei ole määritetty mallia.
+: template (string) : valinnainen ajonaikainen MJML-malli (käytetään vain, kun editorimalli on tyhjä).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Lähdöt
 
 
-### References
+1. Vakiolähtö
+: payload (string) : MJML jäsennettiin HTML:ksi, jotta sitä voidaan käyttää sähköposteissa.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Normaali virhe
+: payload (string) : komennon standardivirhe.
+
+### Yksityiskohdat
+
+Solmu voi hahmontaa paikkamerkit käyttäen Moustache-syntaksia (esimerkiksi `{{payload}}`), joka on samanlainen kuin ydinmallisolmu.
+
+Mallin lähteen prioriteetti:
+1. Editor-malli (määritetty solmussa)
+2. `msg.template`
+3. `msg.payload`
+
+Editori tarkistaa XML-muodon hyvin kirjoitettaessa. MJML:n semanttinen validointi tapahtuu ajonaikaisen käännöksen aikana.
+
+
+### Viitteet
+
+- [MJML-malleja](https://mjml.io/templates)
+- [MJML-dokumentaatio](https://documentation.mjml.io/)
+- [Solmu-PUNAINEN Mallisolmu](https://nodered.org/docs/nodes/core/template)
 </script>

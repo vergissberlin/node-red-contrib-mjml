@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Чвор који компајлира МЈМЛ у прилагодљиви ХТМЛ за е-пошту.
 
-### Inputs
+### Инпутс
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : МЈМЛ ознаке када ниједан шаблон није конфигурисан у уређивачу чворова.
+: template (string) : опциони МЈМЛ шаблон за време извршавања (користи се само када је шаблон уређивача празан).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Излази
 
 
-### References
+1. Стандардни излаз
+: payload (string) : Парсирао МЈМЛ у ХТМЛ да би се користио у имејловима.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Стандардна грешка
+: payload (string) : стандардна грешка команде.
+
+### Детаљи
+
+Чвор може да прикаже чуваре места користећи Мустацхе синтаксу (на пример `{{payload}}`), слично основном чвору Темплате.
+
+Приоритет извора шаблона:
+1. Едитор шаблон (конфигурисан у чвору)
+2. `msg.template`
+3. `msg.payload`
+
+Едитор потврђује исправност КСМЛ-а док куцате. Семантичка провера МЈМЛ-а се дешава током компилације током извршавања.
+
+
+### Референце
+
+- [МЈМЛ шаблони](https://mjml.io/templates)
+- [МЈМЛ документација](https://documentation.mjml.io/)
+- [Чвор-РЕД Темплате чвор](https://nodered.org/docs/nodes/core/template)
 </script>

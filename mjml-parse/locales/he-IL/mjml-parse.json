@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "שֵׁם",
+            "placeholder": "שם הצומת"
+        },
+        "template": {
+            "label": "תבנית MJML",
+            "validation": {
+                "empty": "הצומת משתמש ב-msg.payload כאשר עורך זה ריק.",
+                "valid": "תבנית MJML היא XML מעוצבת היטב.",
+                "invalid": "תבנית MJML אינה XML חוקית."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "הודעת הקלט אינה מחרוזת.",
+                "success": "הַצלָחָה"
             }
         }
     }

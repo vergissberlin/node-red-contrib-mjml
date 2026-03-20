@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+MJML을 이메일용 반응형 HTML로 컴파일하는 노드입니다.
 
-### Inputs
+### 입력
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : 노드 편집기에 템플릿이 구성되지 않은 경우의 MJML 마크업입니다.
+: template (string) : 선택적 런타임 MJML 템플릿(편집기 템플릿이 비어 있는 경우에만 사용됨)
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### 출력
 
 
-### References
+1. 표준 출력
+: payload (string) : MJML을 HTML로 구문 분석하여 이메일에 사용합니다.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. 표준오차
+: payload (string) : 명령의 표준 오류.
+
+### 세부
+
+노드는 핵심 템플릿 노드와 유사하게 Mustache 구문(예: `{{payload}}`)을 사용하여 자리 표시자를 렌더링할 수 있습니다.
+
+템플릿 소스 우선순위:
+1. 편집기 템플릿(노드에 구성됨)
+2. `msg.template`
+3. `msg.payload`
+
+편집기는 입력하는 동안 XML 형식이 올바른지 확인합니다. MJML 의미 체계 검증은 런타임 컴파일 중에 발생합니다.
+
+
+### 참고자료
+
+- [MJML 템플릿](https://mjml.io/templates)
+- [MJML 문서](https://documentation.mjml.io/)
+- [Node-RED 템플릿 노드](https://nodered.org/docs/nodes/core/template)
 </script>

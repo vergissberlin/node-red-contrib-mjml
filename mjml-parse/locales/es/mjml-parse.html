@@ -1,27 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
-[MJML](https://documentation.mjml.io/images/logo.png)
+ ![MJML](https://documentation.mjml.io/images/logo.png)
 
-Un simple nodo que convierte los datos de usuario de los mensajes en HTML utilizando la sintaxis MJML.
+Un nodo que compila MJML en HTML responsivo para correos electrónicos.
 
-### Inputs
+### Entradas
 
-payload (cadena): la carga útil del mensaje en formato MJML.
+: payload (string) : Marcado MJML cuando no se configura ninguna plantilla en el editor de nodos.
+: template (string) : Plantilla MJML de tiempo de ejecución opcional (se usa solo cuando la plantilla del editor está vacía).
 
 ### Salidas
 
-1. salida estándar
-payload (string) : Convierte MJML en HTML para su uso en el correo electrónico.
+
+1. Salida estándar
+: payload (string) : Se analizó MJML a HTML para usarlo en correos electrónicos.
 
 2. error estándar
-payload (string) : el error estándar del comando.
+: payload (string) : el error estándar del comando.
 
 ### Detalles
 
-`msg.payload` se utiliza para parsear MJML en HTML. Debe utilizar una plantilla estándar con resaltado de sintaxis HTML para transmitir la carga útil.
+El nodo puede representar marcadores de posición utilizando la sintaxis Moustache (por ejemplo `{{payload}}`), similar al nodo Plantilla principal.
+
+Prioridad de fuente de plantilla:
+1. Plantilla de editor (configurada en el nodo)
+2. `msg.template`
+3. `msg.payload`
+
+El editor valida el buen formato de XML mientras escribe. La validación semántica de MJML ocurre durante la compilación en tiempo de ejecución.
 
 
 ### Referencias
 
-- En [Aquí](https://mjml.io/templates) se ofrecen algunos ejemplos de plantillas de correo electrónico con capacidad de respuesta,
-- y [aquí](https://documentation.mjml.io/) puede encontrar la documentación de MJML.
+- [Plantillas MJML](https://mjml.io/templates)
+- [Documentación MJML](https://documentation.mjml.io/)
+- [Nodo de plantilla Nodo-RED](https://nodered.org/docs/nodes/core/template)
 </script>

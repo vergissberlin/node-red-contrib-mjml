@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+একটি নোড যা এমজেএমএলকে ইমেলের জন্য প্রতিক্রিয়াশীল HTML-এ কম্পাইল করে।
 
-### Inputs
+### ইনপুট
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : নোড এডিটরে কোনো টেমপ্লেট কনফিগার করা না থাকলে MJML মার্কআপ।
+: template (string) : ঐচ্ছিক রানটাইম MJML টেমপ্লেট (এডিটর টেমপ্লেট খালি থাকলেই ব্যবহার করা হয়)।
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### আউটপুট
 
 
-### References
+1. স্ট্যান্ডার্ড আউটপুট
+: payload (string) : ইমেলে ব্যবহার করার জন্য MJML-কে HTML-এ পার্স করা হয়েছে।
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. স্ট্যান্ডার্ড ত্রুটি
+: payload (string) : কমান্ডের আদর্শ ত্রুটি।
+
+### বিস্তারিত
+
+নোডটি মূল টেমপ্লেট নোডের মতোই গোঁফ সিনট্যাক্স (উদাহরণস্বরূপ `{{payload}}`) ব্যবহার করে স্থানধারককে রেন্ডার করতে পারে।
+
+টেমপ্লেট উত্স অগ্রাধিকার:
+1. সম্পাদক টেমপ্লেট (নোডে কনফিগার করা হয়েছে)
+2. `msg.template`
+3. `msg.payload`
+
+টাইপ করার সময় সম্পাদক XML সুগঠিততা যাচাই করে। MJML শব্দার্থিক বৈধতা রানটাইম সংকলনের সময় ঘটে।
+
+
+### তথ্যসূত্র
+
+- [MJML টেমপ্লেট](https://mjml.io/templates)
+- [MJML ডকুমেন্টেশন](https://documentation.mjml.io/)
+- [নোড-লাল টেমপ্লেট নোড](https://nodered.org/docs/nodes/core/template)
 </script>

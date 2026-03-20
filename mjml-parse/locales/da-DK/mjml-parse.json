@@ -2,11 +2,19 @@
     "mjmlParse": {
         "name": {
             "label": "Navn",
-            "placeholder": "Navn på indholdselementet"
+            "placeholder": "Navn på noden"
+        },
+        "template": {
+            "label": "MJML skabelon",
+            "validation": {
+                "empty": "Noden bruger msg.payload, når denne editor er tom.",
+                "valid": "MJML skabelon er veludformet XML.",
+                "invalid": "MJML-skabelonen er ikke gyldig XML."
+            }
         },
         "message": {
             "status": {
-                "error": "Inputbeskeden er ikke en streng.",
+                "error": "Indtastningsmeddelelsen er ikke en streng.",
                 "success": "Succes"
             }
         }

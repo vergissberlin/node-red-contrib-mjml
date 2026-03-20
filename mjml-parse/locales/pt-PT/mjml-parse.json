@@ -1,8 +1,16 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Nome:",
+            "label": "Nome",
             "placeholder": "Nome do nó"
+        },
+        "template": {
+            "label": "Modelo MJML",
+            "validation": {
+                "empty": "O nó usa msg.payload quando este editor está vazio.",
+                "valid": "O modelo MJML é um XML bem formado.",
+                "invalid": "O modelo MJML não é XML válido."
+            }
         },
         "message": {
             "status": {

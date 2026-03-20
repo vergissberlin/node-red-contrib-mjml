@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "이름",
+            "placeholder": "노드 이름"
+        },
+        "template": {
+            "label": "MJML 템플릿",
+            "validation": {
+                "empty": "이 편집기가 비어 있으면 노드는 msg.payload를 사용합니다.",
+                "valid": "MJML 템플릿은 올바른 형식의 XML입니다.",
+                "invalid": "MJML 템플릿은 유효한 XML이 아닙니다."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "입력 메시지가 문자열이 아닙니다.",
+                "success": "성공"
             }
         }
     }

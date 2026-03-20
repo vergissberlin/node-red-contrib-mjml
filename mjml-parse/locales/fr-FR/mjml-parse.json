@@ -4,6 +4,14 @@
             "label": "Nom",
             "placeholder": "Nom du nœud"
         },
+        "template": {
+            "label": "Modèle MJML",
+            "validation": {
+                "empty": "Le nœud utilise msg.payload lorsque cet éditeur est vide.",
+                "valid": "Le modèle MJML est un XML bien formé.",
+                "invalid": "Le modèle MJML n'est pas un XML valide."
+            }
+        },
         "message": {
             "status": {
                 "error": "Le message d'entrée n'est pas une chaîne.",

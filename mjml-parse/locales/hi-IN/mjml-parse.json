@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "नाम",
+            "placeholder": "नोड का नाम"
+        },
+        "template": {
+            "label": "एमजेएमएल टेम्पलेट",
+            "validation": {
+                "empty": "जब यह संपादक खाली होता है तो नोड msg.payload का उपयोग करता है।",
+                "valid": "एमजेएमएल टेम्पलेट अच्छी तरह से निर्मित एक्सएमएल है।",
+                "invalid": "एमजेएमएल टेम्पलेट वैध एक्सएमएल नहीं है."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "इनपुट संदेश एक स्ट्रिंग नहीं है.",
+                "success": "सफलता"
             }
         }
     }

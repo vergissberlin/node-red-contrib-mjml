@@ -1,8 +1,16 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Název",
-            "placeholder": "Název Nodu"
+            "label": "Jméno",
+            "placeholder": "Název uzlu"
+        },
+        "template": {
+            "label": "Šablona MJML",
+            "validation": {
+                "empty": "Když je tento editor prázdný, uzel používá msg.payload.",
+                "valid": "Šablona MJML je dobře vytvořený XML.",
+                "invalid": "Šablona MJML není platný XML."
+            }
         },
         "message": {
             "status": {

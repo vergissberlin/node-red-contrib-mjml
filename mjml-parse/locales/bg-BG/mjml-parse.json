@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Име",
+            "placeholder": "Име на възела"
+        },
+        "template": {
+            "label": "MJML шаблон",
+            "validation": {
+                "empty": "Възелът използва msg.payload, когато този редактор е празен.",
+                "valid": "MJML шаблонът е добре оформен XML.",
+                "invalid": "MJML шаблонът не е валиден XML."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Входното съобщение не е низ.",
+                "success": "Успех"
             }
         }
     }

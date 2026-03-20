@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Un node que compila MJML en HTML responsiu per a correus electrònics.
 
-### Inputs
+### Entrades
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Marcat MJML quan no hi ha cap plantilla configurada a l'editor de nodes.
+: template (string) : plantilla MJML en temps d'execució opcional (només s'utilitza quan la plantilla de l'editor està buida).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Sortides
 
 
-### References
+1. Sortida estàndard
+: payload (string) : S'ha analitzat MJML a HTML per utilitzar-lo als correus electrònics.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Error estàndard
+: payload (string) : l'error estàndard de l'ordre.
+
+### Detalls
+
+El node pot representar marcadors de posició utilitzant la sintaxi de Mustache (per exemple, `{{payload}}`), de manera similar al node Plantilla principal.
+
+Prioritat font de la plantilla:
+1. Plantilla d'editor (configurada al node)
+2. `msg.template`
+3. `msg.payload`
+
+L'editor valida el bon format d'XML mentre escriu. La validació semàntica MJML es produeix durant la compilació en temps d'execució.
+
+
+### Referències
+
+- [Plantilles MJML](https://mjml.io/templates)
+- [Documentació MJML](https://documentation.mjml.io/)
+- [Node-VERMELL Node de plantilla](https://nodered.org/docs/nodes/core/template)
 </script>

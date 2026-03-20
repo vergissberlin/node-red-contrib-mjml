@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Вузол, який компілює MJML у адаптивний HTML для електронних листів.
 
-### Inputs
+### Вхідні дані
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Розмітка MJML, якщо шаблон не налаштовано в редакторі вузлів.
+: template (string) : додатковий шаблон MJML середовища виконання (використовується лише тоді, коли шаблон редактора порожній).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Виходи
 
 
-### References
+1. Стандартний вихід
+: payload (string) : Розбирає MJML до HTML для використання в електронних листах.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Стандартна помилка
+: payload (string) : стандартна помилка команди.
+
+### Подробиці
+
+Вузол може відтворювати заповнювачі за допомогою синтаксису Mustache (наприклад, `{{payload}}`), подібно до основного вузла Template.
+
+Пріоритет джерела шаблону:
+1. Шаблон редактора (налаштовується у вузлі)
+2. `msg.template`
+3. `msg.payload`
+
+Редактор перевіряє коректність XML під час введення. Семантична перевірка MJML відбувається під час компіляції під час виконання.
+
+
+### Список літератури
+
+- [Шаблони MJML](https://mjml.io/templates)
+- [Документація MJML](https://documentation.mjml.io/)
+- [Вузол шаблону Node-RED](https://nodered.org/docs/nodes/core/template)
 </script>

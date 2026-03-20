@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Вузел, які кампілюе MJML у адаптыўны HTML для электронных лістоў.
 
-### Inputs
+### Уваходы
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Разметка MJML, калі шаблон не наладжаны ў рэдактары вузлоў.
+: template (string) : неабавязковы шаблон выканання MJML (выкарыстоўваецца толькі калі шаблон рэдактара пусты).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Выхады
 
 
-### References
+1. Стандартны выхад
+: payload (string) : Разабраны MJML у HTML для выкарыстання ў электронных лістах.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Стандартная памылка
+: payload (string) : стандартная памылка каманды.
+
+### Дэталі
+
+Вузел можа візуалізаваць запаўняльнікі з дапамогай сінтаксісу Mustache (напрыклад, `{{payload}}`), падобна асноўнаму вузлу Template.
+
+Прыярытэт крыніцы шаблону:
+1. Шаблон рэдактара (канфігуруецца ў вузле)
+2. `msg.template`
+3. `msg.payload`
+
+Рэдактар ​​правярае правільнасць XML падчас уводу. Семантычная праверка MJML адбываецца падчас кампіляцыі падчас выканання.
+
+
+### Спасылкі
+
+- [Шаблоны MJML](https://mjml.io/templates)
+- [Дакументацыя MJML](https://documentation.mjml.io/)
+- [Вузел шаблону Node-RED](https://nodered.org/docs/nodes/core/template)
 </script>

@@ -2,12 +2,20 @@
     "mjmlParse": {
         "name": {
             "label": "Nimi",
-            "placeholder": "Solmun nimi (node)"
+            "placeholder": "Solmun nimi"
+        },
+        "template": {
+            "label": "MJML-malli",
+            "validation": {
+                "empty": "Solmu käyttää tiedostoa msg.payload, kun tämä editori on tyhjä.",
+                "valid": "MJML-malli on hyvin muotoiltu XML.",
+                "invalid": "MJML-malli ei ole kelvollinen XML."
+            }
         },
         "message": {
             "status": {
                 "error": "Syöteviesti ei ole merkkijono.",
-                "success": "Onnistui"
+                "success": "Menestys"
             }
         }
     }

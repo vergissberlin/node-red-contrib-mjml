@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+צומת שמרכיב MJML ל-HTML רספונסיבי עבור מיילים.
 
-### Inputs
+### תשומות
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : סימון MJML כאשר לא מוגדרת תבנית בעורך הצומת.
+: template (string) : תבנית MJML בזמן ריצה אופציונלית (משמשת רק כאשר תבנית העורך ריקה).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### פלטים
 
 
-### References
+1. פלט סטנדרטי
+: payload (string) : ניתוח MJML ל-HTML כדי להשתמש בו באימיילים.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. שגיאה רגילה
+: payload (string) : השגיאה הסטנדרטית של הפקודה.
+
+### פרטים
+
+הצומת יכול להציג מצייני מיקום באמצעות תחביר שפם (לדוגמה `{{payload}}`), בדומה לצומת הליבה Template.
+
+עדיפות מקור התבנית:
+1. תבנית עורך (מוגדרת בצומת)
+2. `msg.template`
+3. `msg.payload`
+
+העורך מאמת את צורת ה-XML בזמן ההקלדה. אימות סמנטי של MJML מתרחש במהלך הידור בזמן ריצה.
+
+
+### הפניות
+
+- [תבניות MJML](https://mjml.io/templates)
+- [תיעוד MJML](https://documentation.mjml.io/)
+- [צומת תבנית אדומה](https://nodered.org/docs/nodes/core/template)
 </script>

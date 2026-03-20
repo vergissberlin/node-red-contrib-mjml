@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+عقدة تقوم بتجميع MJML إلى HTML سريع الاستجابة لرسائل البريد الإلكتروني.
 
-### Inputs
+### المدخلات
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : ترميز MJML عند عدم تكوين أي قالب في محرر العقدة.
+: template (string) : قالب MJML الاختياري لوقت التشغيل (يُستخدم فقط عندما يكون قالب المحرر فارغًا).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### النواتج
 
 
-### References
+1. الإخراج القياسي
+: payload (string) : تحليل MJML إلى HTML لاستخدامه في رسائل البريد الإلكتروني.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. خطأ قياسي
+: payload (string) : الخطأ القياسي للأمر.
+
+### تفاصيل
+
+يمكن للعقدة عرض العناصر النائبة باستخدام بناء جملة Moustache (على سبيل المثال `{{payload}}`)، على غرار عقدة القالب الأساسية.
+
+أولوية مصدر القالب:
+1. قالب المحرر (تم تكوينه في العقدة)
+2. `msg.template`
+3. `msg.payload`
+
+يتحقق المحرر من صحة صياغة XML أثناء الكتابة. يحدث التحقق الدلالي MJML أثناء تجميع وقت التشغيل.
+
+
+### مراجع
+
+- [قوالب إم جي إم إل](https://mjml.io/templates)
+- [وثائق MJML](https://documentation.mjml.io/)
+- [العقدة-عقدة قالب RED](https://nodered.org/docs/nodes/core/template)
 </script>

@@ -4,9 +4,17 @@
             "label": "Nume",
             "placeholder": "Numele nodului"
         },
+        "template": {
+            "label": "Șablon MJML",
+            "validation": {
+                "empty": "Nodul folosește msg.payload atunci când acest editor este gol.",
+                "valid": "Șablonul MJML este XML bine format.",
+                "invalid": "Șablonul MJML nu este XML valid."
+            }
+        },
         "message": {
             "status": {
-                "error": "Mesajul introdus nu este un șir.",
+                "error": "Mesajul de intrare nu este un șir.",
                 "success": "Succes"
             }
         }

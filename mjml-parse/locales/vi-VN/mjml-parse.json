@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Tên",
+            "placeholder": "Tên của nút"
+        },
+        "template": {
+            "label": "mẫu MJML",
+            "validation": {
+                "empty": "Nút sử dụng msg.payload khi trình soạn thảo này trống.",
+                "valid": "Mẫu MJML là XML được định dạng tốt.",
+                "invalid": "Mẫu MJML không phải là XML hợp lệ."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Thông báo đầu vào không phải là một chuỗi.",
+                "success": "Thành công"
             }
         }
     }

@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "Ime",
+            "placeholder": "Naziv čvora"
+        },
+        "template": {
+            "label": "MJML predložak",
+            "validation": {
+                "empty": "Čvor koristi msg.payload kada je ovaj uređivač prazan.",
+                "valid": "MJML predložak je dobro oblikovan XML.",
+                "invalid": "MJML predložak nije važeći XML."
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "Ulazna poruka nije niz.",
+                "success": "Uspjeh"
             }
         }
     }

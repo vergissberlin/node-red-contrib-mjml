@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+Узел, который компилирует MJML в адаптивный HTML для электронных писем.
 
-### Inputs
+### Входы
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Разметка MJML, когда в редакторе узлов не настроен шаблон.
+: template (string) : необязательный шаблон MJML времени выполнения (используется только в том случае, если шаблон редактора пуст).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Выходы
 
 
-### References
+1. Стандартный вывод
+: payload (string) : Преобразование MJML в HTML для использования в электронных письмах.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Стандартная ошибка
+: payload (string) : стандартная ошибка команды.
+
+### Подробности
+
+Узел может отображать заполнители с использованием синтаксиса Mustache (например, `{{payload}}`), аналогично базовому узлу Шаблон.
+
+Приоритет источника шаблона:
+1. Шаблон редактора (настраивается в узле)
+2. `msg.template`
+3. `msg.payload`
+
+Редактор проверяет правильность формата XML во время набора текста. Семантическая проверка MJML происходит во время компиляции во время выполнения.
+
+
+### Ссылки
+
+- [MJML-шаблоны](https://mjml.io/templates)
+- [MJML-документация](https://documentation.mjml.io/)
+- [Узел шаблона Node-RED](https://nodered.org/docs/nodes/core/template)
 </script>

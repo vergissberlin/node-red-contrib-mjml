@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+एक नोड जो एमजेएमएल को ईमेल के लिए उत्तरदायी HTML में संकलित करता है।
 
-### Inputs
+### इनपुट
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : एमजेएमएल मार्कअप जब नोड संपादक में कोई टेम्पलेट कॉन्फ़िगर नहीं किया गया है।
+: template (string) : वैकल्पिक रनटाइम एमजेएमएल टेम्पलेट (केवल संपादक टेम्पलेट खाली होने पर उपयोग किया जाता है)।
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### आउटपुट
 
 
-### References
+1. मानक आउटपुट
+: payload (string) : ईमेल में इसका उपयोग करने के लिए एमजेएमएल को HTML में पार्स किया गया।
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. मानक त्रुटि
+: payload (string) : आदेश की मानक त्रुटि.
+
+### विवरण
+
+नोड कोर टेम्प्लेट नोड के समान मूंछ सिंटैक्स (उदाहरण के लिए `{{payload}}`) का उपयोग करके प्लेसहोल्डर्स को प्रस्तुत कर सकता है।
+
+टेम्पलेट स्रोत प्राथमिकता:
+1. संपादक टेम्पलेट (नोड में कॉन्फ़िगर किया गया)
+2. `msg.template`
+3. `msg.payload`
+
+टाइप करते समय संपादक XML सुगठितता की पुष्टि करता है। एमजेएमएल सिमेंटिक सत्यापन रनटाइम संकलन के दौरान होता है।
+
+
+### संदर्भ
+
+- [एमजेएमएल टेम्पलेट्स](https://mjml.io/templates)
+- [एमजेएमएल दस्तावेज़ीकरण](https://documentation.mjml.io/)
+- [नोड-लाल टेम्पलेट नोड](https://nodered.org/docs/nodes/core/template)
 </script>

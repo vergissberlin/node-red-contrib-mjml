@@ -1,8 +1,16 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "名称",
+            "label": "姓名",
             "placeholder": "节点名称"
+        },
+        "template": {
+            "label": "MJML模板",
+            "validation": {
+                "empty": "当该编辑器为空时，节点使用 msg.payload。",
+                "valid": "MJML 模板是格式良好的 XML。",
+                "invalid": "MJML 模板不是有效的 XML。"
+            }
         },
         "message": {
             "status": {

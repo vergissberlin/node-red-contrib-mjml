@@ -1,13 +1,21 @@
 {
     "mjmlParse": {
         "name": {
-            "label": "Name",
-            "placeholder": "Name of the node"
+            "label": "نام",
+            "placeholder": "نوڈ کا نام"
+        },
+        "template": {
+            "label": "ایم جے ایم ایل ٹیمپلیٹ",
+            "validation": {
+                "empty": "جب یہ ایڈیٹر خالی ہوتا ہے تو نوڈ msg.payload استعمال کرتا ہے۔",
+                "valid": "MJML ٹیمپلیٹ اچھی طرح سے تیار کردہ XML ہے۔",
+                "invalid": "MJML ٹیمپلیٹ درست XML نہیں ہے۔"
+            }
         },
         "message": {
             "status": {
-                "error": "The input message is not a string.",
-                "success": "Success"
+                "error": "ان پٹ پیغام کوئی تار نہیں ہے۔",
+                "success": "کامیابی"
             }
         }
     }

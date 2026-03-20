@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+将 MJML 编译为电子邮件的响应式 HTML 的节点。
 
-### Inputs
+### 输入
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : 节点编辑器中未配置模板时的 MJML 标记。
+: template (string) : 可选的运行时 MJML 模板（仅当编辑器模板为空时使用）。
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### 输出
 
 
-### References
+1. 标准输出
+: payload (string) : 将 MJML 解析为 HTML 以在电子邮件中使用它。
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. 标准误
+: payload (string) : 命令的标准错误。
+
+### 细节
+
+该节点可以使用 Mustache 语法（例如 `{{payload}}`）呈现占位符，类似于核心模板节点。
+
+模板源优先级：
+1. 编辑器模板（在节点中配置）
+2. `msg.template`
+3. `msg.payload`
+
+编辑器在键入时验证 XML 的格式正确性。 MJML 语义验证发生在运行时编译期间。
+
+
+### 参考
+
+- [MJML 模板](https://mjml.io/templates)
+- [MJML 文档](https://documentation.mjml.io/)
+- [Node-RED 模板节点](https://nodered.org/docs/nodes/core/template)
 </script>

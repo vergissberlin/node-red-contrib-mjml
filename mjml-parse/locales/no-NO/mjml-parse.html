@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+En node som kompilerer MJML til responsiv HTML for e-post.
 
-### Inputs
+### Innganger
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML-markering når ingen mal er konfigurert i nodeeditoren.
+: template (string) : valgfri MJML-mal for kjøretid (brukes bare når redigeringsmalen er tom).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Utganger
 
 
-### References
+1. Standard utgang
+: payload (string) : Parset MJML til HTML for å bruke det i e-poster.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Standard feil
+: payload (string) : standardfeilen til kommandoen.
+
+### Detaljer
+
+Noden kan gjengi plassholdere ved å bruke Moustache-syntaks (for eksempel `{{payload}}`), som ligner på kjernemal-noden.
+
+Malkildeprioritet:
+1. Redaktørmal (konfigurert i noden)
+2. `msg.template`
+3. `msg.payload`
+
+Redaktøren validerer XML-formen mens du skriver. MJML semantisk validering skjer under kjøretidskompilering.
+
+
+### Referanser
+
+- [MJML maler](https://mjml.io/templates)
+- [MJML dokumentasjon](https://documentation.mjml.io/)
+- [Node-RED Mal node](https://nodered.org/docs/nodes/core/template)
 </script>

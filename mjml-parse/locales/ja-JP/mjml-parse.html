@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+MJML を電子メール用のレスポンシブ HTML にコンパイルするノード。
 
-### Inputs
+### 入力
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : ノードエディターでテンプレートが設定されていない場合の MJML マークアップ。
+: template (string) : オプションのランタイム MJML テンプレート (エディター テンプレートが空の場合にのみ使用されます)。
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### 出力
 
 
-### References
+1. 標準出力
+: payload (string) : MJML を HTML に解析して電子メールで使用します。
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. 標準誤差
+: payload (string) : コマンドの標準エラー。
+
+### 詳細
+
+このノードは、コアの Template ノードと同様に、Mustache 構文 (`{{payload}}` など) を使用してプレースホルダーをレンダリングできます。
+
+テンプレートソースの優先順位:
+1. エディター テンプレート (ノード内で構成)
+2. `msg.template`
+3. `msg.payload`
+
+エディターは入力中に XML の整形式性を検証します。 MJML セマンティック検証は実行時のコンパイル中に行われます。
+
+
+### 参考文献
+
+- [MJML テンプレート](https://mjml.io/templates)
+- [MJML ドキュメント](https://documentation.mjml.io/)
+- [ノード-REDテンプレートノード](https://nodered.org/docs/nodes/core/template)
 </script>

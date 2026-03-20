@@ -4,10 +4,18 @@
             "label": "Navn",
             "placeholder": "Navn på noden"
         },
+        "template": {
+            "label": "MJML mal",
+            "validation": {
+                "empty": "Noden bruker msg.payload når denne editoren er tom.",
+                "valid": "MJML-malen er velutformet XML.",
+                "invalid": "MJML-malen er ikke gyldig XML."
+            }
+        },
         "message": {
             "status": {
-                "error": "Den innspilte meldingen er ikke en streng.",
-                "success": "Vellykket"
+                "error": "Inndatameldingen er ikke en streng.",
+                "success": "Suksess"
             }
         }
     }

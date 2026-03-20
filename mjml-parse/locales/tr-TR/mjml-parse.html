@@ -1,28 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+MJML'yi e-postalar için duyarlı HTML'ye derleyen bir düğüm.
 
-### Inputs
+### Girişler
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : Düğüm düzenleyicide hiçbir şablon yapılandırılmadığında MJML işaretlemesi.
+: template (string) : isteğe bağlı çalışma zamanı MJML şablonu (yalnızca düzenleyici şablonu boş olduğunda kullanılır).
 
-### Outputs
-
-
-1. Standard output
-: payload (string) : Parsed MJML to HTML to use it in emails.
-
-2. Standard error
-: payload (string) : the standard error of the command.
-
-### Details
-
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+### Çıkışlar
 
 
-### References
+1. Standart çıktı
+: payload (string) : E-postalarda kullanmak için MJML'yi HTML'ye ayrıştırdık.
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+2. Standart hata
+: payload (string) : komutun standart hatası.
+
+### Detaylar
+
+Düğüm, temel Şablon düğümüne benzer şekilde Mustache sözdizimini (örneğin `{{payload}}`) kullanarak yer tutucuları oluşturabilir.
+
+Şablon kaynağı önceliği:
+1. Düzenleyici şablonu (düğümde yapılandırılmıştır)
+2. `msg.template`
+3. `msg.payload`
+
+Düzenleyici, yazarken XML'in iyi biçimliliğini doğrular. MJML anlam doğrulaması çalışma zamanı derlemesi sırasında gerçekleşir.
+
+
+### Referanslar
+
+- [MJML şablonları](https://mjml.io/templates)
+- [MJML belgeleri](https://documentation.mjml.io/)
+- [Düğüm-RED Şablon düğümü](https://nodered.org/docs/nodes/core/template)
 </script>
