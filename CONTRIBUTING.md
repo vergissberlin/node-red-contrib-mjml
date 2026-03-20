@@ -1,47 +1,105 @@
 # Contributing
 
+Thanks for helping improve `@vergissberlin/node-red-contrib-mjml`.
+
+This guide explains how to:
+
+- run the node locally while developing
+- run tests and verify behavior
+- create and publish releases
+
+## Prerequisites
+
+- Node.js 20+
+- pnpm 10+
+- Git
+
 ## Local development
 
-To run Node-RED locally and test the MJML node from this repo (so code changes are picked up without publishing):
+Use a dedicated Node-RED test instance so you can iterate without publishing.
 
-1. **Clone and install**
+### 1) Install this repository
 
-   ```bash
-   pnpm install
-   pnpm link --global
-   ```
+```bash
+pnpm install
+pnpm link --global
+```
 
-2. **Create a separate Node-RED test instance** (so Node-RED loads the linked package from this repo):
+### 2) Create a separate Node-RED workspace
 
-   ```bash
-   mkdir node-red-test && cd node-red-test
-   pnpm init
-   pnpm add node-red
-   pnpm link --global @vergissberlin/node-red-contrib-mjml
-   ```
+```bash
+mkdir node-red-test
+cd node-red-test
+pnpm init
+pnpm add node-red
+pnpm link --global @vergissberlin/node-red-contrib-mjml
+```
 
-3. **Start Node-RED**
+### 3) Start Node-RED
 
-   ```bash
-   pnpm exec node-red
-   ```
+```bash
+pnpm exec node-red
+```
 
-   Open the editor (default: <http://127.0.0.1:1880>). The **mjml-parse** node is available under the MJML category and uses the sources from this repo.
+Open [http://127.0.0.1:1880](http://127.0.0.1:1880).  
+The `mjml-parse` node should appear in the palette and resolve to your local source.
 
-4. **Optional:** Use the sample flow from this repo: in the Node-RED editor, use **Menu → Import** and select `test/fixtures/flows.json` from this repo (or paste its contents).
+### 4) Import a sample flow (optional)
 
-To stop using the local package and switch back to the published one, run in your test instance:
+Import `examples/Parse node example.json` (or `test/fixtures/flows.json`) through **Menu -> Import**.
+
+### 5) Stop using the linked package
+
+When you want to switch back to the published npm version:
 
 ```bash
 pnpm unlink @vergissberlin/node-red-contrib-mjml
 pnpm add @vergissberlin/node-red-contrib-mjml
 ```
 
-## Releasing
+## Testing
 
-Releases are automated with [Release Please](https://github.com/googleapis/release-please). Use [Conventional Commits](https://www.conventionalcommits.org/) on `main`; Release Please will open and update a release PR. Merging that PR creates the GitHub release and triggers npm publish.
+### Unit tests
 
-**Required repository secrets (or env):**
+Run:
 
-- **`REPO_TOKEN`** – Optional. GitHub token for Release Please (e.g. a PAT with `repo`). If unset, the default `GITHUB_TOKEN` is used.
-- **`NPM_TOKEN`** – Required for publishing. npm access token with permission to publish `@vergissberlin/node-red-contrib-mjml`.
+```bash
+pnpm test
+```
+
+### Manual smoke test in Node-RED
+
+Recommended checks before opening a PR:
+
+1. Add `mjml-parse` node and open the edit dialog.
+2. Confirm XML highlighting/autocomplete works in the template editor.
+3. Add Mustache placeholders like `{{payload}}` and deploy.
+4. Send a test message and verify MJML compiles to HTML.
+5. Try invalid XML and confirm validation feedback appears in the editor.
+
+## Pull requests
+
+- Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `test:`, ...).
+- Keep changes focused and include tests for behavior changes.
+- Update docs/help text if the node UI or runtime behavior changes.
+
+## Release process
+
+Releases are handled by [Release Please](https://github.com/googleapis/release-please).
+
+### How it works
+
+1. Changes are merged to `main` using Conventional Commits.
+2. Release Please updates or creates a release PR with version bump + changelog.
+3. Merge the release PR.
+4. GitHub release is created and npm publishing is triggered.
+
+### Required secrets
+
+- `NPM_TOKEN` (required): npm token allowed to publish `@vergissberlin/node-red-contrib-mjml`
+- `REPO_TOKEN` (optional): custom GitHub token for Release Please; otherwise `GITHUB_TOKEN` is used
+
+### Notes
+
+- Do not publish manually unless automation is intentionally bypassed.
+- If release automation fails, fix the workflow issue and rerun the release pipeline.

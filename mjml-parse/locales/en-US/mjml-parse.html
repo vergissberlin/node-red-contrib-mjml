@@ -1,11 +1,12 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-A simple node that converts the message payloads with mjml-parse syntax into HTML.
+A node that compiles MJML into responsive HTML for emails.
 
 ### Inputs
 
-: payload (string) :  the payload of the message in mlml markup.
+: payload (string) : MJML markup when no template is configured in the node editor.
+: template (string) : optional runtime MJML template (used only when the editor template is empty).
 
 ### Outputs
 
@@ -18,11 +19,19 @@ A simple node that converts the message payloads with mjml-parse syntax into HTM
 
 ### Details
 
-`msg.payload` is used to parse it from MJML to HTML. You should use a standard template with HTML syntax highlighting to transmit the payoad.
+The node can render placeholders using Mustache syntax (for example `{{payload}}`), similar to the core Template node.
+
+Template source priority:
+1. Editor template (configured in the node)
+2. `msg.template`
+3. `msg.payload`
+
+The editor validates XML well-formedness while typing. MJML semantic validation happens during runtime compilation.
 
 
 ### References
 
-- [Here](https://mjml.io/templates) your can find some sample responsive email templates,
-- and [here](https://documentation.mjml.io/) you can find the documentation of MJML.
+- [MJML templates](https://mjml.io/templates)
+- [MJML documentation](https://documentation.mjml.io/)
+- [Node-RED Template node](https://nodered.org/docs/nodes/core/template)
 </script>

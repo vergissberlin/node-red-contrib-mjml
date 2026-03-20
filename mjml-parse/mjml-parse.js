@@ -1,4 +1,5 @@
 const mjml2html = require('mjml');
+const { renderMustacheTemplate } = require('./mustache-render');
 
 module.exports = function (RED) {
     const options = {
@@ -11,33 +12,50 @@ module.exports = function (RED) {
     function MjmlParseNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
-        node.on('input', function (msg) {
+        node.template = config.template || '';
+
+        node.on('input', async function (msg, send, done) {
+            send = send || function () { node.send.apply(node, arguments); };
+            done = done || function (err) { if (err) { node.error(err, msg); } };
             let msgError = RED._("mjmlParse.message.status.error");
+            let templateSource = node.template;
+
+            if (!templateSource && typeof msg.template === 'string') {
+                templateSource = msg.template;
+            }
+
+            if (!templateSource) {
+                templateSource = msg.payload;
+            }
+
             // Check if the message is a string
-            if (typeof msg.payload !== "string") {
+            if (typeof templateSource !== "string") {
                 node.status({fill: "red", shape: "ring", text: msgError})
                 // Send the error
-                node.error(msgError);
+                done(msgError);
+                return;
             }
 
             // Catch errors
             try {
-                const result = mjml2html(msg.payload, options);
+                const resolvedTemplate = await renderMustacheTemplate(RED, node, msg, templateSource);
+                const result = mjml2html(resolvedTemplate, options);
                 // Check if the result is valid
                 if (result.errors.length > 0) {
                     node.status({fill: "red", shape: "ring", text: "node-red:common.status.error"})
                     // Send the error
-                    node.error(result.errors);
+                    done(result.errors);
                 } else {
                     node.status({fill: "green", shape: "ring", text: "node-red:common.status.ok"})
                     // Send the result
                     msg.payload = result.html;
-                    node.send(msg);
+                    send(msg);
+                    done();
                 }
             } catch (error) {
                 node.status({fill: "red", shape: "ring", text: msgError})
                 // Send the error
-                node.error(error.message);
+                done(error.message);
             }
         });
     }

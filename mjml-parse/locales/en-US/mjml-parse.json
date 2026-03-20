@@ -4,6 +4,14 @@
             "label": "Name",
             "placeholder": "Name of the node"
         },
+        "template": {
+            "label": "MJML template",
+            "validation": {
+                "empty": "The node uses msg.payload when this editor is empty.",
+                "valid": "MJML template is well-formed XML.",
+                "invalid": "MJML template is not valid XML."
+            }
+        },
         "message": {
             "status": {
                 "error": "The input message is not a string.",

@@ -130,6 +130,22 @@ The node `mjml-parse` is a NodeRED node that parses your MJML template and outpu
 
 ![Example flow](docs/flow.png)
 
+## MJML editor and placeholders
+
+The `mjml-parse` node now includes an MJML editor in the node configuration dialog:
+
+- XML syntax highlighting with inline XML well-formedness validation
+- MJML tag autocomplete for common components
+- Mustache placeholders (for example `{{payload}}`, `{{topic}}`, `{{flow.myValue}}`, `{{global.myValue}}`, `{{env.MY_KEY}}`) similar to the Node-RED Template node
+
+Template source priority at runtime:
+
+1. Template configured in the node editor
+2. `msg.template`
+3. `msg.payload`
+
+MJML semantic validation is still handled by the MJML compiler during runtime.
+
 ## Further reading
 
 - [MJML documentation](https://documentation.mjml.io)

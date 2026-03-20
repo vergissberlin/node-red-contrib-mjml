@@ -4,6 +4,14 @@
             "label": "Name",
             "placeholder": "Anzeigename des Knotens"
         },
+        "template": {
+            "label": "MJML-Vorlage",
+            "validation": {
+                "empty": "Wenn dieses Feld leer ist, verwendet der Node msg.payload.",
+                "valid": "Die MJML-Vorlage ist wohlgeformtes XML.",
+                "invalid": "Die MJML-Vorlage ist kein valides XML."
+            }
+        },
         "message": {
             "status": {
                 "error": "Die Eingabenachricht ist keine Zeichenkette.\nBitte überprüfen Sie Ihre Eingaben.",

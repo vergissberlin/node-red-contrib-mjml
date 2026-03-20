@@ -3,13 +3,164 @@
         category: 'parser',
         color: '#f46d4c',
         defaults: {
-            name: {value: ""}
+            name: {value: ""},
+            template: {value: ""}
         },
         inputs: 1,
         outputs: 1,
         icon: "mjml.svg",
         label: function () {
             return this.name || "mjml-parse";
+        },
+        oneditprepare: function () {
+            var node = this;
+            var stateId = RED.editor.generateViewStateId("node", this, "template");
+            var tagsEndpoint = "resources/@vergissberlin/node-red-contrib-mjml/mjml-parse/resources/mjml-tags.json";
+            var fallbackTags = ["mjml", "mj-head", "mj-body", "mj-section", "mj-column", "mj-text", "mj-image", "mj-button"];
+            var validationTimer = null;
+
+            node.editor = RED.editor.createEditor({
+                id: 'node-input-template-editor',
+                mode: 'ace/mode/xml',
+                stateId: stateId,
+                value: $("#node-input-template").val()
+            });
+
+            node.editor.setOptions({
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true
+            });
+
+            function parseLineColumn(message) {
+                var match = /line\s+(\d+).*column\s+(\d+)/i.exec(message);
+                if (!match) {
+                    return null;
+                }
+                return {
+                    row: Math.max(0, parseInt(match[1], 10) - 1),
+                    column: Math.max(0, parseInt(match[2], 10) - 1)
+                };
+            }
+
+            function validateXml() {
+                var editorValue = node.editor.getValue() || "";
+                var xmlForValidation = editorValue.replace(/\{\{\{?[\s\S]*?\}?\}\}/g, "mjml_placeholder");
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(xmlForValidation, "application/xml");
+                var parserError = doc.querySelector("parsererror");
+                var session = node.editor.getSession();
+                var indicator = $("#node-mjml-xml-validation");
+
+                session.clearAnnotations();
+
+                if (!editorValue.trim()) {
+                    indicator.text(RED._("mjmlParse.template.validation.empty")).css("color", "");
+                    return;
+                }
+
+                if (!parserError) {
+                    indicator.text(RED._("mjmlParse.template.validation.valid")).css("color", "#2e7d32");
+                    return;
+                }
+
+                var message = parserError.textContent.replace(/\s+/g, " ").trim();
+                var location = parseLineColumn(message);
+                if (location) {
+                    session.setAnnotations([{
+                        row: location.row,
+                        column: location.column,
+                        text: RED._("mjmlParse.template.validation.invalid"),
+                        type: "error"
+                    }]);
+                }
+
+                indicator.text(RED._("mjmlParse.template.validation.invalid") + " " + message).css("color", "#c62828");
+            }
+
+            function scheduleValidation() {
+                if (validationTimer) {
+                    clearTimeout(validationTimer);
+                }
+                validationTimer = setTimeout(validateXml, 300);
+            }
+
+            function attachCompleter(tags) {
+                var langTools = ace.require("ace/ext/language_tools");
+                if (!langTools) {
+                    return;
+                }
+
+                var completer = {
+                    getCompletions: function (editor, session, pos, prefix, callback) {
+                        var line = session.getLine(pos.row).slice(0, pos.column);
+                        if (!/<\/?mj[-\w]*$/i.test(line)) {
+                            callback(null, []);
+                            return;
+                        }
+
+                        callback(null, tags.map(function (tag) {
+                            return {
+                                caption: "<" + tag + ">",
+                                value: tag,
+                                meta: "mjml"
+                            };
+                        }));
+                    }
+                };
+
+                langTools.addCompleter(completer);
+            }
+
+            fetch(tagsEndpoint)
+                .then(function (response) { return response.ok ? response.json() : { tags: fallbackTags }; })
+                .then(function (data) { attachCompleter((data && data.tags) || fallbackTags); })
+                .catch(function () { attachCompleter(fallbackTags); });
+
+            node.editor.getSession().on("change", scheduleValidation);
+            scheduleValidation();
+
+            RED.popover.tooltip($("#node-template-expand-editor"), RED._("node-red:common.label.expand"));
+            $("#node-template-expand-editor").on("click", function (e) {
+                e.preventDefault();
+                var value = node.editor.getValue();
+                node.editor.saveView();
+                RED.editor.editText({
+                    mode: "xml",
+                    value: value,
+                    stateId: stateId,
+                    width: "Infinity",
+                    focus: true,
+                    complete: function (v) {
+                        node.editor.setValue(v, -1);
+                        setTimeout(function () {
+                            node.editor.restoreView();
+                            node.editor.focus();
+                        }, 250);
+                    }
+                });
+            });
+        },
+        oneditsave: function () {
+            $("#node-input-template").val(this.editor.getValue());
+            this.editor.destroy();
+            delete this.editor;
+        },
+        oneditcancel: function () {
+            this.editor.destroy();
+            delete this.editor;
+        },
+        oneditresize: function (size) {
+            var rows = $("#dialog-form>div:not(.node-text-editor-row)");
+            var height = $("#dialog-form").height();
+            for (var i = 0; i < rows.length; i++) {
+                height -= $(rows[i]).outerHeight(true);
+            }
+            var editorRow = $("#dialog-form>div.node-text-editor-row");
+            height -= (parseInt(editorRow.css("marginTop"), 10) + parseInt(editorRow.css("marginBottom"), 10));
+            $("#node-input-template-editor").css("height", height + "px");
+            if (this.editor) {
+                this.editor.resize();
+            }
         }
     });
 </script>
@@ -18,5 +169,18 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="mjmlParse.name.label"></span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]mjmlParse.name.placeholder" >
+    </div>
+    <div class="form-row node-text-editor-row">
+        <label for="node-input-template"><i class="fa fa-code"></i> <span data-i18n="mjmlParse.template.label"></span></label>
+        <input type="hidden" id="node-input-template">
+        <div style="position: relative; height: 320px;">
+            <div id="node-input-template-editor" style="position: absolute; inset: 0;"></div>
+        </div>
+        <button id="node-template-expand-editor" class="editor-button editor-button-small" style="position:absolute; right:0; margin-right:4px; margin-top:4px;">
+            <i class="fa fa-expand"></i>
+        </button>
+    </div>
+    <div class="form-row">
+        <div id="node-mjml-xml-validation" class="form-tips" data-i18n="mjmlParse.template.validation.empty"></div>
     </div>
 </script>
