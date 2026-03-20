@@ -135,7 +135,7 @@ The node `mjml-parse` is a NodeRED node that parses your MJML template and outpu
 The `mjml-parse` node now includes an MJML editor in the node configuration dialog:
 
 - XML syntax highlighting with inline XML well-formedness validation
-- MJML tag and attribute autocomplete (catalog derived from the VS Code MJML grammar)
+- MJML tag autocomplete and tag-specific attribute autocomplete (catalog generated from installed MJML component metadata)
 - Mustache placeholders (for example `{{payload}}`, `{{topic}}`, `{{flow.myValue}}`, `{{global.myValue}}`, `{{env.MY_KEY}}`) similar to the Node-RED Template node
 - Starter template dropdown with built-in templates (including a Node-RED inspired layout)
 - Live HTML preview in the Node-RED right sidebar (Info/Debug area) rendered by a Node-RED admin endpoint
@@ -179,6 +179,14 @@ Starter templates and i18n notes:
 - If you add or rename a starter template, update both the JSON resource and locale keys, then run tests.
 
 Autocomplete source reference:
+
+- Generated from `mjml-preset-core` component metadata (`componentName`, `allowedAttributes`) into `mjml-parse/resources/mjml-tags.json`
+- Helper tags for editor UX (`mj-all`, `mj-class`, `mj-include`) are retained from the VS Code MJML grammar
+- Regenerate after MJML upgrades with:
+
+```bash
+pnpm run generate:mjml-tags
+```
 
 - [MJML.tmLanguage](https://raw.githubusercontent.com/mjmlio/vscode-mjml/refs/heads/master/syntaxes/MJML.tmLanguage)
 

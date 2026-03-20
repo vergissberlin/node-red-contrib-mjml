@@ -533,10 +533,47 @@
                 node._mjmlPreviewTimer = previewTimer;
             }
 
-            function attachCompleter(tags, attributes) {
+            function attachCompleter(tags, attributes, tagAttributes) {
                 var langTools = ace.require("ace/ext/language_tools");
                 if (!langTools) {
                     return;
+                }
+
+                function unique(values) {
+                    var seen = {};
+                    return (values || []).filter(function (value) {
+                        if (!value || seen[value]) {
+                            return false;
+                        }
+                        seen[value] = true;
+                        return true;
+                    });
+                }
+
+                function findOpenTag(lineBeforeCursor) {
+                    var stack = [];
+                    var matcher = /<\/?([a-zA-Z][\w:-]*)\b[^>]*>/g;
+                    var match;
+                    while ((match = matcher.exec(lineBeforeCursor)) !== null) {
+                        var token = match[0];
+                        var name = (match[1] || "").toLowerCase();
+                        var isClosing = /^<\//.test(token);
+                        var isSelfClosing = /\/>$/.test(token);
+                        if (isClosing) {
+                            stack.pop();
+                        } else if (!isSelfClosing) {
+                            stack.push(name);
+                        }
+                    }
+                    return stack.length ? stack[stack.length - 1] : null;
+                }
+
+                function getTagAtAttributeContext(lineBeforeCursor) {
+                    var openTagMatch = lineBeforeCursor.match(/<([a-zA-Z][\w:-]*)\b[^>]*$/);
+                    if (openTagMatch && openTagMatch[1]) {
+                        return openTagMatch[1].toLowerCase();
+                    }
+                    return findOpenTag(lineBeforeCursor);
                 }
 
                 var completer = {
@@ -553,7 +590,12 @@
                                 };
                             });
                         } else if (/<\w[\w-]*\s+[^>]*$/i.test(line) && !/=\s*["'][^"']*$/.test(line)) {
-                            suggestions = attributes.map(function (attr) {
+                            var activeTag = getTagAtAttributeContext(line);
+                            var contextAttributes = activeTag && tagAttributes && Array.isArray(tagAttributes[activeTag])
+                                ? tagAttributes[activeTag]
+                                : [];
+                            var mergedAttributes = unique(contextAttributes.concat(attributes || []));
+                            suggestions = mergedAttributes.map(function (attr) {
                                 return {
                                     caption: attr + '=""',
                                     value: attr + '=""',
@@ -579,10 +621,11 @@
                 .then(function (data) {
                     attachCompleter(
                         (data && data.tags) || fallbackTags,
-                        (data && data.attributes) || fallbackAttributes
+                        (data && data.attributes) || fallbackAttributes,
+                        (data && data.tagAttributes) || {}
                     );
                 })
-                .catch(function () { attachCompleter(fallbackTags, fallbackAttributes); });
+                .catch(function () { attachCompleter(fallbackTags, fallbackAttributes, {}); });
 
             node.editor.getSession().on("change", function () {
                 scheduleValidation();

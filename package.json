@@ -37,6 +37,7 @@
         "test:before": "npm i node-red --no-save",
         "test": "mocha --timeout 5000 \"test/**/*_spec.js\"",
         "dev": "node_modules/.bin/node-red -f ./test/fixtures/flows.json",
+        "generate:mjml-tags": "node scripts/generate-mjml-tags.js",
         "update": "./node_modules/.bin/ncu -u && pnpm install",
         "release:patch": "npm version patch && git push && git push --tags && pnpm release:create",
         "release:minor": "npm version minor && git push && git push --tags && pnpm release:create",
