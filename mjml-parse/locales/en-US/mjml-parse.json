@@ -32,6 +32,8 @@
             "none": "No starter template",
             "simpleEmail": "Simple email",
             "nodeRedStyle": "Node-RED style email",
+            "chartsReport": "Charts report",
+            "minimalAnnouncement": "Minimal announcement",
             "confirmReplace": "Replace the current editor content with the selected starter template?",
             "confirmTitle": "Replace template",
             "confirmAction": "Replace",

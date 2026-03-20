@@ -148,6 +148,8 @@ The editor includes a **Starter template** dropdown with:
 
 - `Simple email`: a clean one-column transactional layout
 - `Node-RED style email`: a dark, Node-RED inspired layout for flow notifications
+- `Charts report`: an email-safe KPI report with chart-like progress bars and a metric table
+- `Minimal announcement`: a lightweight, headline-first broadcast template
 
 How it works:
 

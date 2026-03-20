@@ -35,7 +35,9 @@
             "confirmReplace": "Den aktuellen Editorinhalt durch die gewählte Startervorlage ersetzen?",
             "confirmTitle": "Vorlage ersetzen",
             "confirmAction": "Ersetzen",
-            "confirmCancel": "Abbrechen"
+            "confirmCancel": "Abbrechen",
+            "chartsReport": "Charts report",
+            "minimalAnnouncement": "Minimal announcement"
         }
     }
 }

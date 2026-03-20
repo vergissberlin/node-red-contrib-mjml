@@ -35,7 +35,9 @@
             "confirmReplace": "Replace the current editor content with the selected starter template?",
             "confirmTitle": "Replace template",
             "confirmAction": "Replace",
-            "confirmCancel": "Cancel"
+            "confirmCancel": "Cancel",
+            "chartsReport": "Charts report",
+            "minimalAnnouncement": "Minimal announcement"
         }
     }
 }

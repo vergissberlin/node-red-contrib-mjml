@@ -32,6 +32,8 @@
             "none": "Keine Startervorlage",
             "simpleEmail": "Einfache E-Mail",
             "nodeRedStyle": "Node-RED-Stil E-Mail",
+            "chartsReport": "Charts Report",
+            "minimalAnnouncement": "Minimal-Ankündigung",
             "confirmReplace": "Den aktuellen Editorinhalt durch die gewählte Startervorlage ersetzen?",
             "confirmTitle": "Vorlage ersetzen",
             "confirmAction": "Ersetzen",
