@@ -4,6 +4,7 @@
   "packages": {
     ".": {}
   },
+  "patch-update-types": ["chore", "fix", "perf", "refactor", "docs", "test", "ci", "build"],
   "changelog-sections": [
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
