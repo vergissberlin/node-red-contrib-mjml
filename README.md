@@ -141,6 +141,8 @@ The `mjml-parse` node now includes an MJML editor in the node configuration dial
 - Starter template dropdown with built-in templates (including a Node-RED inspired layout)
 - Live HTML preview in the Node-RED right sidebar (Info/Debug area) rendered by a Node-RED admin endpoint
 
+Node-RED 3+ uses **Monaco** as the default code editor in the node editor; older setups may still use **Ace**. This node integrates with both: diagnostics use Monaco model markers and line decorations, or Ace session annotations and full-line markers, depending on what `RED.editor.createEditor()` returns. To force Ace, set `editorTheme.codeEditor.lib` to `"ace"` in your Node-RED `settings.js` (see [Node-RED documentation](https://nodered.org/docs/user-guide/runtime/configuration)).
+
 ![MJML editor](docs/editor.png)
 
 ### Using starter templates

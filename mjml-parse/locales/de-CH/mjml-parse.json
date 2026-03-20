@@ -8,7 +8,7 @@
             "label": "MJML-Vorlage",
             "validation": {
                 "empty": "Der Knoten verwendet msg.payload, wenn dieser Editor leer ist.",
-                "valid": "Die MJML-Vorlage ist wohlgeformtes XML.",
+                "valid": "Die MJML-Vorlage ist valides XML.",
                 "invalid": "Die MJML-Vorlage ist kein gültiges XML."
             },
             "beautify": "Beautify XML"

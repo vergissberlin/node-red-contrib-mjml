@@ -1,5 +1,6 @@
 const mjml2html = require('mjml');
 const { renderMustacheTemplate } = require('./mustache-render');
+const { buildPreviewPayload } = require('./preview-payload');
 
 module.exports = function (RED) {
     const options = {
@@ -23,44 +24,7 @@ module.exports = function (RED) {
 
         try {
             const result = mjml2html(template, options);
-            const hasErrors = Array.isArray(result.errors) && result.errors.length > 0;
-            const validationErrors = hasErrors
-                ? result.errors.map(function (error) {
-                    if (typeof error === 'string') {
-                        return {
-                            message: error
-                        };
-                    }
-
-                    return {
-                        message: (error && (error.message || error.formattedMessage)) || JSON.stringify(error),
-                        line: error && typeof error.line === 'number' ? error.line : undefined,
-                        column: error && typeof error.line === 'number' && typeof error.tagNameLine === 'number'
-                            ? error.tagNameLine
-                            : undefined,
-                        tagName: error && typeof error.tagName === 'string' ? error.tagName : undefined,
-                        formattedMessage: error && error.formattedMessage ? error.formattedMessage : undefined
-                    };
-                })
-                : [];
-            const normalizedErrors = hasErrors
-                ? result.errors.map(function (error) {
-                    if (typeof error === 'string') {
-                        return error;
-                    }
-                    if (error && error.formattedMessage) {
-                        return error.formattedMessage;
-                    }
-                    return JSON.stringify(error);
-                })
-                : [];
-
-            res.status(200).json({
-                ok: !hasErrors,
-                html: result.html || '',
-                errors: normalizedErrors,
-                validationErrors: validationErrors
-            });
+            res.status(200).json(buildPreviewPayload(result));
         } catch (error) {
             res.status(500).json({
                 ok: false,

@@ -67,6 +67,13 @@ Run:
 pnpm test
 ```
 
+This runs Mocha on `test/**/*_spec.js`, including:
+
+- `test/mjml-parse_spec.js` — Node-RED node + admin `/mjml-parse/preview` HTTP integration tests
+- `test/preview-payload_spec.js` — pure unit tests for `mjml-parse/preview-payload.js` (MJML error normalization for editor diagnostics)
+
+The browser editor (Monaco/Ace) is not covered by automated tests here; validate that in the manual checklist below.
+
 ### Manual smoke test in Node-RED
 
 Recommended checks before opening a PR:

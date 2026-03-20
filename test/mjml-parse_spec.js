@@ -1,7 +1,7 @@
+const assert = require("assert");
 const helper = require("node-red-node-test-helper");
 const MjmlParseNode = require("../mjml-parse/mjml-parse.js");
 const fs = require("fs");
-const assert = require("assert");
 const path = require("path");
 const mjml2html = require("mjml");
 
@@ -116,6 +116,9 @@ describe('mjml-parse Node', function () {
                         res.body.should.have.property("ok", true);
                         res.body.should.have.property("html");
                         res.body.html.should.containEql("Preview OK");
+                        res.body.should.have.property("validationErrors");
+                        res.body.validationErrors.should.be.Array();
+                        res.body.validationErrors.length.should.eql(0);
                         done();
                     } catch (assertionError) {
                         done(assertionError);
@@ -169,6 +172,10 @@ describe('mjml-parse Node', function () {
                         res.body.validationErrors.should.be.Array();
                         res.body.validationErrors.length.should.be.above(0);
                         res.body.validationErrors[0].should.have.property("message");
+                        var first = res.body.validationErrors[0];
+                        if (typeof first.line === "number") {
+                            assert.ok(first.line >= 0, "validationErrors[].line should be >= 0 when present");
+                        }
                         done();
                     } catch (assertionError) {
                         done(assertionError);

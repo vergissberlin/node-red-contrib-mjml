@@ -15,8 +15,6 @@
         oneditprepare: function () {
             var node = this;
             var stateId = RED.editor.generateViewStateId("node", this, "template");
-            var tagsEndpoint = "resources/@vergissberlin/node-red-contrib-mjml/mjml-parse/resources/mjml-tags.json";
-            var templatesEndpoint = "resources/@vergissberlin/node-red-contrib-mjml/mjml-parse/resources/mjml-templates.json";
             var adminRoot = (RED.settings.httpAdminRoot || "/").replace(/\/?$/, "/");
             var previewEndpoint = adminRoot + "mjml-parse/preview";
             var fallbackTags = ["mjml", "mj-head", "mj-body", "mj-section", "mj-column", "mj-text", "mj-image", "mj-button"];
@@ -50,10 +48,10 @@
             var lastPreviewTemplate = null;
             var sidebarPreviewTabId = "mjml-parse-preview";
             var sidebarPreviewContentId = "mjml-parse-sidebar-preview-content";
-            var popupPreviewWindow = null;
             var supportsSidebarPreview = false;
             node._mjmlPreviewAbortController = null;
             node._mjmlPreviewTimer = null;
+            node._mjmlPopupPreviewWindow = null;
 
             node.editor = RED.editor.createEditor({
                 id: 'node-input-template-editor',
@@ -63,8 +61,31 @@
             });
 
             if (!node.editor || typeof node.editor.getValue !== "function") {
-                $("#node-mjml-preview-status").text("Editor initialization failed.").css("color", "#c62828");
+                RED.notify("MJML editor initialization failed.", "error");
                 return;
+            }
+
+            function ensureLintMarkerStyle() {
+                if (document.getElementById("mjml-lint-marker-style")) {
+                    return;
+                }
+                var style = document.createElement("style");
+                style.id = "mjml-lint-marker-style";
+                style.textContent =
+                    ".ace_marker-layer .mjml-lint-line-error { position: absolute; background: rgba(198, 40, 40, 0.18); }" +
+                    ".monaco-editor .view-overlays .mjml-lint-line-error { background: rgba(198, 40, 40, 0.22); }";
+                document.head.appendChild(style);
+            }
+            ensureLintMarkerStyle();
+
+            /**
+             * Node-RED 3+ defaults to Monaco for RED.editor.createEditor().
+             * The wrapper exposes getSession() === editor, but without Ace session.setAnnotations.
+             * Use monaco.editor.setModelMarkers + deltaDecorations instead.
+             */
+            function isMonacoEditor() {
+                return typeof window !== "undefined" && window.monaco && node.editor
+                    && typeof node.editor.getModel === "function";
             }
 
             if (typeof node.editor.setOptions === "function") {
@@ -117,6 +138,34 @@
                 return fallback.length ? fallback.last() : fallback;
             }
 
+            function getAllXmlValidationElements() {
+                var inVisibleDialog = $("#dialog-form:visible #node-mjml-xml-validation");
+                if (inVisibleDialog.length) {
+                    return inVisibleDialog;
+                }
+                return $("#node-mjml-xml-validation");
+            }
+
+            function setValidationIndicator(state, details) {
+                var indicators = getAllXmlValidationElements();
+                if (!indicators.length) {
+                    return;
+                }
+                if (state === "empty") {
+                    indicators.text(resolveI18n("mjmlParse.template.validation.empty", "The node uses msg.payload when this editor is empty.")).css("color", "");
+                    return;
+                }
+                if (state === "valid") {
+                    indicators.text(resolveI18n("mjmlParse.template.validation.valid", "MJML template is well-formed XML.")).css("color", "#2e7d32");
+                    return;
+                }
+                var message = resolveI18n("mjmlParse.template.validation.invalid", "MJML template is not valid XML.");
+                if (details) {
+                    message += " " + details;
+                }
+                indicators.text(message).css("color", "#c62828");
+            }
+
 
             function findXmlMismatchLocation(source) {
                 var lines = (source || "").split(/\r?\n/);
@@ -161,23 +210,212 @@
                 return null;
             }
 
+            function getCursorFallbackLocation() {
+                try {
+                    var cursor = node.editor && typeof node.editor.getCursorPosition === "function"
+                        ? node.editor.getCursorPosition()
+                        : null;
+                    return {
+                        row: cursor && typeof cursor.row === "number" ? Math.max(0, cursor.row) : 0,
+                        column: cursor && typeof cursor.column === "number" ? Math.max(0, cursor.column) : 0
+                    };
+                } catch (error) {
+                    return { row: 0, column: 0 };
+                }
+            }
+
             var xmlAnnotations = [];
             var mjmlAnnotations = [];
+            var xmlMarkerIds = [];
+            var mjmlMarkerIds = [];
+
+            function getAceSession() {
+                if (!node.editor || typeof node.editor.getSession !== "function") {
+                    return null;
+                }
+                var session = node.editor.getSession();
+                if (!session || typeof session.setAnnotations !== "function") {
+                    return null;
+                }
+                return session;
+            }
+
+            function clearAceLineMarkers(markerIds) {
+                var session = getAceSession();
+                if (!session || typeof session.removeMarker !== "function") {
+                    return [];
+                }
+                (markerIds || []).forEach(function (id) {
+                    try {
+                        session.removeMarker(id);
+                    } catch (error) {
+                        // Ignore stale marker ids.
+                    }
+                });
+                return [];
+            }
+
+            function applyRowHighlights(annotations, markerIds, cssClass) {
+                if (isMonacoEditor() && typeof node.editor.deltaDecorations === "function") {
+                    var model = node.editor.getModel();
+                    if (!model || (typeof model.isDisposed === "function" && model.isDisposed())) {
+                        return [];
+                    }
+                    var RangeCtor = window.monaco && window.monaco.Range;
+                    if (!RangeCtor) {
+                        return markerIds || [];
+                    }
+                    var previousIds = Array.isArray(markerIds) ? markerIds : [];
+                    var newDecorations = (annotations || []).reduce(function (accumulator, annotation) {
+                        var row = annotation && typeof annotation.row === "number" ? Math.max(0, annotation.row) : null;
+                        if (row === null) {
+                            return accumulator;
+                        }
+                        var lineNumber = row + 1;
+                        var maxColumn = 1;
+                        try {
+                            maxColumn = Math.max(1, model.getLineMaxColumn(lineNumber));
+                        } catch (error) {
+                            maxColumn = 1;
+                        }
+                        accumulator.push({
+                            range: new RangeCtor(lineNumber, 1, lineNumber, maxColumn),
+                            options: {
+                                isWholeLine: true,
+                                className: cssClass
+                            }
+                        });
+                        return accumulator;
+                    }, []);
+                    return node.editor.deltaDecorations(previousIds, newDecorations);
+                }
+
+                var session = getAceSession();
+                if (!session || typeof session.addMarker !== "function") {
+                    return markerIds || [];
+                }
+                if (typeof ace === "undefined" || !ace.require) {
+                    return markerIds || [];
+                }
+                var Range = ace.require("ace/range").Range;
+                if (!Range) {
+                    return markerIds || [];
+                }
+
+                var nextMarkerIds = clearAceLineMarkers(markerIds);
+                (annotations || []).forEach(function (annotation) {
+                    var row = annotation && typeof annotation.row === "number" ? Math.max(0, annotation.row) : null;
+                    if (row === null) {
+                        return;
+                    }
+                    var lineLength = 1;
+                    if (typeof session.getLine === "function") {
+                        var lineContent = session.getLine(row);
+                        lineLength = Math.max(1, (lineContent || "").length);
+                    }
+                    var markerId = session.addMarker(
+                        new Range(row, 0, row, lineLength),
+                        cssClass,
+                        "fullLine",
+                        false
+                    );
+                    if (typeof markerId === "number") {
+                        nextMarkerIds.push(markerId);
+                    }
+                });
+                return nextMarkerIds;
+            }
 
             function applyEditorAnnotations() {
-                var session = node.editor.getSession();
-                session.setAnnotations(xmlAnnotations.concat(mjmlAnnotations));
+                var combined = xmlAnnotations.concat(mjmlAnnotations);
+                if (isMonacoEditor()) {
+                    var model = node.editor.getModel();
+                    if (!model || (typeof model.isDisposed === "function" && model.isDisposed())) {
+                        return;
+                    }
+                    var monacoMarkers = combined.map(function (annotation) {
+                        var row = annotation && typeof annotation.row === "number" ? Math.max(0, annotation.row) : 0;
+                        var col = annotation && typeof annotation.column === "number" ? Math.max(0, annotation.column) : 0;
+                        var lineNumber = row + 1;
+                        var startColumn = col + 1;
+                        var endLineNumber = annotation && typeof annotation.endRow === "number"
+                            ? Math.max(0, annotation.endRow) + 1
+                            : lineNumber;
+                        var endColumn;
+                        if (annotation && typeof annotation.endColumn === "number") {
+                            endColumn = Math.max(1, annotation.endColumn + 1);
+                        } else {
+                            try {
+                                endColumn = Math.max(1, model.getLineMaxColumn(lineNumber));
+                            } catch (error) {
+                                endColumn = startColumn + 1;
+                            }
+                        }
+                        var severity = window.monaco.MarkerSeverity
+                            ? window.monaco.MarkerSeverity.Error
+                            : 8;
+                        return {
+                            severity: severity,
+                            startLineNumber: lineNumber,
+                            startColumn: startColumn,
+                            endLineNumber: endLineNumber,
+                            endColumn: endColumn,
+                            message: (annotation && annotation.text) || ""
+                        };
+                    });
+                    window.monaco.editor.setModelMarkers(model, "mjml-parse", monacoMarkers);
+                    return;
+                }
+
+                var aceSession = getAceSession();
+                if (!aceSession) {
+                    return;
+                }
+                aceSession.setAnnotations(combined);
             }
 
             function setXmlAnnotations(annotations) {
                 xmlAnnotations = Array.isArray(annotations) ? annotations : [];
+                xmlMarkerIds = applyRowHighlights(xmlAnnotations, xmlMarkerIds, "mjml-lint-line-error");
+                node._mjmlMonacoXmlDecoIds = xmlMarkerIds;
                 applyEditorAnnotations();
             }
 
             function setMjmlAnnotations(annotations) {
                 mjmlAnnotations = Array.isArray(annotations) ? annotations : [];
+                mjmlMarkerIds = applyRowHighlights(mjmlAnnotations, mjmlMarkerIds, "mjml-lint-line-error");
+                node._mjmlMonacoMjmlDecoIds = mjmlMarkerIds;
                 applyEditorAnnotations();
             }
+
+            function clearEditorLintVisuals() {
+                if (isMonacoEditor() && node.editor) {
+                    var model = node.editor.getModel();
+                    if (model && (typeof model.isDisposed !== "function" || !model.isDisposed())) {
+                        window.monaco.editor.setModelMarkers(model, "mjml-parse", []);
+                    }
+                    if (typeof node.editor.deltaDecorations === "function") {
+                        var allDecos = [].concat(
+                            node._mjmlMonacoXmlDecoIds || [],
+                            node._mjmlMonacoMjmlDecoIds || []
+                        );
+                        node.editor.deltaDecorations(allDecos, []);
+                    }
+                    node._mjmlMonacoXmlDecoIds = [];
+                    node._mjmlMonacoMjmlDecoIds = [];
+                    xmlMarkerIds = [];
+                    mjmlMarkerIds = [];
+                } else {
+                    xmlMarkerIds = clearAceLineMarkers(xmlMarkerIds);
+                    mjmlMarkerIds = clearAceLineMarkers(mjmlMarkerIds);
+                    var aceSession = getAceSession();
+                    if (aceSession && typeof aceSession.clearAnnotations === "function") {
+                        aceSession.clearAnnotations();
+                    }
+                }
+            }
+
+            node._mjmlClearEditorLint = clearEditorLintVisuals;
 
             function validateXml() {
                 var editorValue = node.editor.getValue() || "";
@@ -185,17 +423,15 @@
                 var parser = new DOMParser();
                 var doc = parser.parseFromString(xmlForValidation, "application/xml");
                 var parserError = doc.querySelector("parsererror");
-                var indicator = getXmlValidationElement();
-
                 if (!editorValue.trim()) {
                     setXmlAnnotations([]);
-                    indicator.text(RED._("mjmlParse.template.validation.empty")).css("color", "");
+                    setValidationIndicator("empty");
                     return;
                 }
 
                 if (!parserError) {
                     setXmlAnnotations([]);
-                    indicator.text(RED._("mjmlParse.template.validation.valid")).css("color", "#2e7d32");
+                    setValidationIndicator("valid");
                     return;
                 }
 
@@ -213,16 +449,17 @@
                         type: "error"
                     });
                 } else {
+                    var xmlFallbackLocation = getCursorFallbackLocation();
                     annotations.push({
-                        row: 0,
-                        column: 0,
+                        row: xmlFallbackLocation.row,
+                        column: xmlFallbackLocation.column,
                         text: message || RED._("mjmlParse.template.validation.invalid"),
                         type: "error"
                     });
                 }
                 setXmlAnnotations(annotations);
 
-                indicator.text(RED._("mjmlParse.template.validation.invalid") + " " + message).css("color", "#c62828");
+                setValidationIndicator("invalid", message);
             }
 
             function scheduleValidation() {
@@ -279,20 +516,7 @@
                     resetPicker();
                 }
 
-                fetch(templatesEndpoint)
-                    .then(function (response) {
-                        if (!response.ok) {
-                            throw new Error("Template list could not be loaded.");
-                        }
-                        return response.json();
-                    })
-                    .then(function (payload) {
-                        var templates = payload && Array.isArray(payload.templates) ? payload.templates : [];
-                        renderOptions(templates.length ? templates : fallbackTemplates);
-                    })
-                    .catch(function () {
-                        renderOptions(fallbackTemplates);
-                    });
+                renderOptions(fallbackTemplates);
 
                 function applyTemplate(mjmlTemplate) {
                     var formattedTemplate = beautifyXml(mjmlTemplate) || mjmlTemplate;
@@ -507,15 +731,15 @@
             }
 
             function ensurePopupPreviewWindow() {
-                if (popupPreviewWindow && !popupPreviewWindow.closed) {
-                    return popupPreviewWindow;
+                if (node._mjmlPopupPreviewWindow && !node._mjmlPopupPreviewWindow.closed) {
+                    return node._mjmlPopupPreviewWindow;
                 }
-                popupPreviewWindow = window.open("", "mjml-parse-preview-window");
-                if (!popupPreviewWindow) {
+                node._mjmlPopupPreviewWindow = window.open("", "mjml-parse-preview-window");
+                if (!node._mjmlPopupPreviewWindow) {
                     return null;
                 }
-                popupPreviewWindow.document.title = resolveI18n("mjmlParse.preview.label", "MJML preview");
-                return popupPreviewWindow;
+                node._mjmlPopupPreviewWindow.document.title = resolveI18n("mjmlParse.preview.label", "MJML preview");
+                return node._mjmlPopupPreviewWindow;
             }
 
             function setPopupPreviewHtml(html) {
@@ -621,9 +845,10 @@
                                     type: "error"
                                 });
                             } else if (errors.length) {
+                                var mjmlFallbackLocation = getCursorFallbackLocation();
                                 annotations.push({
-                                    row: 0,
-                                    column: 0,
+                                    row: mjmlFallbackLocation.row,
+                                    column: mjmlFallbackLocation.column,
                                     text: errors[0],
                                     type: "error"
                                 });
@@ -637,8 +862,12 @@
                         }
 
                         setMjmlAnnotations(annotations);
-                        if (html) {
+                        if (errors.length) {
+                            setValidationIndicator("invalid", errors[0]);
                             return;
+                        }
+                        if (!xmlAnnotations.length) {
+                            setValidationIndicator("valid");
                         }
                     })
                     .fail(function (jqXHR, textStatus) {
@@ -673,9 +902,10 @@
                                     type: "error"
                                 });
                             } else if (errors.length) {
+                                var mjmlFailFallbackLocation = getCursorFallbackLocation();
                                 annotations.push({
-                                    row: 0,
-                                    column: 0,
+                                    row: mjmlFailFallbackLocation.row,
+                                    column: mjmlFailFallbackLocation.column,
                                     text: errors[0],
                                     type: "error"
                                 });
@@ -683,6 +913,10 @@
                         }
                         setMjmlAnnotations(annotations);
                         setSidebarPreviewHtml("");
+                        var details = errors.length
+                            ? errors[0]
+                            : ((jqXHR && jqXHR.statusText) || "Preview request failed.");
+                        setValidationIndicator("invalid", details);
                     });
             }
 
@@ -777,21 +1011,17 @@
                 langTools.addCompleter(completer);
             }
 
-            fetch(tagsEndpoint)
-                .then(function (response) { return response.ok ? response.json() : { tags: fallbackTags, attributes: fallbackAttributes }; })
-                .then(function (data) {
-                    attachCompleter(
-                        (data && data.tags) || fallbackTags,
-                        (data && data.attributes) || fallbackAttributes,
-                        (data && data.tagAttributes) || {}
-                    );
-                })
-                .catch(function () { attachCompleter(fallbackTags, fallbackAttributes, {}); });
+            attachCompleter(fallbackTags, fallbackAttributes, {});
 
-            node.editor.getSession().on("change", function () {
-                scheduleValidation();
-                schedulePreview();
-            });
+            var changeTarget = node.editor && typeof node.editor.getSession === "function"
+                ? node.editor.getSession()
+                : node.editor;
+            if (changeTarget && typeof changeTarget.on === "function") {
+                changeTarget.on("change", function () {
+                    scheduleValidation();
+                    schedulePreview();
+                });
+            }
             supportsSidebarPreview = ensureSidebarPreviewTab();
             setupTemplatePicker();
             scheduleValidation();
@@ -838,12 +1068,16 @@
                 this._mjmlPreviewAbortController.abort();
                 this._mjmlPreviewAbortController = null;
             }
-            if (popupPreviewWindow && !popupPreviewWindow.closed) {
-                popupPreviewWindow.close();
-                popupPreviewWindow = null;
+            if (typeof this._mjmlClearEditorLint === "function") {
+                this._mjmlClearEditorLint();
+            }
+            if (this._mjmlPopupPreviewWindow && !this._mjmlPopupPreviewWindow.closed) {
+                this._mjmlPopupPreviewWindow.close();
+                this._mjmlPopupPreviewWindow = null;
             }
             this.editor.destroy();
             delete this.editor;
+            delete this._mjmlClearEditorLint;
         },
         oneditcancel: function () {
             if (this._mjmlPreviewTimer) {
@@ -854,12 +1088,16 @@
                 this._mjmlPreviewAbortController.abort();
                 this._mjmlPreviewAbortController = null;
             }
-            if (popupPreviewWindow && !popupPreviewWindow.closed) {
-                popupPreviewWindow.close();
-                popupPreviewWindow = null;
+            if (typeof this._mjmlClearEditorLint === "function") {
+                this._mjmlClearEditorLint();
+            }
+            if (this._mjmlPopupPreviewWindow && !this._mjmlPopupPreviewWindow.closed) {
+                this._mjmlPopupPreviewWindow.close();
+                this._mjmlPopupPreviewWindow = null;
             }
             this.editor.destroy();
             delete this.editor;
+            delete this._mjmlClearEditorLint;
         },
         oneditresize: function (size) {
             var rows = $("#dialog-form>div:not(.node-text-editor-row)");
@@ -888,6 +1126,9 @@
         <label for="node-input-template-picker"><i class="fa fa-copy"></i> <span data-i18n="mjmlParse.templates.label"></span></label>
         <select id="node-input-template-picker" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-keeper-ignore="true"></select>
     </div>
+    <div class="form-row">
+        <div id="node-mjml-xml-validation" class="form-tips" data-i18n="mjmlParse.template.validation.empty"></div>
+    </div>
     <div class="form-row node-text-editor-row">
         <label for="node-input-template"><i class="fa fa-code"></i> <span data-i18n="mjmlParse.template.label"></span></label>
         <input type="hidden" id="node-input-template" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-keeper-ignore="true">
@@ -902,8 +1143,5 @@
                 </button>
             </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div id="node-mjml-xml-validation" class="form-tips" data-i18n="mjmlParse.template.validation.empty"></div>
     </div>
 </script>
