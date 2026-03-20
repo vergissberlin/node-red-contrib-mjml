@@ -48,7 +48,7 @@
         "mustache": "4.2.0"
     },
     "devDependencies": {
-        "express": "4.22.1",
+        "express": "5.2.1",
         "mocha": "11.7.5",
         "node-red": "2.2.2",
         "node-red-node-email": "5.2.1",
