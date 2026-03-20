@@ -1,6 +1,5 @@
 # node-red-contrib-mjml
 
-[![Socket Badge](https://badge.socket.dev/npm/package/@vergissberlin/node-red-contrib-mjml/1.3.0)](https://badge.socket.dev/npm/package/@vergissberlin/node-red-contrib-mjml/1.3.0)
 [![NPM monthly downloads](https://img.shields.io/npm/dm/@vergissberlin/node-red-contrib-mjml.svg)](https://www.npmjs.com/package/@vergissberlin/node-red-contrib-mjml)
 [![Crowdin](https://badges.crowdin.net/node-red-contrib-mjml/localized.svg)](https://crowdin.com/project/node-red-contrib-mjml)
 [![GitHub issues](https://img.shields.io/github/issues/vergissberlin/node-red-contrib-mjml)](https://github.com/vergissberlin/node-red-contrib-mjml/issues)
