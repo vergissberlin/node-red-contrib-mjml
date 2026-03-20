@@ -1,4 +1,5 @@
 {
+  "source": "https://raw.githubusercontent.com/mjmlio/vscode-mjml/refs/heads/master/syntaxes/MJML.tmLanguage",
   "tags": [
     "mjml",
     "mj-head",
@@ -34,5 +35,24 @@
     "mj-accordion-element",
     "mj-accordion-title",
     "mj-accordion-text"
+  ],
+  "attributes": [
+    "id",
+    "css-class",
+    "background-color",
+    "color",
+    "font-family",
+    "font-size",
+    "font-weight",
+    "align",
+    "padding",
+    "href",
+    "src",
+    "width",
+    "height",
+    "name",
+    "content",
+    "line-height",
+    "letter-spacing"
   ]
 }

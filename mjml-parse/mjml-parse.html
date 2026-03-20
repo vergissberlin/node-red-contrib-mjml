@@ -17,6 +17,7 @@
             var stateId = RED.editor.generateViewStateId("node", this, "template");
             var tagsEndpoint = "resources/@vergissberlin/node-red-contrib-mjml/mjml-parse/resources/mjml-tags.json";
             var fallbackTags = ["mjml", "mj-head", "mj-body", "mj-section", "mj-column", "mj-text", "mj-image", "mj-button"];
+            var fallbackAttributes = ["id", "css-class", "background-color", "color", "font-family", "font-size", "align", "padding", "href", "src"];
             var validationTimer = null;
 
             node.editor = RED.editor.createEditor({
@@ -84,7 +85,7 @@
                 validationTimer = setTimeout(validateXml, 300);
             }
 
-            function attachCompleter(tags) {
+            function attachCompleter(tags, attributes) {
                 var langTools = ace.require("ace/ext/language_tools");
                 if (!langTools) {
                     return;
@@ -93,18 +94,32 @@
                 var completer = {
                     getCompletions: function (editor, session, pos, prefix, callback) {
                         var line = session.getLine(pos.row).slice(0, pos.column);
-                        if (!/<\/?mj[-\w]*$/i.test(line)) {
+                        var suggestions = [];
+
+                        if (/<\/?mj[-\w]*$/i.test(line)) {
+                            suggestions = tags.map(function (tag) {
+                                return {
+                                    caption: "<" + tag + ">",
+                                    value: tag,
+                                    meta: "mjml-tag"
+                                };
+                            });
+                        } else if (/<\w[\w-]*\s+[^>]*$/i.test(line) && !/=\s*["'][^"']*$/.test(line)) {
+                            suggestions = attributes.map(function (attr) {
+                                return {
+                                    caption: attr + '=""',
+                                    value: attr + '=""',
+                                    meta: "mjml-attr"
+                                };
+                            });
+                        }
+
+                        if (!suggestions.length) {
                             callback(null, []);
                             return;
                         }
 
-                        callback(null, tags.map(function (tag) {
-                            return {
-                                caption: "<" + tag + ">",
-                                value: tag,
-                                meta: "mjml"
-                            };
-                        }));
+                        callback(null, suggestions);
                     }
                 };
 
@@ -112,9 +127,14 @@
             }
 
             fetch(tagsEndpoint)
-                .then(function (response) { return response.ok ? response.json() : { tags: fallbackTags }; })
-                .then(function (data) { attachCompleter((data && data.tags) || fallbackTags); })
-                .catch(function () { attachCompleter(fallbackTags); });
+                .then(function (response) { return response.ok ? response.json() : { tags: fallbackTags, attributes: fallbackAttributes }; })
+                .then(function (data) {
+                    attachCompleter(
+                        (data && data.tags) || fallbackTags,
+                        (data && data.attributes) || fallbackAttributes
+                    );
+                })
+                .catch(function () { attachCompleter(fallbackTags, fallbackAttributes); });
 
             node.editor.getSession().on("change", scheduleValidation);
             scheduleValidation();
