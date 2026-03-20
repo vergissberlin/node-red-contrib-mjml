@@ -75,6 +75,24 @@ describe('mjml-parse Node', function () {
         });
     });
 
+    it('should not send a message when template source is not a string', function (done) {
+        var flow = [{id: "n1", type: "mjml-parse", template: "", wires: [["n2"]]},
+        {id: "n2", type: "helper"}];
+
+        helper.load(MjmlParseNode, flow, function () {
+            var n2 = helper.getNode("n2");
+            var n1 = helper.getNode("n1");
+
+            n2.on("input", function () {
+                done(new Error("should not send a message"));
+            });
+            n1.receive({payload: { not: "a string" }});
+            setTimeout(function () {
+                done();
+            }, 100);
+        });
+    });
+
     it('should use msg.template when editor template is empty', function (done) {
         var flow = [{id: "n1", type: "mjml-parse", template: "", wires: [["n2"]]},
         {id: "n2", type: "helper"}];
@@ -119,6 +137,27 @@ describe('mjml-parse Node', function () {
                         res.body.should.have.property("validationErrors");
                         res.body.validationErrors.should.be.Array();
                         res.body.validationErrors.length.should.eql(0);
+                        done();
+                    } catch (assertionError) {
+                        done(assertionError);
+                    }
+                });
+        });
+    });
+
+    it("should reject preview when template field is not a string", function (done) {
+        helper.load(MjmlParseNode, [], function () {
+            helper.request()
+                .post("/mjml-parse/preview")
+                .send({template: 12345})
+                .expect(400)
+                .end(function (err, res) {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
+                    try {
+                        res.body.should.have.property("ok", false);
                         done();
                     } catch (assertionError) {
                         done(assertionError);

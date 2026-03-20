@@ -136,7 +136,7 @@ The `mjml-parse` node now includes an MJML editor in the node configuration dial
 
 - XML syntax highlighting with inline XML well-formedness validation
 - Inline MJML compiler error highlighting in the editor (line/column markers for semantic MJML issues)
-- MJML tag autocomplete and tag-specific attribute autocomplete (catalog generated from installed MJML component metadata)
+- MJML tag autocomplete and tag-specific attribute autocomplete when the editor uses **Ace** (Monaco does not load the Ace language-tools completer; diagnostics still work)
 - Mustache placeholders (for example `{{payload}}`, `{{topic}}`, `{{flow.myValue}}`, `{{global.myValue}}`, `{{env.MY_KEY}}`) similar to the Node-RED Template node
 - Starter template dropdown with built-in templates (including a Node-RED inspired layout)
 - Live HTML preview in the Node-RED right sidebar (Info/Debug area) rendered by a Node-RED admin endpoint
@@ -176,6 +176,7 @@ Preview notes:
 
 - The preview compiles the current editor content on the server side and updates while you type.
 - The preview uses MJML compilation only and does not evaluate flow context values or Mustache placeholders.
+- The preview endpoint (`POST …/mjml-parse/preview`) is registered on the Node-RED admin API and is protected with `RED.auth.needsPermission('flows.read')` when authentication is enabled (same model as other admin configuration endpoints in the [Node-RED cookbook](https://github.com/node-red/cookbook.nodered.org/wiki/Create-an-admin-configuration-API-endpoint)). Unauthenticated requests are rejected when admin auth is required.
 
 Starter templates and i18n notes:
 

@@ -10,34 +10,56 @@ module.exports = function (RED) {
         ignoreIncludes: true  // Mitigate CVE-2020-12827 (mj-include path traversal)
     };
 
-    RED.httpAdmin.post('/mjml-parse/preview', function (req, res) {
-        const template = req && req.body && typeof req.body.template === 'string' ? req.body.template : '';
-
-        if (!template.trim()) {
-            res.status(400).json({
-                ok: false,
-                html: '',
-                errors: ['Template is empty.']
-            });
-            return;
+    /**
+     * When Node-RED authentication is enabled, require a logged-in editor session.
+     * Preview is read-only compilation of the current editor buffer (flows.read).
+     * Falls back to pass-through when RED.auth is unavailable (e.g. some test harnesses).
+     */
+    function needsPermissionOrPass(permission) {
+        if (RED.auth && typeof RED.auth.needsPermission === 'function') {
+            return RED.auth.needsPermission(permission);
         }
+        return function allowPreviewWithoutAuthMiddleware(req, res, next) {
+            next();
+        };
+    }
 
-        try {
-            const result = mjml2html(template, options);
-            res.status(200).json(buildPreviewPayload(result));
-        } catch (error) {
-            res.status(500).json({
-                ok: false,
-                html: '',
-                errors: [error && error.message ? error.message : 'Preview rendering failed.']
-            });
+    RED.httpAdmin.post(
+        '/mjml-parse/preview',
+        needsPermissionOrPass('flows.read'),
+        function (req, res) {
+            const template = req && req.body && typeof req.body.template === 'string' ? req.body.template : '';
+
+            if (!template.trim()) {
+                res.status(400).json({
+                    ok: false,
+                    html: '',
+                    errors: ['Template is empty.']
+                });
+                return;
+            }
+
+            try {
+                const result = mjml2html(template, options);
+                res.status(200).json(buildPreviewPayload(result));
+            } catch (error) {
+                res.status(500).json({
+                    ok: false,
+                    html: '',
+                    errors: [error && error.message ? error.message : 'Preview rendering failed.']
+                });
+            }
         }
-    });
+    );
 
     function MjmlParseNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
         node.template = config.template || '';
+
+        node.on('close', function () {
+            // No timers or sockets to dispose; placeholder for future cleanup.
+        });
 
         node.on('input', async function (msg, send, done) {
             send = send || function () { node.send.apply(node, arguments); };

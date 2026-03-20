@@ -896,6 +896,9 @@
             }
 
             function attachCompleter(tags, attributes, tagAttributes) {
+                if (typeof ace === "undefined" || typeof ace.require !== "function") {
+                    return;
+                }
                 var langTools = ace.require("ace/ext/language_tools");
                 if (!langTools) {
                     return;
@@ -1108,4 +1111,31 @@
             </div>
         </div>
     </div>
+</script>
+
+<script type="text/html" data-help-name="mjml-parse">
+    <p>Compiles <a href="https://mjml.io" target="_blank" rel="noopener noreferrer">MJML</a> to responsive HTML for email.</p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">string</span></dt>
+        <dd>Used as MJML source when the configured template is empty and <code>msg.template</code> is not set.</dd>
+        <dt class="optional">template <span class="property-type">string</span></dt>
+        <dd>Optional override when the node template property is empty.</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">string</span></dt>
+        <dd>Compiled HTML output from MJML.</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>
+        Mustache placeholders are supported (for example <code>{{payload}}</code>, <code>{{topic}}</code>, and flow/global context).
+        Runtime compilation uses the same MJML options as the editor preview (MJML validation only; placeholders are not evaluated in preview).
+    </p>
+    <p>
+        If MJML reports validation issues, the node completes with an error (suitable for Catch nodes). If Mustache rendering fails, the error message is passed to <code>done(err)</code>.
+    </p>
 </script>

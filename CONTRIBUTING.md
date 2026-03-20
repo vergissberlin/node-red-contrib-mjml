@@ -70,7 +70,10 @@ pnpm test
 This runs Mocha on `test/**/*_spec.js`, including:
 
 - `test/mjml-parse_spec.js` — Node-RED node + admin `/mjml-parse/preview` HTTP integration tests
+- `test/mjml-parse-admin-auth_spec.js` — isolated tests for `RED.auth.needsPermission('flows.read')` on the preview route (mock `RED` object)
 - `test/preview-payload_spec.js` — pure unit tests for `mjml-parse/preview-payload.js` (MJML error normalization for editor diagnostics)
+
+The `devDependency` on `node-red` pins the version used by `node-red-node-test-helper`. After changing editor or admin HTTP behavior, also smoke-test on Node-RED 3.x/4.x (Monaco default) if you can.
 
 The browser editor (Monaco/Ace) is not covered by automated tests here; validate that in the manual checklist below.
 
@@ -79,7 +82,7 @@ The browser editor (Monaco/Ace) is not covered by automated tests here; validate
 Recommended checks before opening a PR:
 
 1. Add `mjml-parse` node and open the edit dialog.
-2. Confirm XML highlighting/autocomplete works in the template editor.
+2. Confirm XML highlighting works; tag autocomplete appears when the editor uses Ace (Monaco may not load the Ace completer).
 3. Add Mustache placeholders like `{{payload}}` and deploy.
 4. Send a test message and verify MJML compiles to HTML.
 5. Try invalid XML and confirm validation feedback appears in the editor.
