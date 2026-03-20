@@ -11,7 +11,8 @@
                 "valid": "Το πρότυπο MJML είναι καλά διαμορφωμένο XML.",
                 "invalid": "Το πρότυπο MJML δεν είναι έγκυρο XML."
             },
-            "hintOverride": "Όταν αυτός ο επεξεργαστής περιέχει MJML, το msg.payload.message αντικαθίσταται."
+            "hintOverride": "Όταν αυτός ο επεξεργαστής περιέχει MJML, το msg.payload.message αντικαθίσταται.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Προεπισκόπηση MJML",
@@ -25,6 +26,16 @@
                 "error": "Το μήνυμα εισαγωγής δεν είναι συμβολοσειρά.",
                 "success": "Επιτυχία"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

@@ -77,6 +77,21 @@ Recommended checks before opening a PR:
 4. Send a test message and verify MJML compiles to HTML.
 5. Try invalid XML and confirm validation feedback appears in the editor.
 
+### Starter templates checklist
+
+If your change adds or updates editor starter templates, run this checklist:
+
+1. Edit `mjml-parse/resources/mjml-templates.json`.
+2. Keep template `id` values stable and unique.
+3. Add or update matching labels in `mjmlParse.templates.*` across all `mjml-parse/locales/*/mjml-parse.json` files.
+4. Ensure each template compiles with the same MJML options used by `mjml-parse` (`validationLevel: "soft"`, `ignoreIncludes: true`).
+5. Verify UI behavior in Node-RED:
+   - Template dropdown loads correctly.
+   - Selecting `No starter template` does not change editor content.
+   - Selecting a starter inserts MJML into the editor.
+   - Replacement confirmation appears when the editor is not empty.
+6. Run `pnpm test` and confirm starter-template tests pass.
+
 ## Pull requests
 
 - Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `test:`, ...).

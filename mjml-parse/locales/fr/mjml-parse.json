@@ -11,7 +11,8 @@
                 "valid": "Le modèle MJML est un XML bien formé.",
                 "invalid": "Le modèle MJML n'est pas un XML valide."
             },
-            "hintOverride": "Quand cet éditeur contient du MJML, msg.payload.message est écrasé."
+            "hintOverride": "Quand cet éditeur contient du MJML, msg.payload.message est écrasé.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Aperçu MJML",
@@ -25,6 +26,16 @@
                 "error": "Le message d'entrée n'est pas une chaîne.",
                 "success": "Succès"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

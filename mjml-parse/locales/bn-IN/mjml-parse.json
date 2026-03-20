@@ -11,7 +11,8 @@
                 "valid": "MJML টেমপ্লেট সুগঠিত XML।",
                 "invalid": "MJML টেমপ্লেট বৈধ XML নয়।"
             },
-            "hintOverride": "এই এডিটরে MJML থাকলে, msg.payload.message ওভাররাইট হয়।"
+            "hintOverride": "এই এডিটরে MJML থাকলে, msg.payload.message ওভাররাইট হয়।",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML প্রিভিউ",
@@ -25,6 +26,16 @@
                 "error": "ইনপুট বার্তা একটি স্ট্রিং নয়।",
                 "success": "সফলতা"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

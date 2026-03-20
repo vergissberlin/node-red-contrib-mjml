@@ -11,7 +11,8 @@
                 "valid": "MJML predložak je dobro oblikovan XML.",
                 "invalid": "MJML predložak nije važeći XML."
             },
-            "hintOverride": "Kad ovaj editor sadrži MJML, msg.payload.message se prepisuje."
+            "hintOverride": "Kad ovaj editor sadrži MJML, msg.payload.message se prepisuje.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML pretpregled",
@@ -25,6 +26,16 @@
                 "error": "Ulazna poruka nije niz.",
                 "success": "Uspjeh"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

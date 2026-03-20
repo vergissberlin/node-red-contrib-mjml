@@ -11,7 +11,8 @@
                 "valid": "قالب MJML عبارة عن XML جيد التصميم.",
                 "invalid": "قالب MJML ليس XML صالحًا."
             },
-            "hintOverride": "عندما يحتوي هذا المحرر على MJML، يتم استبدال msg.payload.message."
+            "hintOverride": "عندما يحتوي هذا المحرر على MJML، يتم استبدال msg.payload.message.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "معاينة MJML",
@@ -25,6 +26,16 @@
                 "error": "رسالة الإدخال ليست سلسلة.",
                 "success": "نجاح"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

@@ -11,7 +11,8 @@
                 "valid": "MJML-sjabloon is goed opgemaakte XML.",
                 "invalid": "MJML-sjabloon is geen geldige XML."
             },
-            "hintOverride": "Wanneer deze editor MJML bevat, wordt msg.payload.message overschreven."
+            "hintOverride": "Wanneer deze editor MJML bevat, wordt msg.payload.message overschreven.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML-voorbeeld",
@@ -25,6 +26,16 @@
                 "error": "Het invoerbericht is geen tekenreeks.",
                 "success": "Succes"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

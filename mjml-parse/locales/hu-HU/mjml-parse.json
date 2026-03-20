@@ -11,7 +11,8 @@
                 "valid": "Az MJML sablon jól formázott XML.",
                 "invalid": "Az MJML-sablon nem érvényes XML."
             },
-            "hintOverride": "Ha ez a szerkesztő MJML-t tartalmaz, a msg.payload.message felülíródik."
+            "hintOverride": "Ha ez a szerkesztő MJML-t tartalmaz, a msg.payload.message felülíródik.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML előnézet",
@@ -25,6 +26,16 @@
                 "error": "A bemeneti üzenet nem karakterlánc.",
                 "success": "Siker"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

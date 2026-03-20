@@ -11,7 +11,8 @@
                 "valid": "MJML шаблонът е добре оформен XML.",
                 "invalid": "MJML шаблонът не е валиден XML."
             },
-            "hintOverride": "Когато този редактор съдържа MJML, msg.payload.message се презаписва."
+            "hintOverride": "Когато този редактор съдържа MJML, msg.payload.message се презаписва.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Преглед на MJML",
@@ -25,6 +26,16 @@
                 "error": "Входното съобщение не е низ.",
                 "success": "Успех"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

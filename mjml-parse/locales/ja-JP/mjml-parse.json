@@ -11,7 +11,8 @@
                 "valid": "MJML テンプレートは整形式の XML です。",
                 "invalid": "MJML テンプレートは有効な XML ではありません。"
             },
-            "hintOverride": "このエディターにMJMLが含まれると、msg.payload.message は上書きされます。"
+            "hintOverride": "このエディターにMJMLが含まれると、msg.payload.message は上書きされます。",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJMLプレビュー",
@@ -25,6 +26,16 @@
                 "error": "入力メッセージは文字列ではありません。",
                 "success": "成功"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

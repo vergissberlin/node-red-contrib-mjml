@@ -137,9 +137,27 @@ The `mjml-parse` node now includes an MJML editor in the node configuration dial
 - XML syntax highlighting with inline XML well-formedness validation
 - MJML tag and attribute autocomplete (catalog derived from the VS Code MJML grammar)
 - Mustache placeholders (for example `{{payload}}`, `{{topic}}`, `{{flow.myValue}}`, `{{global.myValue}}`, `{{env.MY_KEY}}`) similar to the Node-RED Template node
+- Starter template dropdown with built-in templates (including a Node-RED inspired layout)
 - Live HTML preview in the Node-RED right sidebar (Info/Debug area) rendered by a Node-RED admin endpoint
 
 ![MJML editor](docs/editor.png)
+
+### Using starter templates
+
+The editor includes a **Starter template** dropdown with:
+
+- `Simple email`: a clean one-column transactional layout
+- `Node-RED style email`: a dark, Node-RED inspired layout for flow notifications
+
+How it works:
+
+1. Open the dropdown and choose a starter template.
+2. If the editor already contains content, confirm replacement.
+3. The selected template is inserted into the editor and validated immediately.
+4. The dropdown resets to `No starter template` after insertion.
+
+Both starters are intentionally small and can be customized quickly (colors, CTA text, sections, placeholder names).
+The structures are inspired by common MJML template patterns from the official gallery, but implemented as original templates in this project.
 
 Template source priority at runtime:
 
@@ -153,6 +171,12 @@ Preview notes:
 
 - The preview compiles the current editor content on the server side and updates while you type.
 - The preview uses MJML compilation only and does not evaluate flow context values or Mustache placeholders.
+
+Starter templates and i18n notes:
+
+- Template definitions are stored in `mjml-parse/resources/mjml-templates.json`.
+- UI labels are localized via `mjmlParse.templates.*` in `mjml-parse/locales/*/mjml-parse.json`.
+- If you add or rename a starter template, update both the JSON resource and locale keys, then run tests.
 
 Autocomplete source reference:
 

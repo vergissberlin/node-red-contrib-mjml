@@ -11,7 +11,8 @@
                 "valid": "Die MJML-Vorlage ist wohlgeformtes XML.",
                 "invalid": "Die MJML-Vorlage ist kein gültiges XML."
             },
-            "hintOverride": "Wenn dieser Editor MJML enthält, wird msg.payload.message überschrieben."
+            "hintOverride": "Wenn dieser Editor MJML enthält, wird msg.payload.message überschrieben.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML-Vorschau",
@@ -25,6 +26,16 @@
                 "error": "Die Eingabenachricht ist keine Zeichenfolge.",
                 "success": "Erfolg"
             }
+        },
+        "templates": {
+            "label": "Startervorlage",
+            "none": "Keine Startervorlage",
+            "simpleEmail": "Einfache E-Mail",
+            "nodeRedStyle": "Node-RED-Stil E-Mail",
+            "confirmReplace": "Den aktuellen Editorinhalt durch die gewählte Startervorlage ersetzen?",
+            "confirmTitle": "Vorlage ersetzen",
+            "confirmAction": "Ersetzen",
+            "confirmCancel": "Abbrechen"
         }
     }
 }

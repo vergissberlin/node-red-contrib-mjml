@@ -11,7 +11,8 @@
                 "valid": "Šablona MJML je dobře vytvořený XML.",
                 "invalid": "Šablona MJML není platný XML."
             },
-            "hintOverride": "Když tento editor obsahuje MJML, msg.payload.message se přepíše."
+            "hintOverride": "Když tento editor obsahuje MJML, msg.payload.message se přepíše.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Náhled MJML",
@@ -25,6 +26,16 @@
                 "error": "Vstupní zpráva není řetězec.",
                 "success": "Úspěch"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

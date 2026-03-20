@@ -11,7 +11,8 @@
                 "valid": "תבנית MJML היא XML מעוצבת היטב.",
                 "invalid": "תבנית MJML אינה XML חוקית."
             },
-            "hintOverride": "כאשר עורך זה מכיל MJML, msg.payload.message נדרס."
+            "hintOverride": "כאשר עורך זה מכיל MJML, msg.payload.message נדרס.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "תצוגה מקדימה של MJML",
@@ -25,6 +26,16 @@
                 "error": "הודעת הקלט אינה מחרוזת.",
                 "success": "הַצלָחָה"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

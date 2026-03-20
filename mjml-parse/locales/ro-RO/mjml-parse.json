@@ -11,7 +11,8 @@
                 "valid": "Șablonul MJML este XML bine format.",
                 "invalid": "Șablonul MJML nu este XML valid."
             },
-            "hintOverride": "Când acest editor conține MJML, msg.payload.message este suprascris."
+            "hintOverride": "Când acest editor conține MJML, msg.payload.message este suprascris.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Previzualizare MJML",
@@ -25,6 +26,16 @@
                 "error": "Mesajul de intrare nu este un șir.",
                 "success": "Succes"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

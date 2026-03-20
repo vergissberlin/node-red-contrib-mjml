@@ -11,7 +11,8 @@
                 "valid": "MJML şablonu iyi biçimlendirilmiş XML'dir.",
                 "invalid": "MJML şablonu geçerli XML değil."
             },
-            "hintOverride": "Bu düzenleyici MJML içerdiğinde msg.payload.message üzerine yazılır."
+            "hintOverride": "Bu düzenleyici MJML içerdiğinde msg.payload.message üzerine yazılır.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML önizleme",
@@ -25,6 +26,16 @@
                 "error": "Giriş mesajı bir dize değil.",
                 "success": "Başarı"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

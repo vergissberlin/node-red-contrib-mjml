@@ -11,7 +11,8 @@
                 "valid": "Шаблон MJML — це добре сформований XML.",
                 "invalid": "Шаблон MJML не є дійсним XML."
             },
-            "hintOverride": "Коли цей редактор містить MJML, msg.payload.message перезаписується."
+            "hintOverride": "Коли цей редактор містить MJML, msg.payload.message перезаписується.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Попередній перегляд MJML",
@@ -25,6 +26,16 @@
                 "error": "Вхідне повідомлення не є рядком.",
                 "success": "Успіх"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

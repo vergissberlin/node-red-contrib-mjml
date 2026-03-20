@@ -11,7 +11,8 @@
                 "valid": "एमजेएमएल टेम्पलेट अच्छी तरह से निर्मित एक्सएमएल है।",
                 "invalid": "एमजेएमएल टेम्पलेट वैध एक्सएमएल नहीं है."
             },
-            "hintOverride": "जब इस एडिटर में MJML होता है, तो msg.payload.message ओवरराइट हो जाता है।"
+            "hintOverride": "जब इस एडिटर में MJML होता है, तो msg.payload.message ओवरराइट हो जाता है।",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML प्रीव्यू",
@@ -25,6 +26,16 @@
                 "error": "इनपुट संदेश एक स्ट्रिंग नहीं है.",
                 "success": "सफलता"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

@@ -11,7 +11,8 @@
                 "valid": "MJML skabelon er veludformet XML.",
                 "invalid": "MJML-skabelonen er ikke gyldig XML."
             },
-            "hintOverride": "Når denne editor indeholder MJML, overskrives msg.payload.message."
+            "hintOverride": "Når denne editor indeholder MJML, overskrives msg.payload.message.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML-forhåndsvisning",
@@ -25,6 +26,16 @@
                 "error": "Indtastningsmeddelelsen er ikke en streng.",
                 "success": "Succes"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

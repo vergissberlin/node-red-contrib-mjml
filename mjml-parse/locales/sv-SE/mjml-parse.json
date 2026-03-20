@@ -11,7 +11,8 @@
                 "valid": "MJML-mall är välformad XML.",
                 "invalid": "MJML-mallen är inte giltig XML."
             },
-            "hintOverride": "När den här editorn innehåller MJML skrivs msg.payload.message över."
+            "hintOverride": "När den här editorn innehåller MJML skrivs msg.payload.message över.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML-förhandsvisning",
@@ -25,6 +26,16 @@
                 "error": "Inmatningsmeddelandet är inte en sträng.",
                 "success": "Framgång"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

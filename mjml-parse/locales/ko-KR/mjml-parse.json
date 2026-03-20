@@ -11,7 +11,8 @@
                 "valid": "MJML 템플릿은 올바른 형식의 XML입니다.",
                 "invalid": "MJML 템플릿은 유효한 XML이 아닙니다."
             },
-            "hintOverride": "이 편집기에 MJML이 있으면 msg.payload.message가 덮어써집니다."
+            "hintOverride": "이 편집기에 MJML이 있으면 msg.payload.message가 덮어써집니다.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML 미리보기",
@@ -25,6 +26,16 @@
                 "error": "입력 메시지가 문자열이 아닙니다.",
                 "success": "성공"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

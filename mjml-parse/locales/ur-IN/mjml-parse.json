@@ -11,7 +11,8 @@
                 "valid": "MJML ٹیمپلیٹ اچھی طرح سے تیار کردہ XML ہے۔",
                 "invalid": "MJML ٹیمپلیٹ درست XML نہیں ہے۔"
             },
-            "hintOverride": "جب اس ایڈیٹر میں MJML ہو تو msg.payload.message اووررائٹ ہو جاتا ہے۔"
+            "hintOverride": "جب اس ایڈیٹر میں MJML ہو تو msg.payload.message اووررائٹ ہو جاتا ہے۔",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML پیش نظارہ",
@@ -25,6 +26,16 @@
                 "error": "ان پٹ پیغام کوئی تار نہیں ہے۔",
                 "success": "کامیابی"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

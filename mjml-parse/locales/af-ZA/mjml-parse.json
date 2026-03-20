@@ -11,7 +11,8 @@
                 "valid": "MJML sjabloon is goed gevormde XML.",
                 "invalid": "MJML-sjabloon is nie geldige XML nie."
             },
-            "hintOverride": "As hierdie redigeerder MJML bevat, word msg.payload.message oorskryf."
+            "hintOverride": "As hierdie redigeerder MJML bevat, word msg.payload.message oorskryf.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML-voorskou",
@@ -25,6 +26,16 @@
                 "error": "Die invoerboodskap is nie 'n string nie.",
                 "success": "Sukses"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

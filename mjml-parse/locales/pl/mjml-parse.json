@@ -11,7 +11,8 @@
                 "valid": "Szablon MJML jest dobrze sformułowanym formatem XML.",
                 "invalid": "Szablon MJML nie jest prawidłowym formatem XML."
             },
-            "hintOverride": "Gdy ten edytor zawiera MJML, msg.payload.message zostaje nadpisane."
+            "hintOverride": "Gdy ten edytor zawiera MJML, msg.payload.message zostaje nadpisane.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Podgląd MJML",
@@ -25,6 +26,16 @@
                 "error": "Komunikat wejściowy nie jest ciągiem.",
                 "success": "Sukces"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

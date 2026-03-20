@@ -3,6 +3,7 @@ const MjmlParseNode = require("../mjml-parse/mjml-parse.js");
 const fs = require("fs");
 const assert = require("assert");
 const path = require("path");
+const mjml2html = require("mjml");
 
 describe('mjml-parse Node', function () {
     let testMjmlValid;
@@ -150,9 +151,9 @@ describe('mjml-parse Node', function () {
         var deDe = JSON.parse(fs.readFileSync(__dirname + "/../mjml-parse/locales/de-DE/mjml-parse.json", "utf8"));
         var deCh = JSON.parse(fs.readFileSync(__dirname + "/../mjml-parse/locales/de-CH/mjml-parse.json", "utf8"));
 
-        assert.strictEqual(deDe.mjmlParse.preview.label, "HTML-Vorschau");
+        assert.strictEqual(deDe.mjmlParse.preview.label, "MJML-Vorschau");
         assert.strictEqual(deDe.mjmlParse.preview.loading, "Vorschau wird gerendert...");
-        assert.strictEqual(deCh.mjmlParse.preview.label, "HTML-Vorschau");
+        assert.strictEqual(deCh.mjmlParse.preview.label, "MJML-Vorschau");
         assert.strictEqual(deCh.mjmlParse.preview.loading, "Vorschau wird gerendert...");
     });
 
@@ -175,6 +176,100 @@ describe('mjml-parse Node', function () {
             assert.ok(typeof preview.loading === "string" && preview.loading.length > 0, "Missing preview.loading in " + localeCode);
             assert.ok(typeof preview.ready === "string" && preview.ready.length > 0, "Missing preview.ready in " + localeCode);
             assert.ok(typeof preview.error === "string" && preview.error.length > 0, "Missing preview.error in " + localeCode);
+        });
+    });
+
+    it("should include template translation keys in all locales", function () {
+        var localesRoot = path.join(__dirname, "..", "mjml-parse", "locales");
+        var localeFolders = fs.readdirSync(localesRoot, { withFileTypes: true })
+            .filter(function (entry) { return entry.isDirectory(); })
+            .map(function (entry) { return entry.name; });
+
+        localeFolders.length.should.be.above(0);
+
+        localeFolders.forEach(function (localeCode) {
+            var localePath = path.join(localesRoot, localeCode, "mjml-parse.json");
+            var content = JSON.parse(fs.readFileSync(localePath, "utf8"));
+            var templates = content && content.mjmlParse && content.mjmlParse.templates;
+
+            assert.ok(templates, "Missing templates translations in " + localeCode);
+            assert.ok(typeof templates.label === "string" && templates.label.length > 0, "Missing templates.label in " + localeCode);
+            assert.ok(typeof templates.none === "string" && templates.none.length > 0, "Missing templates.none in " + localeCode);
+            assert.ok(typeof templates.simpleEmail === "string" && templates.simpleEmail.length > 0, "Missing templates.simpleEmail in " + localeCode);
+            assert.ok(typeof templates.nodeRedStyle === "string" && templates.nodeRedStyle.length > 0, "Missing templates.nodeRedStyle in " + localeCode);
+            assert.ok(typeof templates.confirmReplace === "string" && templates.confirmReplace.length > 0, "Missing templates.confirmReplace in " + localeCode);
+            assert.ok(typeof templates.confirmTitle === "string" && templates.confirmTitle.length > 0, "Missing templates.confirmTitle in " + localeCode);
+            assert.ok(typeof templates.confirmAction === "string" && templates.confirmAction.length > 0, "Missing templates.confirmAction in " + localeCode);
+            assert.ok(typeof templates.confirmCancel === "string" && templates.confirmCancel.length > 0, "Missing templates.confirmCancel in " + localeCode);
+        });
+    });
+
+    it("should include template beautify translation key in all locales", function () {
+        var localesRoot = path.join(__dirname, "..", "mjml-parse", "locales");
+        var localeFolders = fs.readdirSync(localesRoot, { withFileTypes: true })
+            .filter(function (entry) { return entry.isDirectory(); })
+            .map(function (entry) { return entry.name; });
+
+        localeFolders.length.should.be.above(0);
+
+        localeFolders.forEach(function (localeCode) {
+            var localePath = path.join(localesRoot, localeCode, "mjml-parse.json");
+            var content = JSON.parse(fs.readFileSync(localePath, "utf8"));
+            var template = content && content.mjmlParse && content.mjmlParse.template;
+
+            assert.ok(template, "Missing template translations in " + localeCode);
+            assert.ok(typeof template.beautify === "string" && template.beautify.length > 0, "Missing template.beautify in " + localeCode);
+        });
+    });
+
+    it("should compile all starter MJML templates", function () {
+        var templatesPath = path.join(__dirname, "..", "mjml-parse", "resources", "mjml-templates.json");
+        var parsed = JSON.parse(fs.readFileSync(templatesPath, "utf8"));
+        var templates = parsed && Array.isArray(parsed.templates) ? parsed.templates : [];
+
+        templates.length.should.be.above(0);
+
+        templates.forEach(function (template) {
+            assert.ok(template.id, "Missing template id");
+            assert.ok(typeof template.mjml === "string" && template.mjml.length > 0, "Missing template mjml for " + template.id);
+            var result = mjml2html(template.mjml, {
+                minify: false,
+                keepComments: false,
+                validationLevel: "soft",
+                ignoreIncludes: true
+            });
+            assert.ok(result && typeof result.html === "string" && result.html.length > 0, "MJML did not compile for " + template.id);
+        });
+    });
+
+    it("should keep starter template ids unique", function () {
+        var templatesPath = path.join(__dirname, "..", "mjml-parse", "resources", "mjml-templates.json");
+        var parsed = JSON.parse(fs.readFileSync(templatesPath, "utf8"));
+        var templates = parsed && Array.isArray(parsed.templates) ? parsed.templates : [];
+        var ids = templates.map(function (template) { return template.id; });
+        var uniqueIds = new Set(ids);
+
+        assert.strictEqual(uniqueIds.size, ids.length, "Starter template ids must be unique");
+    });
+
+    it("should resolve starter template label keys in en-US locale", function () {
+        var templatesPath = path.join(__dirname, "..", "mjml-parse", "resources", "mjml-templates.json");
+        var localePath = path.join(__dirname, "..", "mjml-parse", "locales", "en-US", "mjml-parse.json");
+        var parsed = JSON.parse(fs.readFileSync(templatesPath, "utf8"));
+        var locale = JSON.parse(fs.readFileSync(localePath, "utf8"));
+        var templates = parsed && Array.isArray(parsed.templates) ? parsed.templates : [];
+        var i18nTemplates = locale && locale.mjmlParse && locale.mjmlParse.templates;
+
+        assert.ok(i18nTemplates, "Missing en-US templates translation block");
+
+        templates.forEach(function (template) {
+            assert.ok(typeof template.labelKey === "string" && template.labelKey.length > 0, "Missing labelKey for " + template.id);
+            var keyParts = template.labelKey.split(".");
+            var key = keyParts[keyParts.length - 1];
+            assert.ok(
+                typeof i18nTemplates[key] === "string" && i18nTemplates[key].length > 0,
+                "Missing en-US translation for " + template.labelKey
+            );
         });
     });
 });

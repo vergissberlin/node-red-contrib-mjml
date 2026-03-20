@@ -11,7 +11,8 @@
                 "valid": "Mẫu MJML là XML được định dạng tốt.",
                 "invalid": "Mẫu MJML không phải là XML hợp lệ."
             },
-            "hintOverride": "Khi trình soạn thảo này chứa MJML, msg.payload.message sẽ bị ghi đè."
+            "hintOverride": "Khi trình soạn thảo này chứa MJML, msg.payload.message sẽ bị ghi đè.",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "Xem trước MJML",
@@ -25,6 +26,16 @@
                 "error": "Thông báo đầu vào không phải là một chuỗi.",
                 "success": "Thành công"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }

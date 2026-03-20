@@ -11,7 +11,8 @@
                 "valid": "MJML 範本是格式良好的 XML。",
                 "invalid": "MJML 模板不是有效的 XML。"
             },
-            "hintOverride": "当此编辑器包含 MJML 时，msg.payload.message 会被覆盖。"
+            "hintOverride": "当此编辑器包含 MJML 时，msg.payload.message 会被覆盖。",
+            "beautify": "Beautify XML"
         },
         "preview": {
             "label": "MJML 預覽",
@@ -25,6 +26,16 @@
                 "error": "輸入訊息不是字串。",
                 "success": "成功"
             }
+        },
+        "templates": {
+            "label": "Starter template",
+            "none": "No starter template",
+            "simpleEmail": "Simple email",
+            "nodeRedStyle": "Node-RED style email",
+            "confirmReplace": "Replace the current editor content with the selected starter template?",
+            "confirmTitle": "Replace template",
+            "confirmAction": "Replace",
+            "confirmCancel": "Cancel"
         }
     }
 }
