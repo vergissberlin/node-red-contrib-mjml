@@ -10,10 +10,11 @@
                 "empty": "Čvor koristi msg.payload kada je ovaj uređivač prazan.",
                 "valid": "MJML predložak je dobro oblikovan XML.",
                 "invalid": "MJML predložak nije važeći XML."
-            }
+            },
+            "hintOverride": "Kad ovaj editor sadrži MJML, msg.payload.message se prepisuje."
         },
         "preview": {
-            "label": "HTML pregled",
+            "label": "MJML pretpregled",
             "empty": "Pregled je prazan. Počnite pisati MJML za renderiranje HTML-a.",
             "loading": "Renderiranje pregleda...",
             "ready": "Pregled je ažuriran.",

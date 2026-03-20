@@ -10,10 +10,11 @@
                 "empty": "Když je tento editor prázdný, uzel používá msg.payload.",
                 "valid": "Šablona MJML je dobře vytvořený XML.",
                 "invalid": "Šablona MJML není platný XML."
-            }
+            },
+            "hintOverride": "Když tento editor obsahuje MJML, msg.payload.message se přepíše."
         },
         "preview": {
-            "label": "Náhled HTML",
+            "label": "Náhled MJML",
             "empty": "Náhled je prázdný. Začněte psát MJML pro vykreslení HTML.",
             "loading": "Vykresluje se náhled...",
             "ready": "Náhled aktualizován.",

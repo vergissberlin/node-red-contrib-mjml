@@ -10,10 +10,11 @@
                 "empty": "Solmu käyttää tiedostoa msg.payload, kun tämä editori on tyhjä.",
                 "valid": "MJML-malli on hyvin muotoiltu XML.",
                 "invalid": "MJML-malli ei ole kelvollinen XML."
-            }
+            },
+            "hintOverride": "Kun tämä editori sisältää MJML:ää, msg.payload.message korvataan."
         },
         "preview": {
-            "label": "HTML-esikatselu",
+            "label": "MJML-esikatselu",
             "empty": "Esikatselu on tyhjä. Aloita MJML:n kirjoittaminen HTML:n renderöimiseksi.",
             "loading": "Renderöidään esikatselua...",
             "ready": "Esikatselu päivitetty.",

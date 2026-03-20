@@ -10,10 +10,11 @@
                 "empty": "Le nœud utilise msg.payload lorsque cet éditeur est vide.",
                 "valid": "Le modèle MJML est un XML bien formé.",
                 "invalid": "Le modèle MJML n'est pas un XML valide."
-            }
+            },
+            "hintOverride": "Quand cet éditeur contient du MJML, msg.payload.message est écrasé."
         },
         "preview": {
-            "label": "Aperçu HTML",
+            "label": "Aperçu MJML",
             "empty": "L'aperçu est vide. Commencez à saisir du MJML pour générer le HTML.",
             "loading": "Rendu de l'aperçu...",
             "ready": "Aperçu mis à jour.",

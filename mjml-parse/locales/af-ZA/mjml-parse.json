@@ -10,10 +10,11 @@
                 "empty": "Die nodus gebruik msg.payload wanneer hierdie redigeerder leeg is.",
                 "valid": "MJML sjabloon is goed gevormde XML.",
                 "invalid": "MJML-sjabloon is nie geldige XML nie."
-            }
+            },
+            "hintOverride": "As hierdie redigeerder MJML bevat, word msg.payload.message oorskryf."
         },
         "preview": {
-            "label": "HTML-voorskou",
+            "label": "MJML-voorskou",
             "empty": "Voorskou is leeg. Begin MJML tik om HTML te render.",
             "loading": "Voorskou word gerender...",
             "ready": "Voorskou opgedateer.",

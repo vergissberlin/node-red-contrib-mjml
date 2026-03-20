@@ -10,10 +10,11 @@
                 "empty": "El nodo usa msg.payload cuando este editor está vacío.",
                 "valid": "La plantilla MJML es XML bien formado.",
                 "invalid": "La plantilla MJML no es XML válido."
-            }
+            },
+            "hintOverride": "Cuando este editor contiene MJML, se sobrescribe msg.payload.message."
         },
         "preview": {
-            "label": "Vista previa HTML",
+            "label": "Vista previa MJML",
             "empty": "La vista previa está vacía. Empieza a escribir MJML para renderizar HTML.",
             "loading": "Renderizando vista previa...",
             "ready": "Vista previa actualizada.",

@@ -10,10 +10,11 @@
                 "empty": "Der Knoten verwendet msg.payload, wenn dieser Editor leer ist.",
                 "valid": "Die MJML-Vorlage ist wohlgeformtes XML.",
                 "invalid": "Die MJML-Vorlage ist kein gültiges XML."
-            }
+            },
+            "hintOverride": "Wenn dieser Editor MJML enthält, wird msg.payload.message überschrieben."
         },
         "preview": {
-            "label": "HTML-Vorschau",
+            "label": "MJML-Vorschau",
             "empty": "Die Vorschau ist leer. Beginne mit MJML, um HTML zu rendern.",
             "loading": "Vorschau wird gerendert...",
             "ready": "Vorschau aktualisiert.",

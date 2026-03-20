@@ -10,10 +10,11 @@
                 "empty": "Węzeł używa msg.payload, gdy ten edytor jest pusty.",
                 "valid": "Szablon MJML jest dobrze sformułowanym formatem XML.",
                 "invalid": "Szablon MJML nie jest prawidłowym formatem XML."
-            }
+            },
+            "hintOverride": "Gdy ten edytor zawiera MJML, msg.payload.message zostaje nadpisane."
         },
         "preview": {
-            "label": "Podgląd HTML",
+            "label": "Podgląd MJML",
             "empty": "Podgląd jest pusty. Zacznij wpisywać MJML, aby wyrenderować HTML.",
             "loading": "Renderowanie podglądu...",
             "ready": "Podgląd zaktualizowany.",

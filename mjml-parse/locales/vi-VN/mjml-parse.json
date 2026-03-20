@@ -10,10 +10,11 @@
                 "empty": "Nút sử dụng msg.payload khi trình soạn thảo này trống.",
                 "valid": "Mẫu MJML là XML được định dạng tốt.",
                 "invalid": "Mẫu MJML không phải là XML hợp lệ."
-            }
+            },
+            "hintOverride": "Khi trình soạn thảo này chứa MJML, msg.payload.message sẽ bị ghi đè."
         },
         "preview": {
-            "label": "Xem trước HTML",
+            "label": "Xem trước MJML",
             "empty": "Bản xem trước đang trống. Bắt đầu nhập MJML để render HTML.",
             "loading": "Đang render bản xem trước...",
             "ready": "Đã cập nhật bản xem trước.",

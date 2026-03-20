@@ -10,10 +10,11 @@
                 "empty": "當此編輯器為空時，節點使用 msg.payload。",
                 "valid": "MJML 範本是格式良好的 XML。",
                 "invalid": "MJML 模板不是有效的 XML。"
-            }
+            },
+            "hintOverride": "当此编辑器包含 MJML 时，msg.payload.message 会被覆盖。"
         },
         "preview": {
-            "label": "HTML 預覽",
+            "label": "MJML 預覽",
             "empty": "預覽為空。開始輸入 MJML 以渲染 HTML。",
             "loading": "正在渲染預覽...",
             "ready": "預覽已更新。",

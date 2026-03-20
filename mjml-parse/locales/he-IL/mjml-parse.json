@@ -10,10 +10,11 @@
                 "empty": "הצומת משתמש ב-msg.payload כאשר עורך זה ריק.",
                 "valid": "תבנית MJML היא XML מעוצבת היטב.",
                 "invalid": "תבנית MJML אינה XML חוקית."
-            }
+            },
+            "hintOverride": "כאשר עורך זה מכיל MJML, msg.payload.message נדרס."
         },
         "preview": {
-            "label": "תצוגה מקדימה של HTML",
+            "label": "תצוגה מקדימה של MJML",
             "empty": "התצוגה המקדימה ריקה. התחילו להקליד MJML כדי לרנדר HTML.",
             "loading": "מרנדר תצוגה מקדימה...",
             "ready": "התצוגה המקדימה עודכנה.",

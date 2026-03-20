@@ -10,10 +10,11 @@
                 "empty": "Düğüm, bu düzenleyici boş olduğunda msg.payload'ı kullanır.",
                 "valid": "MJML şablonu iyi biçimlendirilmiş XML'dir.",
                 "invalid": "MJML şablonu geçerli XML değil."
-            }
+            },
+            "hintOverride": "Bu düzenleyici MJML içerdiğinde msg.payload.message üzerine yazılır."
         },
         "preview": {
-            "label": "HTML önizleme",
+            "label": "MJML önizleme",
             "empty": "Önizleme boş. HTML oluşturmak için MJML yazmaya başlayın.",
             "loading": "Önizleme oluşturuluyor...",
             "ready": "Önizleme güncellendi.",

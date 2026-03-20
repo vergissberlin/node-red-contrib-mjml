@@ -10,10 +10,11 @@
                 "empty": "O nó usa msg.payload quando este editor está vazio.",
                 "valid": "O modelo MJML é um XML bem formado.",
                 "invalid": "O modelo MJML não é XML válido."
-            }
+            },
+            "hintOverride": "Quando este editor contém MJML, msg.payload.message é substituída."
         },
         "preview": {
-            "label": "Pré-visualização HTML",
+            "label": "Pré-visualização MJML",
             "empty": "A pré-visualização está vazia. Comece a escrever MJML para renderizar HTML.",
             "loading": "A renderizar pré-visualização...",
             "ready": "Pré-visualização atualizada.",

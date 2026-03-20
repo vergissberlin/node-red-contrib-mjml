@@ -10,10 +10,11 @@
                 "empty": "Noden bruger msg.payload, når denne editor er tom.",
                 "valid": "MJML skabelon er veludformet XML.",
                 "invalid": "MJML-skabelonen er ikke gyldig XML."
-            }
+            },
+            "hintOverride": "Når denne editor indeholder MJML, overskrives msg.payload.message."
         },
         "preview": {
-            "label": "HTML-forhåndsvisning",
+            "label": "MJML-forhåndsvisning",
             "empty": "Forhåndsvisningen er tom. Begynd at skrive MJML for at gengive HTML.",
             "loading": "Gengiver forhåndsvisning...",
             "ready": "Forhåndsvisning opdateret.",

@@ -10,10 +10,11 @@
                 "empty": "تستخدم العقدة msg.payload عندما يكون هذا المحرر فارغًا.",
                 "valid": "قالب MJML عبارة عن XML جيد التصميم.",
                 "invalid": "قالب MJML ليس XML صالحًا."
-            }
+            },
+            "hintOverride": "عندما يحتوي هذا المحرر على MJML، يتم استبدال msg.payload.message."
         },
         "preview": {
-            "label": "معاينة HTML",
+            "label": "معاينة MJML",
             "empty": "المعاينة فارغة. ابدأ بكتابة MJML لعرض HTML.",
             "loading": "جارٍ عرض المعاينة...",
             "ready": "تم تحديث المعاينة.",

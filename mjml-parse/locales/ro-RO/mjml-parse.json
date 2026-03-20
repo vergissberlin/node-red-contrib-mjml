@@ -10,10 +10,11 @@
                 "empty": "Nodul folosește msg.payload atunci când acest editor este gol.",
                 "valid": "Șablonul MJML este XML bine format.",
                 "invalid": "Șablonul MJML nu este XML valid."
-            }
+            },
+            "hintOverride": "Când acest editor conține MJML, msg.payload.message este suprascris."
         },
         "preview": {
-            "label": "Previzualizare HTML",
+            "label": "Previzualizare MJML",
             "empty": "Previzualizarea este goală. Începeți să scrieți MJML pentru a reda HTML.",
             "loading": "Se redă previzualizarea...",
             "ready": "Previzualizare actualizată.",

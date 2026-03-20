@@ -10,10 +10,11 @@
                 "empty": "このエディターが空の場合、ノードは msg.payload を使用します。",
                 "valid": "MJML テンプレートは整形式の XML です。",
                 "invalid": "MJML テンプレートは有効な XML ではありません。"
-            }
+            },
+            "hintOverride": "このエディターにMJMLが含まれると、msg.payload.message は上書きされます。"
         },
         "preview": {
-            "label": "HTMLプレビュー",
+            "label": "MJMLプレビュー",
             "empty": "プレビューは空です。MJMLを入力してHTMLをレンダリングしてください。",
             "loading": "プレビューをレンダリング中...",
             "ready": "プレビューを更新しました。",

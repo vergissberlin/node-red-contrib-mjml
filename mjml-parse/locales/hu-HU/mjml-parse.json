@@ -10,10 +10,11 @@
                 "empty": "A csomópont az msg.payload fájlt használja, ha ez a szerkesztő üres.",
                 "valid": "Az MJML sablon jól formázott XML.",
                 "invalid": "Az MJML-sablon nem érvényes XML."
-            }
+            },
+            "hintOverride": "Ha ez a szerkesztő MJML-t tartalmaz, a msg.payload.message felülíródik."
         },
         "preview": {
-            "label": "HTML előnézet",
+            "label": "MJML előnézet",
             "empty": "Az előnézet üres. Kezdje el írni az MJML-t a HTML rendereléséhez.",
             "loading": "Előnézet renderelése...",
             "ready": "Előnézet frissítve.",

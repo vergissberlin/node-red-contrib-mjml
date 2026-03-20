@@ -10,10 +10,11 @@
                 "empty": "El node utilitza msg.payload quan aquest editor està buit.",
                 "valid": "La plantilla MJML és XML ben format.",
                 "invalid": "La plantilla MJML no és XML vàlida."
-            }
+            },
+            "hintOverride": "Quan aquest editor conté MJML, se sobreescriu msg.payload.message."
         },
         "preview": {
-            "label": "Previsualització HTML",
+            "label": "Previsualització MJML",
             "empty": "La previsualització és buida. Comença a escriure MJML per renderitzar HTML.",
             "loading": "Renderitzant la previsualització...",
             "ready": "Previsualització actualitzada.",

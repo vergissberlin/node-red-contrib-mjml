@@ -10,10 +10,11 @@
                 "empty": "Чвор користи мсг.паилоад када је овај уређивач празан.",
                 "valid": "МЈМЛ шаблон је добро формиран КСМЛ.",
                 "invalid": "МЈМЛ шаблон није важећи КСМЛ."
-            }
+            },
+            "hintOverride": "Kada ovaj editor sadrži MJML, msg.payload.message se prepisuje."
         },
         "preview": {
-            "label": "HTML pregled",
+            "label": "MJML pregled",
             "empty": "Pregled je prazan. Počnite da kucate MJML za renderovanje HTML-a.",
             "loading": "Renderovanje pregleda...",
             "ready": "Pregled je ažuriran.",

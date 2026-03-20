@@ -10,10 +10,11 @@
                 "empty": "Noden använder msg.payload när denna editor är tom.",
                 "valid": "MJML-mall är välformad XML.",
                 "invalid": "MJML-mallen är inte giltig XML."
-            }
+            },
+            "hintOverride": "När den här editorn innehåller MJML skrivs msg.payload.message över."
         },
         "preview": {
-            "label": "HTML-förhandsvisning",
+            "label": "MJML-förhandsvisning",
             "empty": "Förhandsvisningen är tom. Börja skriva MJML för att rendera HTML.",
             "loading": "Renderar förhandsvisning...",
             "ready": "Förhandsvisning uppdaterad.",

@@ -106,9 +106,17 @@
                 validationTimer = setTimeout(validateXml, 300);
             }
 
+            function resolveI18n(key, fallback) {
+                var translated = RED._(key);
+                if (!translated || translated === key) {
+                    return fallback;
+                }
+                return translated;
+            }
+
             function setPreviewStatus(key, color, details) {
                 var fallbackTexts = {
-                    "mjmlParse.preview.label": "HTML preview",
+                    "mjmlParse.preview.label": "MJML preview",
                     "mjmlParse.preview.empty": "Preview is empty. Start typing MJML to render HTML.",
                     "mjmlParse.preview.loading": "Rendering preview...",
                     "mjmlParse.preview.ready": "Preview updated.",
@@ -132,10 +140,11 @@
                     return true;
                 }
                 try {
+                    var previewTabLabel = resolveI18n("mjmlParse.preview.label", "MJML preview");
                     RED.sidebar.addTab({
                         id: sidebarPreviewTabId,
-                        label: RED._("mjmlParse.preview.label"),
-                        name: RED._("mjmlParse.preview.label"),
+                        label: previewTabLabel,
+                        name: previewTabLabel,
                         iconClass: "fa fa-eye",
                         content: $("<div>", {
                             id: sidebarPreviewContentId,
@@ -156,7 +165,7 @@
                 if (!popupPreviewWindow) {
                     return null;
                 }
-                popupPreviewWindow.document.title = RED._("mjmlParse.preview.label");
+                popupPreviewWindow.document.title = resolveI18n("mjmlParse.preview.label", "MJML preview");
                 return popupPreviewWindow;
             }
 
@@ -312,6 +321,11 @@
                 schedulePreview();
             });
             supportsSidebarPreview = ensureSidebarPreviewTab();
+            $("#node-mjml-template-source-hint")
+                .text(resolveI18n(
+                    "mjmlParse.template.hintOverride",
+                    "When this editor contains MJML, msg.payload.message is overwritten."
+                ));
             scheduleValidation();
             schedulePreview();
 
@@ -406,6 +420,9 @@
     </div>
     <div class="form-row">
         <div id="node-mjml-xml-validation" class="form-tips" data-i18n="mjmlParse.template.validation.empty"></div>
+    </div>
+    <div class="form-row">
+        <div id="node-mjml-template-source-hint" class="form-tips"></div>
     </div>
     <div class="form-row">
         <div id="node-mjml-preview-status" class="form-tips" data-i18n="mjmlParse.preview.empty"></div>

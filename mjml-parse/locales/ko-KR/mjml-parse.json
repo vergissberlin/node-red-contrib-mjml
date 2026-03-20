@@ -10,10 +10,11 @@
                 "empty": "이 편집기가 비어 있으면 노드는 msg.payload를 사용합니다.",
                 "valid": "MJML 템플릿은 올바른 형식의 XML입니다.",
                 "invalid": "MJML 템플릿은 유효한 XML이 아닙니다."
-            }
+            },
+            "hintOverride": "이 편집기에 MJML이 있으면 msg.payload.message가 덮어써집니다."
         },
         "preview": {
-            "label": "HTML 미리보기",
+            "label": "MJML 미리보기",
             "empty": "미리보기가 비어 있습니다. HTML을 렌더링하려면 MJML 입력을 시작하세요.",
             "loading": "미리보기를 렌더링하는 중...",
             "ready": "미리보기가 업데이트되었습니다.",

@@ -10,10 +10,11 @@
                 "empty": "Het knooppunt gebruikt msg.payload als deze editor leeg is.",
                 "valid": "MJML-sjabloon is goed opgemaakte XML.",
                 "invalid": "MJML-sjabloon is geen geldige XML."
-            }
+            },
+            "hintOverride": "Wanneer deze editor MJML bevat, wordt msg.payload.message overschreven."
         },
         "preview": {
-            "label": "HTML-voorbeeld",
+            "label": "MJML-voorbeeld",
             "empty": "Voorbeeld is leeg. Begin met MJML typen om HTML te renderen.",
             "loading": "Voorbeeld renderen...",
             "ready": "Voorbeeld bijgewerkt.",
