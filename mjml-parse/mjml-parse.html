@@ -196,7 +196,8 @@
                     });
 
                 function applyTemplate(mjmlTemplate) {
-                    node.editor.setValue(mjmlTemplate, -1);
+                    var formattedTemplate = beautifyXml(mjmlTemplate) || mjmlTemplate;
+                    node.editor.setValue(formattedTemplate, -1);
                     scheduleValidation();
                     schedulePreview();
                     resetPicker();
