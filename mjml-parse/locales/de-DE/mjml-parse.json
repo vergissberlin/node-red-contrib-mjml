@@ -11,7 +11,6 @@
                 "valid": "Die MJML-Vorlage ist wohlgeformtes XML.",
                 "invalid": "Die MJML-Vorlage ist kein gültiges XML."
             },
-            "hintOverride": "Wenn dieser Editor MJML enthält, wird msg.payload.message überschrieben.",
             "beautify": "Beautify XML"
         },
         "preview": {

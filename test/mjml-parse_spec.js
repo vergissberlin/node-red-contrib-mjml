@@ -147,6 +147,36 @@ describe('mjml-parse Node', function () {
         });
     });
 
+    it("should return structured validation errors for invalid MJML preview", function (done) {
+        helper.load(MjmlParseNode, [], function () {
+            helper.request()
+                .post("/mjml-parse/preview")
+                .send({
+                    template: "<mjml><mj-body><mj-section><mj-column><mj-foo>Broken</mj-foo></mj-column></mj-section></mj-body></mjml>"
+                })
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        done(err);
+                        return;
+                    }
+                    try {
+                        res.body.should.have.property("ok", false);
+                        res.body.should.have.property("errors");
+                        res.body.errors.should.be.Array();
+                        res.body.errors.length.should.be.above(0);
+                        res.body.should.have.property("validationErrors");
+                        res.body.validationErrors.should.be.Array();
+                        res.body.validationErrors.length.should.be.above(0);
+                        res.body.validationErrors[0].should.have.property("message");
+                        done();
+                    } catch (assertionError) {
+                        done(assertionError);
+                    }
+                });
+        });
+    });
+
     it("should include German preview translations", function () {
         var deDe = JSON.parse(fs.readFileSync(__dirname + "/../mjml-parse/locales/de-DE/mjml-parse.json", "utf8"));
         var deCh = JSON.parse(fs.readFileSync(__dirname + "/../mjml-parse/locales/de-CH/mjml-parse.json", "utf8"));

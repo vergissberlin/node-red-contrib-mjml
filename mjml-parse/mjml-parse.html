@@ -37,7 +37,6 @@
                     labelKey: "mjmlParse.templates.chartsReport",
                     mjml: "<mjml><mj-head><mj-title>{{subject}}</mj-title><mj-preview>{{previewText}}</mj-preview></mj-head><mj-body background-color=\"#f8fafc\"><mj-section background-color=\"#ffffff\"><mj-column><mj-text font-size=\"24px\" font-weight=\"700\">Weekly KPI report</mj-text><mj-text>{{message}}</mj-text><mj-text font-size=\"12px\">Revenue progress</mj-text><mj-divider border-width=\"14px\" border-color=\"#22c55e\" width=\"84%\" align=\"left\" /><mj-text font-size=\"12px\">Retention rate</mj-text><mj-divider border-width=\"14px\" border-color=\"#3b82f6\" width=\"71%\" align=\"left\" /><mj-button background-color=\"#0f172a\" href=\"https://example.com\">Open full dashboard</mj-button></mj-column></mj-section></mj-body></mjml>"
                 },
-                },
                 {
                     id: "minimal-announcement",
                     labelKey: "mjmlParse.templates.minimalAnnouncement",
@@ -47,7 +46,8 @@
             var validationTimer = null;
             var previewTimer = null;
             var previewRequestId = 0;
-            var previewAbortController = null;
+            var previewRequest = null;
+            var lastPreviewTemplate = null;
             var sidebarPreviewTabId = "mjml-parse-preview";
             var sidebarPreviewContentId = "mjml-parse-sidebar-preview-content";
             var popupPreviewWindow = null;
@@ -94,6 +94,12 @@
             function parseLineColumn(message) {
                 var match = /line\s+(\d+).*column\s+(\d+)/i.exec(message);
                 if (!match) {
+                    match = /line\s*[:#]?\s*(\d+)[^\d]+col(?:umn)?\s*[:#]?\s*(\d+)/i.exec(message);
+                }
+                if (!match) {
+                    match = /zeile\s+(\d+).*spalte\s+(\d+)/i.exec(message);
+                }
+                if (!match) {
                     return null;
                 }
                 return {
@@ -102,37 +108,119 @@
                 };
             }
 
+            function getXmlValidationElement() {
+                var fromDialog = $("#dialog-form:visible #node-mjml-xml-validation");
+                if (fromDialog.length) {
+                    return fromDialog.last();
+                }
+                var fallback = $("#node-mjml-xml-validation");
+                return fallback.length ? fallback.last() : fallback;
+            }
+
+
+            function findXmlMismatchLocation(source) {
+                var lines = (source || "").split(/\r?\n/);
+                var stack = [];
+
+                for (var row = 0; row < lines.length; row += 1) {
+                    var line = lines[row];
+                    var matcher = /<\/?([a-zA-Z_][\w:.-]*)\b[^>]*\/?>/g;
+                    var match;
+                    while ((match = matcher.exec(line)) !== null) {
+                        var token = match[0];
+                        var tagName = (match[1] || "").toLowerCase();
+                        var isClosing = /^<\//.test(token);
+                        var isSelfClosing = /\/>$/.test(token) || /^<\?/.test(token) || /^<!/.test(token);
+                        if (isSelfClosing) {
+                            continue;
+                        }
+
+                        if (!isClosing) {
+                            stack.push({ tagName: tagName, row: row, column: match.index });
+                            continue;
+                        }
+
+                        var lastOpen = stack.length ? stack[stack.length - 1] : null;
+                        if (!lastOpen || lastOpen.tagName !== tagName) {
+                            return {
+                                row: row,
+                                column: match.index
+                            };
+                        }
+                        stack.pop();
+                    }
+                }
+
+                if (stack.length) {
+                    return {
+                        row: stack[stack.length - 1].row,
+                        column: stack[stack.length - 1].column
+                    };
+                }
+
+                return null;
+            }
+
+            var xmlAnnotations = [];
+            var mjmlAnnotations = [];
+
+            function applyEditorAnnotations() {
+                var session = node.editor.getSession();
+                session.setAnnotations(xmlAnnotations.concat(mjmlAnnotations));
+            }
+
+            function setXmlAnnotations(annotations) {
+                xmlAnnotations = Array.isArray(annotations) ? annotations : [];
+                applyEditorAnnotations();
+            }
+
+            function setMjmlAnnotations(annotations) {
+                mjmlAnnotations = Array.isArray(annotations) ? annotations : [];
+                applyEditorAnnotations();
+            }
+
             function validateXml() {
                 var editorValue = node.editor.getValue() || "";
                 var xmlForValidation = editorValue.replace(/\{\{\{?[\s\S]*?\}?\}\}/g, "mjml_placeholder");
                 var parser = new DOMParser();
                 var doc = parser.parseFromString(xmlForValidation, "application/xml");
                 var parserError = doc.querySelector("parsererror");
-                var session = node.editor.getSession();
-                var indicator = $("#node-mjml-xml-validation");
-
-                session.clearAnnotations();
+                var indicator = getXmlValidationElement();
 
                 if (!editorValue.trim()) {
+                    setXmlAnnotations([]);
                     indicator.text(RED._("mjmlParse.template.validation.empty")).css("color", "");
                     return;
                 }
 
                 if (!parserError) {
+                    setXmlAnnotations([]);
                     indicator.text(RED._("mjmlParse.template.validation.valid")).css("color", "#2e7d32");
                     return;
                 }
 
                 var message = parserError.textContent.replace(/\s+/g, " ").trim();
                 var location = parseLineColumn(message);
+                if (!location) {
+                    location = findXmlMismatchLocation(editorValue);
+                }
+                var annotations = [];
                 if (location) {
-                    session.setAnnotations([{
+                    annotations.push({
                         row: location.row,
                         column: location.column,
                         text: RED._("mjmlParse.template.validation.invalid"),
                         type: "error"
-                    }]);
+                    });
+                } else {
+                    annotations.push({
+                        row: 0,
+                        column: 0,
+                        text: message || RED._("mjmlParse.template.validation.invalid"),
+                        type: "error"
+                    });
                 }
+                setXmlAnnotations(annotations);
 
                 indicator.text(RED._("mjmlParse.template.validation.invalid") + " " + message).css("color", "#c62828");
             }
@@ -393,24 +481,6 @@
             }
 
 
-            function setPreviewStatus(key, color, details) {
-                var fallbackTexts = {
-                    "mjmlParse.preview.label": "MJML preview",
-                    "mjmlParse.preview.empty": "Preview is empty. Start typing MJML to render HTML.",
-                    "mjmlParse.preview.loading": "Rendering preview...",
-                    "mjmlParse.preview.ready": "Preview updated.",
-                    "mjmlParse.preview.error": "Preview rendering failed:"
-                };
-                var statusText = RED._(key);
-                if (!statusText || statusText === key) {
-                    statusText = fallbackTexts[key] || key;
-                }
-                if (details) {
-                    statusText += " " + details;
-                }
-                $("#node-mjml-preview-status").text(statusText).css("color", color || "");
-            }
-
             function ensureSidebarPreviewTab() {
                 if (!RED.sidebar || typeof RED.sidebar.addTab !== "function") {
                     return false;
@@ -479,60 +549,140 @@
                 var editorValue = node.editor.getValue() || "";
 
                 if (!editorValue.trim()) {
+                    lastPreviewTemplate = null;
+                    setMjmlAnnotations([]);
                     setSidebarPreviewHtml("");
-                    setPreviewStatus("mjmlParse.preview.empty", "");
                     return;
                 }
 
-                if (previewAbortController) {
-                    previewAbortController.abort();
+                if (editorValue === lastPreviewTemplate) {
+                    return;
+                }
+                lastPreviewTemplate = editorValue;
+
+                if (previewRequest && typeof previewRequest.abort === "function") {
+                    previewRequest.abort();
                 }
 
-                previewAbortController = new AbortController();
-                node._mjmlPreviewAbortController = previewAbortController;
+                previewRequest = null;
+                node._mjmlPreviewAbortController = null;
                 previewRequestId += 1;
                 var requestId = previewRequestId;
 
-                setPreviewStatus("mjmlParse.preview.loading", "#666");
-
-                fetch(previewEndpoint, {
+                previewRequest = $.ajax({
+                    url: previewEndpoint,
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ template: editorValue }),
-                    signal: previewAbortController.signal
-                })
-                    .then(function (response) {
-                        return response.json().then(function (payload) {
-                            return { response: response, payload: payload };
-                        });
-                    })
-                    .then(function (result) {
+                    data: JSON.stringify({ template: editorValue }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                });
+                node._mjmlPreviewAbortController = previewRequest;
+
+                previewRequest
+                    .done(function (payload) {
                         if (requestId !== previewRequestId) {
                             return;
                         }
 
-                        var payload = result.payload || {};
+                        payload = payload || {};
                         var errors = Array.isArray(payload.errors) ? payload.errors : [];
-                        if (payload.ok) {
-                            setSidebarPreviewHtml(payload.html || "");
-                            setPreviewStatus("mjmlParse.preview.ready", "#2e7d32");
-                            return;
+                        var validationErrors = Array.isArray(payload.validationErrors) ? payload.validationErrors : [];
+                        var html = typeof payload.html === "string" ? payload.html : "";
+
+                        var annotations = validationErrors.reduce(function (accumulator, error) {
+                            if (!error || typeof error !== "object") {
+                                return accumulator;
+                            }
+                            if (typeof error.line !== "number") {
+                                return accumulator;
+                            }
+
+                            var row = Math.max(0, error.line - 1);
+                            var column = typeof error.column === "number"
+                                ? Math.max(0, error.column - 1)
+                                : 0;
+                            var text = error.message || errors[0] || RED._("mjmlParse.preview.error");
+                            accumulator.push({
+                                row: row,
+                                column: column,
+                                text: text,
+                                type: "error"
+                            });
+                            return accumulator;
+                        }, []);
+
+                        if (!annotations.length) {
+                            var firstLocation = parseLineColumn(errors[0] || "");
+                            if (firstLocation) {
+                                annotations.push({
+                                    row: firstLocation.row,
+                                    column: firstLocation.column,
+                                    text: errors[0],
+                                    type: "error"
+                                });
+                            } else if (errors.length) {
+                                annotations.push({
+                                    row: 0,
+                                    column: 0,
+                                    text: errors[0],
+                                    type: "error"
+                                });
+                            }
                         }
 
-                        setSidebarPreviewHtml("");
-                        setPreviewStatus("mjmlParse.preview.error", "#c62828", errors[0] || "");
+                        if (html) {
+                            setSidebarPreviewHtml(html);
+                        } else {
+                            setSidebarPreviewHtml("");
+                        }
+
+                        setMjmlAnnotations(annotations);
+                        if (html) {
+                            return;
+                        }
                     })
-                    .catch(function (error) {
-                        if (error && error.name === "AbortError") {
+                    .fail(function (jqXHR, textStatus) {
+                        if (textStatus === "abort") {
                             return;
                         }
                         if (requestId !== previewRequestId) {
                             return;
                         }
+                        var responsePayload = jqXHR && jqXHR.responseJSON ? jqXHR.responseJSON : {};
+                        var errors = Array.isArray(responsePayload.errors) ? responsePayload.errors : [];
+                        var validationErrors = Array.isArray(responsePayload.validationErrors) ? responsePayload.validationErrors : [];
+                        var annotations = validationErrors.reduce(function (accumulator, error) {
+                            if (!error || typeof error !== "object" || typeof error.line !== "number") {
+                                return accumulator;
+                            }
+                            accumulator.push({
+                                row: Math.max(0, error.line - 1),
+                                column: typeof error.column === "number" ? Math.max(0, error.column - 1) : 0,
+                                text: error.message || errors[0] || RED._("mjmlParse.preview.error"),
+                                type: "error"
+                            });
+                            return accumulator;
+                        }, []);
+                        if (!annotations.length) {
+                            var firstLocation = parseLineColumn(errors[0] || "");
+                            if (firstLocation) {
+                                annotations.push({
+                                    row: firstLocation.row,
+                                    column: firstLocation.column,
+                                    text: errors[0],
+                                    type: "error"
+                                });
+                            } else if (errors.length) {
+                                annotations.push({
+                                    row: 0,
+                                    column: 0,
+                                    text: errors[0],
+                                    type: "error"
+                                });
+                            }
+                        }
+                        setMjmlAnnotations(annotations);
                         setSidebarPreviewHtml("");
-                        setPreviewStatus("mjmlParse.preview.error", "#c62828", (error && error.message) || "");
                     });
             }
 
@@ -643,11 +793,6 @@
                 schedulePreview();
             });
             supportsSidebarPreview = ensureSidebarPreviewTab();
-            $("#node-mjml-template-source-hint")
-                .text(resolveI18n(
-                    "mjmlParse.template.hintOverride",
-                    "When this editor contains MJML, msg.payload.message is overwritten."
-                ));
             setupTemplatePicker();
             scheduleValidation();
             schedulePreview();
@@ -760,11 +905,5 @@
     </div>
     <div class="form-row">
         <div id="node-mjml-xml-validation" class="form-tips" data-i18n="mjmlParse.template.validation.empty"></div>
-    </div>
-    <div class="form-row">
-        <div id="node-mjml-template-source-hint" class="form-tips"></div>
-    </div>
-    <div class="form-row">
-        <div id="node-mjml-preview-status" class="form-tips" data-i18n="mjmlParse.preview.empty"></div>
     </div>
 </script>

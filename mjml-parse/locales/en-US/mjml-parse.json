@@ -11,7 +11,6 @@
                 "valid": "MJML template is well-formed XML.",
                 "invalid": "MJML template is not valid XML."
             },
-            "hintOverride": "When this editor contains MJML, msg.payload.message is overwritten.",
             "beautify": "Beautify XML"
         },
         "preview": {

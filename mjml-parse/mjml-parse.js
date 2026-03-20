@@ -24,6 +24,25 @@ module.exports = function (RED) {
         try {
             const result = mjml2html(template, options);
             const hasErrors = Array.isArray(result.errors) && result.errors.length > 0;
+            const validationErrors = hasErrors
+                ? result.errors.map(function (error) {
+                    if (typeof error === 'string') {
+                        return {
+                            message: error
+                        };
+                    }
+
+                    return {
+                        message: (error && (error.message || error.formattedMessage)) || JSON.stringify(error),
+                        line: error && typeof error.line === 'number' ? error.line : undefined,
+                        column: error && typeof error.line === 'number' && typeof error.tagNameLine === 'number'
+                            ? error.tagNameLine
+                            : undefined,
+                        tagName: error && typeof error.tagName === 'string' ? error.tagName : undefined,
+                        formattedMessage: error && error.formattedMessage ? error.formattedMessage : undefined
+                    };
+                })
+                : [];
             const normalizedErrors = hasErrors
                 ? result.errors.map(function (error) {
                     if (typeof error === 'string') {
@@ -36,10 +55,11 @@ module.exports = function (RED) {
                 })
                 : [];
 
-            res.status(hasErrors ? 400 : 200).json({
+            res.status(200).json({
                 ok: !hasErrors,
                 html: result.html || '',
-                errors: normalizedErrors
+                errors: normalizedErrors,
+                validationErrors: validationErrors
             });
         } catch (error) {
             res.status(500).json({
