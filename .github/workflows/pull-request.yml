@@ -6,10 +6,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        node-version: ['20.x', '22.x', '24.x', '25.x']
+        # node-red@2.x + node-red-node-test-helper are exercised here; Node 24+ can break older stacks.
+        node-version: ['20.x', '22.x']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -19,5 +21,5 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
       - run: pnpm config set node-linker hoisted
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
       - run: pnpm test

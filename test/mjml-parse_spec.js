@@ -19,9 +19,12 @@ describe('mjml-parse Node', function () {
         helper.startServer(done);
     });
 
-    afterEach(function () {
-        helper.unload();
-        helper.stopServer();
+    afterEach(function (done) {
+        Promise.resolve(helper.unload())
+            .then(function () {
+                helper.stopServer(done);
+            })
+            .catch(done);
     });
 
     it('should be loaded', function (done) {

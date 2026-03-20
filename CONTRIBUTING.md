@@ -75,6 +75,8 @@ This runs Mocha on `test/**/*_spec.js`, including:
 
 The `devDependency` on `node-red` pins the version used by `node-red-node-test-helper`. After changing editor or admin HTTP behavior, also smoke-test on Node-RED 3.x/4.x (Monaco default) if you can.
 
+GitHub Actions runs tests on **Node.js 20.x and 22.x** (see `.github/workflows/pull-request.yml`). Newer Node majors may require upgrading `node-red` / `node-red-node-test-helper` before adding them to the matrix.
+
 The browser editor (Monaco/Ace) is not covered by automated tests here; validate that in the manual checklist below.
 
 ### Manual smoke test in Node-RED
