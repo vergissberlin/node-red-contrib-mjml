@@ -129,41 +129,8 @@
                 };
             }
 
-            function getXmlValidationElement() {
-                var fromDialog = $("#dialog-form:visible #node-mjml-xml-validation");
-                if (fromDialog.length) {
-                    return fromDialog.last();
-                }
-                var fallback = $("#node-mjml-xml-validation");
-                return fallback.length ? fallback.last() : fallback;
-            }
-
-            function getAllXmlValidationElements() {
-                var inVisibleDialog = $("#dialog-form:visible #node-mjml-xml-validation");
-                if (inVisibleDialog.length) {
-                    return inVisibleDialog;
-                }
-                return $("#node-mjml-xml-validation");
-            }
-
-            function setValidationIndicator(state, details) {
-                var indicators = getAllXmlValidationElements();
-                if (!indicators.length) {
-                    return;
-                }
-                if (state === "empty") {
-                    indicators.text(resolveI18n("mjmlParse.template.validation.empty", "The node uses msg.payload when this editor is empty.")).css("color", "");
-                    return;
-                }
-                if (state === "valid") {
-                    indicators.text(resolveI18n("mjmlParse.template.validation.valid", "MJML template is well-formed XML.")).css("color", "#2e7d32");
-                    return;
-                }
-                var message = resolveI18n("mjmlParse.template.validation.invalid", "MJML template is not valid XML.");
-                if (details) {
-                    message += " " + details;
-                }
-                indicators.text(message).css("color", "#c62828");
+            function setValidationIndicator() {
+                // Status banner above the editor was removed on purpose.
             }
 
 
@@ -1125,9 +1092,6 @@
     <div class="form-row">
         <label for="node-input-template-picker"><i class="fa fa-copy"></i> <span data-i18n="mjmlParse.templates.label"></span></label>
         <select id="node-input-template-picker" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-keeper-ignore="true"></select>
-    </div>
-    <div class="form-row">
-        <div id="node-mjml-xml-validation" class="form-tips" data-i18n="mjmlParse.template.validation.empty"></div>
     </div>
     <div class="form-row node-text-editor-row">
         <label for="node-input-template"><i class="fa fa-code"></i> <span data-i18n="mjmlParse.template.label"></span></label>
