@@ -1,37 +1,37 @@
 <script type="text/markdown" data-help-name="mjml-parse">
  ![MJML](https://documentation.mjml.io/images/logo.png)
 
-Čvor koji kompilira MJML u odgovarajući HTML za e-poštu.
+Čvor koji kompajlira MJML u responzivni HTML za e-poštu.
 
 ### Unosi
 
-: payload (string) : MJML označavanje kada predložak nije konfiguriran u uređivaču čvorova.
-: template (string) : opcijski runtime MJML predložak (koristi se samo kada je predložak uređivača prazan).
+: payload (string) : MJML oznake kada predložak nije konfiguriran u uređivaču čvora.
+: template (string) : opcionalni MJML predložak tijekom izvođenja (koristi se samo kada je predložak u uređivaču prazan).
 
 ### Izlazi
 
 
 1. Standardni izlaz
-: payload (string) : Raščlanjuje MJML u HTML za korištenje u e-pošti.
+: payload (string) : MJML pretvoren u HTML za korištenje u e-pošti.
 
 2. Standardna greška
 : payload (string) : standardna greška naredbe.
 
-### pojedinosti
+### Detalji
 
-Čvor može prikazati rezervirana mjesta koristeći Mustache sintaksu (na primjer `{{payload}}`), slično osnovnom čvoru Template.
+Čvor može prikazivati rezervirana mjesta koristeći Mustache sintaksu (na primjer `{{payload}}`), slično osnovnom čvoru Template.
 
 Prioritet izvora predloška:
 1. Predložak uređivača (konfiguriran u čvoru)
 2. `msg.template`
 3. `msg.payload`
 
-Uređivač provjerava ispravnost XML-a tijekom tipkanja. MJML semantička provjera valjanosti događa se tijekom runtime kompilacije.
+Uređivač tijekom tipkanja provjerava je li XML ispravno oblikovan. Semantička MJML validacija događa se tijekom kompajliranja u izvođenju.
 
 
 ### Reference
 
 - [MJML predlošci](https://mjml.io/templates)
 - [MJML dokumentacija](https://documentation.mjml.io/)
-- [Čvor-RED Predložak čvor](https://nodered.org/docs/nodes/core/template)
+- [Node-RED Template čvor](https://nodered.org/docs/nodes/core/template)
 </script>

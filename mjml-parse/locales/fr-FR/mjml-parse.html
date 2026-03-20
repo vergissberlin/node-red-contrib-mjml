@@ -12,16 +12,16 @@ Un nœud qui compile MJML en HTML réactif pour les e-mails.
 
 
 1. Sortie standard
-: payload (string) : Analyse de MJML en HTML pour l'utiliser dans les e-mails.
+: payload (string) : MJML converti en HTML pour une utilisation dans les e-mails.
 
 2. Erreur type
-: payload (string) : l'erreur standard de la commande.
+: payload (string) : la sortie d'erreur standard de la commande.
 
 ### Détails
 
-Le nœud peut restituer des espaces réservés en utilisant la syntaxe Moustache (par exemple `{{payload}}`), similaire au nœud principal du modèle.
+Le nœud peut rendre des espaces réservés avec la syntaxe Mustache (par exemple `{{payload}}`), comme le nœud Template principal.
 
-Priorité de la source du modèle :
+Priorité de la source du modèle :
 1. Modèle d'éditeur (configuré dans le nœud)
 2. `msg.template`
 3. `msg.payload`

@@ -14,14 +14,14 @@ Un nodo que compila MJML en HTML responsivo para correos electrónicos.
 1. Salida estándar
 : payload (string) : Se analizó MJML a HTML para usarlo en correos electrónicos.
 
-2. error estándar
-: payload (string) : el error estándar del comando.
+2. Error estándar
+: payload (string) : la salida de error estándar del comando.
 
 ### Detalles
 
-El nodo puede representar marcadores de posición utilizando la sintaxis Moustache (por ejemplo `{{payload}}`), similar al nodo Plantilla principal.
+El nodo puede renderizar marcadores de posición con sintaxis Mustache (por ejemplo `{{payload}}`), igual que el nodo Template principal.
 
-Prioridad de fuente de plantilla:
+Prioridad del origen de la plantilla:
 1. Plantilla de editor (configurada en el nodo)
 2. `msg.template`
 3. `msg.payload`
@@ -33,5 +33,5 @@ El editor valida el buen formato de XML mientras escribe. La validación semánt
 
 - [Plantillas MJML](https://mjml.io/templates)
 - [Documentación MJML](https://documentation.mjml.io/)
-- [Nodo de plantilla Nodo-RED](https://nodered.org/docs/nodes/core/template)
+- [Nodo Template de Node-RED](https://nodered.org/docs/nodes/core/template)
 </script>

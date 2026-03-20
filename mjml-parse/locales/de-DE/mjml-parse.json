@@ -14,7 +14,7 @@
         },
         "message": {
             "status": {
-                "error": "Die Eingabenachricht ist keine Zeichenfolge.",
+                "error": "Die Eingangsnachricht ist keine Zeichenfolge.",
                 "success": "Erfolg"
             }
         }
