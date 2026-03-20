@@ -6,6 +6,7 @@ This guide explains how to:
 
 - run the node locally while developing
 - run tests and verify behavior
+- update translations (Crowdin) and locale files
 - create and publish releases
 
 ## Prerequisites
@@ -56,6 +57,32 @@ When you want to switch back to the published npm version:
 pnpm unlink @vergissberlin/node-red-contrib-mjml
 pnpm add @vergissberlin/node-red-contrib-mjml
 ```
+
+## Translations (Crowdin)
+
+UI strings for the `mjml-parse` node live as JSON under [`mjml-parse/locales/`](mjml-parse/locales/). Translation work is coordinated on **[Crowdin](https://crowdin.com/project/node-red-contrib-mjml)** (see the badge in the README).
+
+### What `.crowdin.yml` is for
+
+The [`.crowdin.yml`](.crowdin.yml) file tells the Crowdin CLI or GitHub integration how files map between the repository and the Crowdin project:
+
+| Setting | Meaning |
+| -------- | -------- |
+| `source` | **Source language** files uploaded to Crowdin. This repo uses `mjml-parse/locales/en-US/*` as the canonical English strings. |
+| `translation` | **Where downloaded translations are written**: `mjml-parse/locales/%locale%/` with the same file name and extension as the source (for example `mjml-parse.json`). |
+
+You do **not** need `.crowdin.yml` for local Node-RED development unless you run Crowdin sync yourself. It is still useful as documentation of the locale layout for maintainers.
+
+### Contributing strings as a developer
+
+1. Add or change keys in **`mjml-parse/locales/en-US/mjml-parse.json`** first (source of truth for new English copy).
+2. Mirror any **required** keys in other locale files if you are not using Crowdin sync yet, or rely on Crowdin to fill other languages after the next upload.
+3. Run `pnpm test` — locale consistency checks in `test/mjml-parse_spec.js` expect certain keys to exist in every locale folder.
+4. Follow the [starter templates checklist](#starter-templates-checklist) when adding template-related labels.
+
+### Contributing as a translator
+
+Use the [Crowdin project](https://crowdin.com/project/node-red-contrib-mjml) to translate or vote on strings. After translations are approved and synced to this repo (maintainer workflow), they appear under `mjml-parse/locales/<locale>/`.
 
 ## Testing
 
