@@ -361,6 +361,27 @@
                 return restorePlaceholders(formatted.trim());
             }
 
+            function runBeautify(editorInstance) {
+                if (!editorInstance || typeof editorInstance.getValue !== "function") {
+                    return;
+                }
+                var currentValue = editorInstance.getValue();
+                if (!currentValue || !currentValue.trim()) {
+                    return;
+                }
+                var formatted = beautifyXml(currentValue);
+                if (!formatted) {
+                    RED.notify("Unable to beautify: XML is not well-formed.", "warning");
+                    return;
+                }
+                if (typeof editorInstance.setValue === "function") {
+                    editorInstance.setValue(formatted, -1);
+                }
+                scheduleValidation();
+                schedulePreview();
+            }
+
+
             function setPreviewStatus(key, color, details) {
                 var fallbackTexts = {
                     "mjmlParse.preview.label": "MJML preview",
@@ -605,18 +626,7 @@
             });
             $("#node-template-beautify-editor").on("click", function (e) {
                 e.preventDefault();
-                var currentValue = node.editor.getValue();
-                if (!currentValue || !currentValue.trim()) {
-                    return;
-                }
-                var formatted = beautifyXml(currentValue);
-                if (!formatted) {
-                    RED.notify("Unable to beautify: XML is not well-formed.", "warning");
-                    return;
-                }
-                node.editor.setValue(formatted, -1);
-                scheduleValidation();
-                schedulePreview();
+                runBeautify(node.editor);
             });
         },
         oneditsave: function () {
