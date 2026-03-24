@@ -50,7 +50,7 @@
     "devDependencies": {
         "express": "5.2.1",
         "mocha": "11.7.5",
-        "node-red": "4.1.7",
+        "node-red": "4.1.8",
         "node-red-node-email": "5.2.1",
         "node-red-node-test-helper": "0.3.6",
         "npm-check-updates": "19.6.5",
