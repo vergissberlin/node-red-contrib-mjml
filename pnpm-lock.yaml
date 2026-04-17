@@ -28,8 +28,8 @@ importers:
         specifier: 4.1.7
         version: 4.1.7
       node-red-node-email:
-        specifier: 5.2.1
-        version: 5.2.1
+        specifier: 5.2.3
+        version: 5.2.3
       node-red-node-test-helper:
         specifier: 0.3.6
         version: 0.3.6
@@ -1308,8 +1308,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  node-red-node-email@5.2.1:
-    resolution: {integrity: sha512-mAyPR5/Un6c5tp+40KuxRiickQTzs6k4FrwlivPvMRhcJL94als8zcIkD4ElnMZTqmJyyVTqaUblPzMfxWk6zg==}
+  node-red-node-email@5.2.3:
+    resolution: {integrity: sha512-4/bo+ctcrOJygCj981xuNRz77IZgFEw5IRvOFbEvu05U6lLydah1Jg9/Plq3hMlgBs2+DAEXkuUnvIT+j41KnQ==}
     engines: {node: '>=20.0.0'}
     bundledDependencies:
       - imap
@@ -3593,7 +3593,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  node-red-node-email@5.2.1: {}
+  node-red-node-email@5.2.3: {}
 
   node-red-node-test-helper@0.3.6:
     dependencies:
