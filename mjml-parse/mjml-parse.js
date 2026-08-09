@@ -27,7 +27,7 @@ module.exports = function (RED) {
     RED.httpAdmin.post(
         '/mjml-parse/preview',
         needsPermissionOrPass('flows.read'),
-        function (req, res) {
+        async function (req, res) {
             const template = req && req.body && typeof req.body.template === 'string' ? req.body.template : '';
 
             if (!template.trim()) {
@@ -40,7 +40,7 @@ module.exports = function (RED) {
             }
 
             try {
-                const result = mjml2html(template, options);
+                const result = await mjml2html(template, options);
                 res.status(200).json(buildPreviewPayload(result));
             } catch (error) {
                 res.status(500).json({
@@ -86,7 +86,7 @@ module.exports = function (RED) {
             // Catch errors
             try {
                 const resolvedTemplate = await renderMustacheTemplate(RED, node, msg, templateSource);
-                const result = mjml2html(resolvedTemplate, options);
+                const result = await mjml2html(resolvedTemplate, options);
                 // Check if the result is valid
                 if (result.errors.length > 0) {
                     node.status({fill: "red", shape: "ring", text: "node-red:common.status.error"})

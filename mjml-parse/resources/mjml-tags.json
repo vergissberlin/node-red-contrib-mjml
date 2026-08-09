@@ -1,7 +1,7 @@
 {
   "source": "generated from mjml-preset-core (componentName + allowedAttributes); helper tags from vscode-mjml grammar",
-  "generatedAt": "2026-03-20T21:09:08.420Z",
-  "mjmlVersion": "4.18.0",
+  "generatedAt": "2026-08-09T19:38:13.092Z",
+  "mjmlVersion": "5.4.0",
   "tags": [
     "mj-accordion",
     "mj-accordion-element",
@@ -72,6 +72,7 @@
     "font-weight",
     "full-width",
     "gap",
+    "gutter",
     "hamburger",
     "height",
     "href",
@@ -99,6 +100,7 @@
     "icon-width",
     "icon-wrapped-alt",
     "icon-wrapped-url",
+    "id",
     "inline",
     "inner-background-color",
     "inner-border",
@@ -156,6 +158,7 @@
   "tagAttributes": {
     "mj-body": [
       "background-color",
+      "id",
       "width"
     ],
     "mj-head": [],
@@ -180,7 +183,6 @@
       "background-url",
       "background-width",
       "border-radius",
-      "container-background-color",
       "height",
       "inner-background-color",
       "inner-padding",
@@ -323,6 +325,7 @@
       "border-top",
       "direction",
       "full-width",
+      "gutter",
       "padding",
       "padding-bottom",
       "padding-left",
@@ -404,6 +407,7 @@
       "direction",
       "full-width",
       "gap",
+      "gutter",
       "padding",
       "padding-bottom",
       "padding-left",
@@ -414,6 +418,7 @@
     ],
     "mj-social": [
       "align",
+      "border",
       "border-radius",
       "color",
       "container-background-color",
@@ -441,6 +446,7 @@
       "align",
       "alt",
       "background-color",
+      "border",
       "border-radius",
       "color",
       "font-family",
