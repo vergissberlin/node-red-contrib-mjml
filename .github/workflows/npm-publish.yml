@@ -1,5 +1,7 @@
 # Publishes to npm when a GitHub release is created (e.g. by merging the release-please PR).
 # Set NPM_TOKEN in repository secrets (npm token with publish access).
+# npm granular access tokens expire (90 days by default) - if publish fails with a 404 on
+# an existing package, the token has likely expired and needs to be rotated.
 name: Publish Package to npmjs
 on:
   release:
@@ -31,6 +33,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
       - run: pnpm install
+      - name: Verify npm authentication
+        run: npm whoami --registry=https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
