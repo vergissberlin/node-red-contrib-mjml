@@ -15,7 +15,13 @@
         "node-red",
         "mjml",
         "email",
-        "mjml-parse"
+        "mjml-parse",
+        "html-email",
+        "email-template",
+        "responsive-email",
+        "template",
+        "mustache",
+        "parser"
     ],
     "author": "André Lademann <vergissberlin@googlemail.com>",
     "contributors": [
