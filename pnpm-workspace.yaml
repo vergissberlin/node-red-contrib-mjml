@@ -1,6 +1,14 @@
 packages:
   - '.'
 
+# Use flat node_modules so node-red-node-test-helper finds @node-red/* next to node-red.
+# (Helper resolves paths like node_modules/@node-red/registry from node-red's dir.)
+# pnpm v11 no longer honors the equivalent .npmrc `node-linker` key here.
+nodeLinker: hoisted
+
 # Allow bcrypt to run its native build (used by node-red for credentials)
 allowBuilds:
   bcrypt: true
+
+overrides:
+  cheerio: 1.2.0
