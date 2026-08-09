@@ -9,7 +9,8 @@ const options = {
 /*
   Compile an mjml string
 */
-const htmlOutput = mjml2html(`
+async function main() {
+    const htmlOutput = await mjml2html(`
 <mjml>
     <mj-head>
         <mj-title>Test</mj-title>
@@ -24,8 +25,10 @@ const htmlOutput = mjml2html(`
 </mjml>
 `, options)
 
+    /*
+      Print the responsive HTML generated and MJML errors if any
+    */
+    console.log(htmlOutput)
+}
 
-/*
-  Print the responsive HTML generated and MJML errors if any
-*/
-console.log(htmlOutput)
+main()

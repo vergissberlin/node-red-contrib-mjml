@@ -301,24 +301,24 @@ describe('mjml-parse Node', function () {
         });
     });
 
-    it("should compile all starter MJML templates", function () {
+    it("should compile all starter MJML templates", async function () {
         var templatesPath = path.join(__dirname, "..", "mjml-parse", "resources", "mjml-templates.json");
         var parsed = JSON.parse(fs.readFileSync(templatesPath, "utf8"));
         var templates = parsed && Array.isArray(parsed.templates) ? parsed.templates : [];
 
         templates.length.should.be.above(0);
 
-        templates.forEach(function (template) {
+        for (const template of templates) {
             assert.ok(template.id, "Missing template id");
             assert.ok(typeof template.mjml === "string" && template.mjml.length > 0, "Missing template mjml for " + template.id);
-            var result = mjml2html(template.mjml, {
+            var result = await mjml2html(template.mjml, {
                 minify: false,
                 keepComments: false,
                 validationLevel: "soft",
                 ignoreIncludes: true
             });
             assert.ok(result && typeof result.html === "string" && result.html.length > 0, "MJML did not compile for " + template.id);
-        });
+        }
     });
 
     it("should keep starter template ids unique", function () {
