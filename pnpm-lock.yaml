@@ -25,8 +25,8 @@ importers:
         specifier: 11.8.0
         version: 11.8.0
       node-red:
-        specifier: 5.0.4
-        version: 5.0.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: 5.0.6
+        version: 5.0.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       node-red-node-email:
         specifier: 5.2.5
         version: 5.2.5
@@ -88,23 +88,23 @@ packages:
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
     engines: {node: ^14.21.3 || >=16}
 
-  '@node-red/editor-api@5.0.4':
-    resolution: {integrity: sha512-4nRxdjxKWM4JKOgyQA7R60xqyCUVEC5+AkHXVS/DuH92vKCchcb91X2IH3IAopYCuRzL53nlCbtOPUxkLToJgQ==}
+  '@node-red/editor-api@5.0.6':
+    resolution: {integrity: sha512-q1FhoucKv9twwx94BjcrvDY7ds4GyEs4T5+o6C+Ro8EuFSJgenTIiokco4SiQNn9CSmTxIRa7CGYWfOsYsjB/g==}
 
-  '@node-red/editor-client@5.0.4':
-    resolution: {integrity: sha512-K9rPFejLX1YStBMNov7L9+oSHWGBSjwPXyjTk/z0t0bUU+J2QYMZXKa66lKoE5VscxW5tRFebzEEPAVT8kMflg==}
+  '@node-red/editor-client@5.0.6':
+    resolution: {integrity: sha512-rJaNzYbdvqQ1i2iHQif7reGamdUXfSAy/5WBjRBLtPPjnO4dhW1aQ5jOfbkSk91fuiifdrHsK33spuhjbdOgiQ==}
 
-  '@node-red/nodes@5.0.4':
-    resolution: {integrity: sha512-UmfTpvoFbFKhbYvjtOxo+xybigfLKEAKLs9cfjpvpDv+poEyS/K7x4kOnB5SSCfXFtOxq2xwJUSqjwKthe2/Hw==}
+  '@node-red/nodes@5.0.6':
+    resolution: {integrity: sha512-rjfGc0IxYSxrcBua/+ee4JPlDuOYvVxyJktIzYc7OstUvyKx6nJTlmpiFoCzD+N6SXd0FXo6ufD8jaLOceJn9w==}
 
-  '@node-red/registry@5.0.4':
-    resolution: {integrity: sha512-Jyzx7tNWh42qg3De7HHMC12/vhSoNLFLP1DtHZWUs1QMb/4enleAqtiiwllQcnOB9JE6EaSYw4HNQWBb3tjtkg==}
+  '@node-red/registry@5.0.6':
+    resolution: {integrity: sha512-kKWpSApMySoeAkoaW5Wgf42rtXAaSXgXZkk0y8r4pHHE1B6+j2sHuTSHRLTi10oJFoUFQ1kcXqFEJnjZ7DfotA==}
 
-  '@node-red/runtime@5.0.4':
-    resolution: {integrity: sha512-AWjm6rswijsnNHOPsZl+E27LMcX6bw7GQJ9ZSg1MZpMVWYRzmWkpQjvS0BSzu4QF3dXE7fznJP8XGFIF/7NXyw==}
+  '@node-red/runtime@5.0.6':
+    resolution: {integrity: sha512-PfuEKUD51gJm5Klr/tq+h8i8YCBFXyNbRCsTQ0r0BanLJWBAEMRVwCBqeFXPdYWa3Rz+OBc3vkD9jDlhLZcBCQ==}
 
-  '@node-red/util@5.0.4':
-    resolution: {integrity: sha512-wzYxYemc7Rd4KbeOkTKsegQ1COZuffk/hmG0tb52GrVfsHeFQaNQEzhpcbl1vOsymC4ofHpCp0IuQt9JZfPBHg==}
+  '@node-red/util@5.0.6':
+    resolution: {integrity: sha512-MwpKlPM7LaS+U8YG1BenURkgYlCJ0nE+L0IUdM4X4QWbXEbj5FXqqVLH/UVyNdFVcO88PUcggFmwVf6xu2IE2Q==}
 
   '@node-rs/bcrypt-android-arm-eabi@1.10.7':
     resolution: {integrity: sha512-8dO6/PcbeMZXS3VXGEtct9pDYdShp2WBOWlDvSbcRwVqyB580aCBh0BEFmKYtXLzLvUK8Wf+CG3U6sCdILW1lA==}
@@ -1118,12 +1118,12 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@4.3.0:
-    resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
-    hasBin: true
-
   js-yaml@4.3.1:
     resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
+    hasBin: true
+
+  js-yaml@4.3.2:
+    resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
     hasBin: true
 
   json-parse-even-better-errors@2.3.1:
@@ -1135,8 +1135,8 @@ packages:
   json-stringify-safe@5.0.1:
     resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
 
-  jsonata@2.0.6:
-    resolution: {integrity: sha512-WhQB5tXQ32qjkx2GYHFw2XbL90u+LLzjofAYwi+86g6SyZeXHz9F1Q0amy3dWRYczshOC3Haok9J4pOCgHtwyQ==}
+  jsonata@2.2.2:
+    resolution: {integrity: sha512-XDFH2PuaAXv0AXJEWwElXbqADmKFGKMLMkFb+qOz0EhjQW2EIJ6pgtordLU+4u3IVERyBfqy6bi6kZKEncvRqA==}
     engines: {node: '>= 8'}
 
   jsonfile@6.2.1:
@@ -1412,8 +1412,8 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  multer@2.2.0:
-    resolution: {integrity: sha512-6rdyFg2kLrMh9Jee7/BMPuV9lEAd7lLW2YUpF9/YxR7njyoUwwQ0ZPh3TaIY50Sw6vlyD2HW3wGOkTS4P79xrQ==}
+  multer@2.3.0:
+    resolution: {integrity: sha512-cjNbm3sttszgZeGfJR124D+jFEfkXCVAsoPBmFn9X7UxmDSFHWqE2CoEj0vrmSpuAFnqWR1Szcm9QTsiHr60Xw==}
     engines: {node: '>= 10.16.0'}
 
   mustache@4.2.0:
@@ -1460,8 +1460,8 @@ packages:
     resolution: {integrity: sha512-zLmHw6CPcrMvH2SNNKZ0shgD2adbp8W0Kwa86l/lSYWyCOgPnbFSK+IBB7qoEY91zytgSM6RNwVcwITihTkBGA==}
     engines: {node: '>=14'}
 
-  node-red@5.0.4:
-    resolution: {integrity: sha512-m5rBXYC2U8N5aS/jAuIY4yvTccldQfXpxhNFJ6pfPETORjaWstgPjqCtnuL2DnUCA2+RTnW0AOLXXG9BSeIdKA==}
+  node-red@5.0.6:
+    resolution: {integrity: sha512-XStPtSe8mFYgUs6fu8nm81I0t5dP5MOzR0ZAzCYw6kcbl+x06tLXD04yuUrpy48CJSixiblbzCw7bC1aCfuP5Q==}
     engines: {node: '>=22.9'}
     hasBin: true
 
@@ -1492,8 +1492,8 @@ packages:
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0, npm: '>=10.0.0'}
     hasBin: true
 
-  npm@11.19.0:
-    resolution: {integrity: sha512-SDd/hHg3KqHE5Ht2NHWxNYNtqCQ2pXAPLl6OtQhPyED5PHsRfrOtO199MZTIG2cQoQ1ZRI9t28shrD+2cr3AAw==}
+  npm@11.19.1:
+    resolution: {integrity: sha512-ztsxKxt/kkIaAs+2i0GU6I+DRmUdrNasxTZKJe9TCdSjKxlhah/4r/hl5ygMD6XAg1qZ9c2TNomR4qgOydp10g==}
     engines: {node: ^20.17.0 || >=22.9.0}
     hasBin: true
     bundledDependencies:
@@ -2402,10 +2402,10 @@ snapshots:
 
   '@noble/hashes@1.8.0': {}
 
-  '@node-red/editor-api@5.0.4(supports-color@8.1.1)':
+  '@node-red/editor-api@5.0.6(supports-color@8.1.1)':
     dependencies:
-      '@node-red/editor-client': 5.0.4
-      '@node-red/util': 5.0.4
+      '@node-red/editor-client': 5.0.6
+      '@node-red/util': 5.0.6
       bcryptjs: 3.0.3
       body-parser: 1.20.6(supports-color@8.1.1)
       clone: 2.1.2
@@ -2414,7 +2414,7 @@ snapshots:
       express-session: 1.19.0(supports-color@8.1.1)
       memorystore: 1.6.8(supports-color@8.1.1)
       mime: 3.0.0
-      multer: 2.2.0
+      multer: 2.3.0
       mustache: 4.2.0
       oauth2orize: 1.12.0(supports-color@8.1.1)
       passport: 0.7.0
@@ -2429,9 +2429,9 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@node-red/editor-client@5.0.4': {}
+  '@node-red/editor-client@5.0.6': {}
 
-  '@node-red/nodes@5.0.4(supports-color@8.1.1)':
+  '@node-red/nodes@5.0.6(supports-color@8.1.1)':
     dependencies:
       acorn: 8.18.0
       acorn-walk: 8.3.5
@@ -2452,10 +2452,10 @@ snapshots:
       https-proxy-agent: 5.0.1(supports-color@8.1.1)
       iconv-lite: 0.7.3
       is-utf8: 0.2.1
-      js-yaml: 4.3.0
+      js-yaml: 4.3.2
       media-typer: 1.1.0
       mqtt: 5.15.2(supports-color@8.1.1)
-      multer: 2.2.0
+      multer: 2.3.0
       mustache: 4.2.0
       node-watch: 0.7.4
       on-headers: 1.1.0
@@ -2468,12 +2468,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@node-red/registry@5.0.4':
+  '@node-red/registry@5.0.6':
     dependencies:
-      '@node-red/util': 5.0.4
+      '@node-red/util': 5.0.6
       clone: 2.1.2
       fs-extra: 11.4.0
-      npm: 11.19.0
+      npm: 11.19.1
       semver: 7.8.5
       tar: 7.5.22
       uglify-js: 3.19.3
@@ -2481,10 +2481,10 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@node-red/runtime@5.0.4(supports-color@8.1.1)':
+  '@node-red/runtime@5.0.6(supports-color@8.1.1)':
     dependencies:
-      '@node-red/registry': 5.0.4
-      '@node-red/util': 5.0.4
+      '@node-red/registry': 5.0.6
+      '@node-red/util': 5.0.6
       async-mutex: 0.5.0
       clone: 2.1.2
       cronosjs: 1.7.1
@@ -2498,13 +2498,13 @@ snapshots:
       - supports-color
       - typescript
 
-  '@node-red/util@5.0.4':
+  '@node-red/util@5.0.6':
     dependencies:
       chalk: 4.1.2
       fs-extra: 11.4.0
       i18next: 25.8.14
       json-stringify-safe: 5.0.1
-      jsonata: 2.0.6
+      jsonata: 2.2.2
       lodash.clonedeep: 4.5.0
       moment: 2.30.1
       moment-timezone: 0.5.48
@@ -3581,11 +3581,11 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@4.3.0:
+  js-yaml@4.3.1:
     dependencies:
       argparse: 2.0.1
 
-  js-yaml@4.3.1:
+  js-yaml@4.3.2:
     dependencies:
       argparse: 2.0.1
 
@@ -3595,7 +3595,7 @@ snapshots:
 
   json-stringify-safe@5.0.1: {}
 
-  jsonata@2.0.6: {}
+  jsonata@2.2.2: {}
 
   jsonfile@6.2.1:
     dependencies:
@@ -4239,7 +4239,7 @@ snapshots:
 
   ms@2.1.3: {}
 
-  multer@2.2.0:
+  multer@2.3.0:
     dependencies:
       append-field: 1.0.0
       busboy: 1.6.0
@@ -4295,12 +4295,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  node-red@5.0.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1):
+  node-red@5.0.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1):
     dependencies:
-      '@node-red/editor-api': 5.0.4(supports-color@8.1.1)
-      '@node-red/nodes': 5.0.4(supports-color@8.1.1)
-      '@node-red/runtime': 5.0.4(supports-color@8.1.1)
-      '@node-red/util': 5.0.4
+      '@node-red/editor-api': 5.0.6(supports-color@8.1.1)
+      '@node-red/nodes': 5.0.6(supports-color@8.1.1)
+      '@node-red/runtime': 5.0.6(supports-color@8.1.1)
+      '@node-red/util': 5.0.6
       basic-auth: 2.0.1
       bcryptjs: 3.0.3
       cors: 2.8.6
@@ -4334,7 +4334,7 @@ snapshots:
 
   npm-check-updates@23.0.2: {}
 
-  npm@11.19.0: {}
+  npm@11.19.1: {}
 
   nth-check@2.1.1:
     dependencies:
