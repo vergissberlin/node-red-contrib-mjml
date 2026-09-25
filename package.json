@@ -62,7 +62,7 @@
         "node-red-node-email": "5.2.5",
         "node-red-node-test-helper": "0.3.6",
         "npm-check-updates": "23.0.2",
-        "supertest": "7.2.2"
+        "supertest": "7.3.0"
     },
     "node-red": {
         "version": ">=2.0.0",
