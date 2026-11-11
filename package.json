@@ -52,7 +52,7 @@
         "release:create": "echo '\nCreate new Release: https://github.com/vergissberlin/node-red-contrib-mjml/releases/new'"
     },
     "dependencies": {
-        "mjml": "5.4.0",
+        "mjml": "5.4.1",
         "mustache": "4.2.0"
     },
     "devDependencies": {
